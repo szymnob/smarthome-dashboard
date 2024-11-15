@@ -1,8 +1,9 @@
 'use client';
 
-const links =[
-    {name: 'Home', href: 'dashboard', icon: "home"},
-    {name: 'Home', href: 'dashboard', icon: "home"},
+const links = [
+    { name: '1', href: '/floor-1', icon: 'https://via.placeholder.com/40' },
+    { name: '2', href: '/floor-2', icon: 'https://via.placeholder.com/40' },
+    { name: '3', href: '/floor-3', icon: 'https://via.placeholder.com/40' },
 ];
 
 import { usePathname } from 'next/navigation';
@@ -13,24 +14,64 @@ export default function Navigation() {
     const pathname = usePathname();
     return (
         <>
-            {links.map((link) => {
-                const LinkIcon = link.icon;
-                return (
+            <div className="h-screen w-20 bg-gray-300 flex flex-col justify-between items-center py-4">
+                {/* Górna sekcja */}
+                <div className="flex flex-col items-center space-y-6">
                     <Link
-                        key={link.name}
-                        href={link.href}
+                        href={'/dashboard'}
+                        key={'dashboard'}
                         className={clsx(
-                            'flex h-[48px] grow items-center justify-center gap-2 rounded-md bg-gray-50 p-3 text-sm font-medium hover:bg-sky-100 hover:text-blue-600 md:flex-none md:justify-start md:p-2 md:px-3',
+                            'flex h-12 w-12 items-center justify-center rounded-lg bg-white shadow hover:bg-sky-100 hover:text-blue-600',
                             {
-                                'bg-sky-100 text-blue-600': pathname === link.href,
-                            },
+                                'border-2 border-purple-500': '/dashboard' === '/dashboard' ,
+                            }
                         )}
                     >
-                        <LinkIcon className="w-6" />
-                        <p className="hidden md:block">{link.name}</p>
+                        <img src="https://via.placeholder.com/40" alt="Home" className="w-10 h-10 rounded-full"/>
+
                     </Link>
-                );
-            })}
+
+                    {/* Numery pięter */}
+                    {links.map((link) => (
+                        <Link
+                            key={link.name}
+                            href={link.href}
+                            className={clsx(
+                                'relative flex h-12 w-12 items-center justify-center rounded-lg text-xl font-bold text-black bg-white shadow hover:bg-sky-100 hover:text-2xl',
+                                {
+                                    'border-2 border-purple-500': pathname === link.href,
+                                }
+                            )}
+                        >
+                            {link.name}
+                        </Link>
+                    ))}
+                </div>
+
+                {/* Dolna sekcja */}
+                <div className="flex flex-col items-center space-y-4">
+                    {/* Separator */}
+                    <div className="w-full h-px bg-black"></div>
+
+                    {/* Przycisk "+" */}
+                    <div className="w-12 h-12 bg-white flex items-center justify-center rounded-lg shadow">
+                        <img src="https://via.placeholder.com/40" alt="Add floor" className="w-10 h-10 rounded-full"/>
+                    </div>
+
+                    {/* Przycisk ustawienia */}
+                    <div className="w-12 h-12 bg-white flex items-center justify-center rounded-lg shadow">
+                        <img src="https://via.placeholder.com/40" alt="Settings Icon"
+                             className="w-10 h-10 rounded-full"/>
+                    </div>
+
+                    {/* Avatar i podpis */}
+                    <div className="flex flex-col items-center">
+                        <img src="https://via.placeholder.com/40" alt="Avatar" className="w-10 h-10 rounded-full"/>
+                        <span className="text-sm mt-2 text-gray-700">User</span>
+                    </div>
+                </div>
+            </div>
+
         </>
     );
 }
