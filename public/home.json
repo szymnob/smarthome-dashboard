@@ -1,0 +1,97 @@
+{
+  "user": {
+    "id": 1,
+    "name": "John Doe",
+    "email": "john@gmail.com",
+    "password": "123456"
+  },
+  "home": {
+    "name": "string",
+    "floors": {
+      "1": {
+        "id": 1,
+        "name": "Ground Floor",
+        "rooms": {
+          "1": {
+            "id": 1,
+            "name": "Kitchen",
+            "devices": [1, 2]
+          },
+          "2": {
+            "id": 2,
+            "name": "Living Room",
+            "devices": [3]
+          }
+        }
+      },
+      "2": {
+        "id": 2,
+        "name": "First Floor",
+        "rooms": {
+          "3": {
+            "id": 3,
+            "name": "Bedroom",
+            "devices": [4]
+          },
+          "4": {
+            "id": 4,
+            "name": "Bathroom",
+            "devices": [5]
+          }
+        }
+      }
+    }
+  },
+  "devices": {
+    "1": {
+      "id": 1,
+      "type": "Refrigerator",
+      "brand": "string",
+      "model": "string",
+      "state": {
+        "status": "ON",
+        "properties": {}
+      }
+    },
+    "2": {
+      "id": 2,
+      "type": "Lamp",
+      "brand": "string",
+      "model": "string",
+      "state": {
+        "status": "OFF",
+        "properties": {}
+      }
+    },
+    "3": {
+      "id": 3,
+      "type": "TV",
+      "brand": "string",
+      "model": "string",
+      "state": {
+        "status": "ON",
+        "properties": {}
+      }
+    },
+    "4": {
+      "id": 4,
+      "type": "Heater",
+      "brand": "string",
+      "model": "string",
+      "state": {
+        "status": "OFF",
+        "properties": {}
+      }
+    },
+    "5": {
+      "id": 5,
+      "type": "Air Conditioner",
+      "brand": "string",
+      "model": "string",
+      "state": {
+        "status": "ON",
+        "properties": {}
+      }
+    }
+  }
+}
