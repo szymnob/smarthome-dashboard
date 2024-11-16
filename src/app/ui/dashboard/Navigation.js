@@ -1,9 +1,9 @@
 'use client';
 
 const links = [
-    { name: '1', href: '/floor-1', icon: 'https://via.placeholder.com/40' },
-    { name: '2', href: '/floor-2', icon: 'https://via.placeholder.com/40' },
-    { name: '3', href: '/floor-3', icon: 'https://via.placeholder.com/40' },
+    { name: '1', href: '/floor/1', icon: 'https://via.placeholder.com/40' },
+    { name: '2', href: '/floor/2', icon: 'https://via.placeholder.com/40' },
+    { name: '3', href: '/floor/3', icon: 'https://via.placeholder.com/40' },
 ];
 
 import { usePathname } from 'next/navigation';
