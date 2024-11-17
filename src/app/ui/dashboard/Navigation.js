@@ -35,7 +35,7 @@ export default function Navigation() {
                         className={clsx(
                             'flex h-12 w-12 items-center justify-center rounded-lg bg-white shadow hover:bg-sky-100 hover:text-blue-600',
                             {
-                                'border-2 border-purple-500': '/dashboard' === pathname ,
+                                'border-2 border-violet-700': '/dashboard' === pathname ,
                             }
                         )}
                     >
@@ -43,15 +43,16 @@ export default function Navigation() {
 
                     </Link>
 
+
                     {/* Numery pięter */}
                     {floorNumbers.map((number) => (
                         <Link
                             key={number}
-                            href={`/dashboard/floor-${number}`}
+                            href={`/dashboard/floor/${number}`}
                             className={clsx(
                                 'relative flex h-12 w-12 items-center justify-center rounded-lg text-xl font-bold text-black bg-white shadow hover:bg-sky-100 hover:text-2xl',
                                 {
-                                    'border-2 border-purple-500': pathname === `/dashboard/floor-${number}`,
+                                    'border-2 border-violet-700': pathname === `/dashboard/floor/${number}`,
                                 }
                             )}
                         >
