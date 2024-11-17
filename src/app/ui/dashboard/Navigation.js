@@ -1,17 +1,29 @@
 'use client';
 
-const links = [
-    { name: '1', href: '/floor/1', icon: 'https://via.placeholder.com/40' },
-    { name: '2', href: '/floor/2', icon: 'https://via.placeholder.com/40' },
-    { name: '3', href: '/floor/3', icon: 'https://via.placeholder.com/40' },
-];
-
 import { usePathname } from 'next/navigation';
 import Link from 'next/link';
 import clsx from "clsx";
 
+import {useContext, useState} from "react";
+import DataContext from "@/app/dashboard/dataContext";
+
+import {getFloorsNumbers} from "@/app/dashboard/dataService";
+
+const links = [
+    { name: '1', href: '/dashboard/floor-1', icon: 'https://via.placeholder.com/40' },
+    { name: '2', href: '/floor/2', icon: 'https://via.placeholder.com/40' },
+    { name: '3', href: '/floor/3', icon: 'https://via.placeholder.com/40' },
+];
+
+
+
 export default function Navigation() {
     const pathname = usePathname();
+
+    const { data } = useContext(DataContext);
+    if(!data) return null;
+    const floorNumbers = getFloorsNumbers(data);
+
     return (
         <>
             <div className="h-screen w-20 bg-gray-300 flex flex-col justify-between items-center py-4">
@@ -23,7 +35,7 @@ export default function Navigation() {
                         className={clsx(
                             'flex h-12 w-12 items-center justify-center rounded-lg bg-white shadow hover:bg-sky-100 hover:text-blue-600',
                             {
-                                'border-2 border-purple-500': '/dashboard' === '/dashboard' ,
+                                'border-2 border-purple-500': '/dashboard' === pathname ,
                             }
                         )}
                     >
@@ -32,20 +44,35 @@ export default function Navigation() {
                     </Link>
 
                     {/* Numery pięter */}
-                    {links.map((link) => (
+                    {floorNumbers.map((number) => (
                         <Link
-                            key={link.name}
-                            href={link.href}
+                            key={number}
+                            href={`/dashboard/floor-${number}`}
                             className={clsx(
                                 'relative flex h-12 w-12 items-center justify-center rounded-lg text-xl font-bold text-black bg-white shadow hover:bg-sky-100 hover:text-2xl',
                                 {
-                                    'border-2 border-purple-500': pathname === link.href,
+                                    'border-2 border-purple-500': pathname === `/dashboard/floor-${number}`,
                                 }
                             )}
                         >
-                            {link.name}
+                            {number}
                         </Link>
                     ))}
+
+                    {/*{links.map((link) => (*/}
+                    {/*    <Link*/}
+                    {/*        key={link.name}*/}
+                    {/*        href={link.href}*/}
+                    {/*        className={clsx(*/}
+                    {/*            'relative flex h-12 w-12 items-center justify-center rounded-lg text-xl font-bold text-black bg-white shadow hover:bg-sky-100 hover:text-2xl',*/}
+                    {/*            {*/}
+                    {/*                'border-2 border-purple-500': pathname === link.href,*/}
+                    {/*            }*/}
+                    {/*        )}*/}
+                    {/*    >*/}
+                    {/*        {link.name}*/}
+                    {/*    </Link>*/}
+                    {/*))}*/}
                 </div>
 
                 {/* Dolna sekcja */}
