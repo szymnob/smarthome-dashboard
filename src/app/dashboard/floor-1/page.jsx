@@ -1,3 +1,5 @@
+'use client';
+
 import Header from "@/app/ui/dashboard/RectHeader";
 
 export default function Page() {
