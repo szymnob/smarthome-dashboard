@@ -1,8 +1,9 @@
-import Header from "@/app/ui/dashboard/RectHeader";
+
 import {use, useContext, useEffect, useState} from 'react';
 import DataContext from '@/app/dashboard/dataContext';
 import {getDeviceNameById, getDeviceStateById} from "@/app/dashboard/dataService";
 import Switch from "@/components/Switch";
+import clsx from "clsx";
 
 
 export default function DeviceComponent({deviceId}) {
@@ -10,16 +11,24 @@ export default function DeviceComponent({deviceId}) {
 
     const [deviceName, setDeviceName] = useState("")
     const [deviceState, setDeviceState] = useState("")
-    const [status, setStatus] = useState("OFF");
+    const [status, setStatus] = useState(null);
 
     useEffect(() => {
         if (data) {
-            setDeviceName(getDeviceNameById(data, deviceId));
-            setDeviceState(getDeviceStateById(data, deviceId));
+            const name = getDeviceNameById(data, deviceId);
+            const state = getDeviceStateById(data, deviceId);
 
-            setStatus(deviceState.status);
+            setDeviceName(name);
+            setDeviceState(state);
+            if (state && state.status) {
+                setStatus(state.status);
+            }
         }
     }, [data, deviceId]);
+
+    if (!deviceState || !status) {
+        return <div className="flex items-center justify-center p-5">Loading...</div>;
+    }
 
 
     const handleChange = () => {
@@ -28,8 +37,17 @@ export default function DeviceComponent({deviceId}) {
     };
 
     return (
-        <div className="flex flex-col items-center justify-center bg-white rounded-xl shadow-md w-48 m-5">
-            <div className="flex w-full flex-col p-5">
+        <div className={clsx(
+            "flex flex-col items-center justify-center bg-white rounded-xl shadow-md w-48 m-5",
+            {
+                "bg-violet-600": status === "ON",
+            }
+        )}>
+
+            <div className={clsx("flex w-full flex-col p-5",
+                {
+                    "text-white": status === "ON",
+                })}>
                 <div className="flex flex-row w-full justify-between">
                     <div>{status}</div>
                     <Switch checked={status === "ON"} onChange={handleChange}/>
