@@ -1,43 +1,51 @@
 'use client';
 
 import Header from "@/app/ui/dashboard/RectHeader";
-
-import { useContext, useEffect, useState } from 'react';
+import {use, useContext, useEffect, useState} from 'react';
 import DataContext from '@/app/dashboard/dataContext';
-import {useRouter} from "next/navigation";
-import {getFloorsNumbers} from "@/app/dashboard/dataService";
+import RoomComponent from "@/components/RoomComponent";
+import {getRoomsIdOnFloor} from "@/app/dashboard/dataService";
+import DeviceComponent from "@/components/DeviceComponent";
 
-export default function Page() {
-    const router = useRouter();
+
+export default function Page({ params }) {
     const { data } = useContext(DataContext);
+    const [floorNotFound, setFloorNotFound] = useState(false);
+    const [roomsId, setRoomsId] = useState([]);
+
+    const useParams = use(params);
+    const floorId = useParams.floorId;
 
 
     useEffect(() => {
-        if(router.isReady && data){
-            const floorNumbers = getFloorsNumbers(data);
-            const floorId = router.query.floorId;
-            console.log("Numer piętra: ");
-            console.log(floorId);
-            if(!data.home.floors[floorId]){
-                return(
-                    <>
-                        <h1 className="text-2xl text-bold">Floor not found</h1>
-                    </>
-                )
+        if (data) {
+
+            if (!data.home.floors[floorId]) {
+                setFloorNotFound(true);
+            } else {
+                setFloorNotFound(false);
+                setRoomsId(getRoomsIdOnFloor(data, floorId));
             }
-        };
-    }, [router.isReady, data]);
+        }
+    }, [data]);
 
-    if(!data) return null;
-
-
-
-
-    return(
+    if (floorNotFound) {
+        return (
+            <div className="h-auto w-auto flex justify-center items-center p-6 bg-red-500 text-white">
+                <h1 className="text-4xl font-bold">Floor not found</h1>
+            </div>
+        );
+    }
+    return (
         <>
             <Header>
-                <h1 className="text-2xl text-bold">Floor 1</h1>
+                <h1 className="text-4xl text-bold">{`Floor ${floorId}`}</h1>
             </Header>
+
+            {roomsId.map((roomId) => (
+                <RoomComponent key={roomId} floorId={floorId} roomId={roomId} />
+            ))}
+
         </>
-    )
+    );
 }
