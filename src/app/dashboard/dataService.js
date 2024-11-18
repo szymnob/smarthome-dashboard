@@ -40,3 +40,6 @@ export function getDeviceName(data, floorId, roomId, deviceId){
 export function getRoomsIdOnFloor(data, floorId){
     return Object.keys(data.home.floors[floorId].rooms).map(roomId => roomId);
 }
+export function getDeviceTypeById(data, deviceId){
+    return data.devices[deviceId].type;
+}
