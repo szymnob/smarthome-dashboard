@@ -8,6 +8,8 @@ import {useContext, useState} from "react";
 import DataContext from "@/app/dashboard/dataContext";
 
 import {getFloorsNumbers, getUserName} from "@/app/dashboard/dataService";
+import ModalWindow from "@/components/control-overlays/ModalWindow";
+import AddNewFloor from "@/components/control-overlays/AddNewFloor";
 
 const links = [
     { name: '1', href: '/dashboard/floor-1', icon: 'https://via.placeholder.com/40' },
@@ -19,11 +21,18 @@ const links = [
 
 export default function Navigation() {
     const pathname = usePathname();
+    const[showAddFloorModal, setShowAddFloorModal] = useState(false);
+
 
     const { data } = useContext(DataContext);
     if(!data) return null;
     const floorNumbers = getFloorsNumbers(data);
     const userName = getUserName(data);
+
+
+    const openModal = () => setShowAddFloorModal(true);
+    const closeModal = () => setShowAddFloorModal(false);
+
 
     return (
         <>
@@ -69,7 +78,8 @@ export default function Navigation() {
                     <div className="w-full h-px bg-black"></div>
 
                     {/* Przycisk "+" */}
-                    <div className="w-12 h-12 bg-white flex items-center justify-center rounded-lg shadow">
+                    <div className="w-12 h-12 bg-white flex items-center justify-center rounded-lg shadow"
+                        onClick={()=> setShowAddFloorModal(true)}>
                         <img src="/icons/plus.svg" alt="Add floor" className="w-10 h-10 rounded-full"/>
                     </div>
 
@@ -86,6 +96,10 @@ export default function Navigation() {
                     </div>
                 </div>
             </div>
+
+
+
+            <AddNewFloor isVisible={showAddFloorModal} onClose={closeModal}/>
 
         </>
     );
