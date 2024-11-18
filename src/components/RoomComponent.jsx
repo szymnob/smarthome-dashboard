@@ -24,17 +24,14 @@ export default function RoomComponent({floorId, roomId}) {
 
     return (
         <>
-            <div className="pt-5">
-                <div className="m5">
+            <div className="flex flex-col m-8">
+                <div className="m5 w-auto">
                     <h1 className="text-2xl text-bold text-center">{roomName}</h1>
                 </div>
-                <div className="flex flex-col w-full justify-between bg-gray-300 rounded-lg mt-5">
-
-                    <div className="flex flex-row ">
+                <div className="inline-flex overflow-auto bg-neutral-50 shadow-md border-neutral-300 rounded-lg mt-2 p-2 border-2  ">
                         {devicesId.map((deviceId) => (
                             <DeviceComponent key={deviceId} deviceId={deviceId}/>
                         ))}
-                    </div>
                 </div>
             </div>
 
