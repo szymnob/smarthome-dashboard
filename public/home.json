@@ -46,7 +46,7 @@
     "1": {
       "id": 1,
       "name": "Refrigerator",
-      "type": "Refrigerator",
+      "type": "refrigerator",
       "brand": "string",
       "model": "string",
       "state": {
@@ -57,7 +57,7 @@
     "2": {
       "id": 2,
       "name": "Lamp",
-      "type": "Lamp",
+      "type": "light",
       "brand": "string",
       "model": "string",
       "state": {
@@ -68,7 +68,7 @@
     "3": {
       "id": 3,
       "name": "TV",
-      "type": "TV",
+      "type": "tv",
       "brand": "string",
       "model": "string",
       "state": {
@@ -79,7 +79,7 @@
     "4": {
       "id": 4,
       "name": "Heater",
-      "type": "Heater",
+      "type": "heater",
       "brand": "string",
       "model": "string",
       "state": {
@@ -90,7 +90,7 @@
     "5": {
       "id": 5,
       "name": "Air Conditioner",
-      "type": "Air Conditioner",
+      "type": "air_conditioner",
       "brand": "string",
       "model": "string",
       "state": {
