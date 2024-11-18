@@ -3,9 +3,9 @@
 import Header from "@/app/ui/dashboard/RectHeader";
 import {use, useContext, useEffect, useState} from 'react';
 import DataContext from '@/app/dashboard/dataContext';
-import RoomComponent from "@/components/RoomComponent";
+import RoomComponent from "@/components/controls/RoomComponent";
 import {getRoomsIdOnFloor} from "@/app/dashboard/dataService";
-import DeviceComponent from "@/components/DeviceComponent";
+import DeviceComponent from "@/components/controls/DeviceComponent";
 
 
 export default function Page({ params }) {

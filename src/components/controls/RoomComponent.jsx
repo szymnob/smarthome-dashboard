@@ -2,7 +2,7 @@ import Header from "@/app/ui/dashboard/RectHeader";
 import {use, useContext, useEffect, useState} from 'react';
 import DataContext from '@/app/dashboard/dataContext';
 import {getDevicesIdInRoom, getFloorName, getRoomName} from "@/app/dashboard/dataService";
-import DeviceComponent from "@/components/DeviceComponent";
+import DeviceComponent from "@/components/controls/DeviceComponent";
 
 
 export default function RoomComponent({floorId, roomId}) {

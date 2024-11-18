@@ -2,7 +2,7 @@
 import {use, useContext, useEffect, useState} from 'react';
 import DataContext from '@/app/dashboard/dataContext';
 import {getDeviceNameById, getDeviceStateById, getDeviceTypeById} from "@/app/dashboard/dataService";
-import Switch from "@/components/Switch";
+import Switch from "@/components/controls/Switch";
 import clsx from "clsx";
 
 
