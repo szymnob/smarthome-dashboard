@@ -43,3 +43,7 @@ export function getRoomsIdOnFloor(data, floorId){
 export function getDeviceTypeById(data, deviceId){
     return data.devices[deviceId].type;
 }
+
+export function getUserName(data){
+    return data.user.name;
+}
