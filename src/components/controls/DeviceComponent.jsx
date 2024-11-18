@@ -1,7 +1,7 @@
 
 import {use, useContext, useEffect, useState} from 'react';
 import DataContext from '@/app/dashboard/dataContext';
-import {getDeviceNameById, getDeviceStateById, getDeviceTypeById} from "@/app/dashboard/dataService";
+import {getDeviceNameById, getDeviceStateById, getDeviceTypeById, updateDeviceState} from "@/app/dashboard/dataService";
 import Switch from "@/components/controls/Switch";
 import clsx from "clsx";
 
@@ -27,6 +27,7 @@ export default function DeviceComponent({deviceId}) {
             if (state && state.status) {
                 setStatus(state.status);
             }
+
         }
     }, [data, deviceId]);
 
@@ -36,8 +37,12 @@ export default function DeviceComponent({deviceId}) {
 
 
     const handleChange = () => {
-        status === "ON" ? setStatus("OFF") : setStatus("ON");
-        // onToggle(device.id, newState);
+        setStatus(prevStatus => {
+            const newStatus = prevStatus === "ON" ? "OFF" : "ON";
+            updateDeviceState(data, deviceId, newStatus);
+            return newStatus;
+        });
+
     };
 
     return (
