@@ -99,7 +99,11 @@ export default function Navigation() {
 
 
 
-            <AddNewFloor isVisible={showAddFloorModal} onClose={closeModal}/>
+            {/*<AddNewFloor isVisible={showAddFloorModal} onClose={closeModal}/>*/}
+
+            <ModalWindow isVisible={showAddFloorModal} onClose={closeModal} title="Add new floor">
+                <AddNewFloor/>
+            </ModalWindow>
 
         </>
     );
