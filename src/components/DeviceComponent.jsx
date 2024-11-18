@@ -42,9 +42,9 @@ export default function DeviceComponent({deviceId}) {
 
     return (
         <div className={clsx(
-            "flex flex-col items-center justify-center bg-white rounded-xl shadow-md w-48 m-5",
+            "flex flex-col items-center justify-center border-2 border-solid border-violet-200 bg-white rounded-xl shadow-md w-48 m-5",
             {
-                "bg-gradient-radial from-violet-500 to-violet-600": status === "ON",
+                "bg-gradient-radial from-violet-500 to-violet-600 border-violet-600 shadow-violet-500": status === "ON",
 
             }
         )}>
@@ -59,8 +59,14 @@ export default function DeviceComponent({deviceId}) {
                 </div>
 
                 <div className="flex flex-row justify-between">
-                    <img src={`/icons/${deviceType}.svg`} alt={deviceName} className="w-12 h-12"/>
-                    <img src="/icons/settings.svg" alt="Device" className="w-10 h-10"/>
+                    <img src={`/icons/${deviceType}.svg`} alt={deviceName} className={clsx("w-12 h-12",{
+                        "brightness-0 invert": status === "ON",
+                    }
+                    )}/>
+                    <img src="/icons/settings.svg" alt="Device" className={clsx("w-10 h-10",{
+                        "brightness-0 invert": status === "ON",
+                    })}/>
+
                 </div>
                 <div>
 
