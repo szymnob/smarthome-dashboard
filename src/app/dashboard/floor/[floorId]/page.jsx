@@ -41,11 +41,11 @@ export default function Page({ params }) {
             <Header>
                 <h1 className="text-4xl text-bold">{`Floor ${floorId}`}</h1>
             </Header>
-
+            <div className="flex flex-wrap">
             {roomsId.map((roomId) => (
                 <RoomComponent key={roomId} floorId={floorId} roomId={roomId} />
             ))}
-
+            </div>
         </>
     );
 }
