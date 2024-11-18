@@ -7,7 +7,7 @@ import clsx from "clsx";
 import {useContext, useState} from "react";
 import DataContext from "@/app/dashboard/dataContext";
 
-import {getFloorsNumbers} from "@/app/dashboard/dataService";
+import {getFloorsNumbers, getUserName} from "@/app/dashboard/dataService";
 
 const links = [
     { name: '1', href: '/dashboard/floor-1', icon: 'https://via.placeholder.com/40' },
@@ -23,10 +23,11 @@ export default function Navigation() {
     const { data } = useContext(DataContext);
     if(!data) return null;
     const floorNumbers = getFloorsNumbers(data);
+    const userName = getUserName(data);
 
     return (
         <>
-            <div className="h-screen w-20 bg-gray-300 flex flex-col justify-between items-center py-4">
+            <div className="h-screen bg-gray-300 flex flex-col justify-between p-3 items-center py-8">
                 {/* Górna sekcja */}
                 <div className="flex flex-col items-center space-y-6">
                     <Link
@@ -39,7 +40,7 @@ export default function Navigation() {
                             }
                         )}
                     >
-                        <img src="https://via.placeholder.com/40" alt="Home" className="w-10 h-10 rounded-full"/>
+                        <img src="/icons/home.svg" alt="Home" className="w-8 h-8 rounded-full"/>
 
                     </Link>
 
@@ -60,20 +61,6 @@ export default function Navigation() {
                         </Link>
                     ))}
 
-                    {/*{links.map((link) => (*/}
-                    {/*    <Link*/}
-                    {/*        key={link.name}*/}
-                    {/*        href={link.href}*/}
-                    {/*        className={clsx(*/}
-                    {/*            'relative flex h-12 w-12 items-center justify-center rounded-lg text-xl font-bold text-black bg-white shadow hover:bg-sky-100 hover:text-2xl',*/}
-                    {/*            {*/}
-                    {/*                'border-2 border-purple-500': pathname === link.href,*/}
-                    {/*            }*/}
-                    {/*        )}*/}
-                    {/*    >*/}
-                    {/*        {link.name}*/}
-                    {/*    </Link>*/}
-                    {/*))}*/}
                 </div>
 
                 {/* Dolna sekcja */}
@@ -83,19 +70,19 @@ export default function Navigation() {
 
                     {/* Przycisk "+" */}
                     <div className="w-12 h-12 bg-white flex items-center justify-center rounded-lg shadow">
-                        <img src="https://via.placeholder.com/40" alt="Add floor" className="w-10 h-10 rounded-full"/>
+                        <img src="/icons/plus.svg" alt="Add floor" className="w-10 h-10 rounded-full"/>
                     </div>
 
                     {/* Przycisk ustawienia */}
                     <div className="w-12 h-12 bg-white flex items-center justify-center rounded-lg shadow">
-                        <img src="https://via.placeholder.com/40" alt="Settings Icon"
+                        <img src="/icons/settings.svg" alt="Settings"
                              className="w-10 h-10 rounded-full"/>
                     </div>
 
-                    {/* Avatar i podpis */}
+                    {/* Avatar */}
                     <div className="flex flex-col items-center">
-                        <img src="https://via.placeholder.com/40" alt="Avatar" className="w-10 h-10 rounded-full"/>
-                        <span className="text-sm mt-2 text-gray-700">User</span>
+                        <img src="/icons/user.svg" alt="Avatar" className="w-10 h-10 rounded-full"/>
+                        <span className="text-sm mt-2 text-gray-700">{userName}</span>
                     </div>
                 </div>
             </div>

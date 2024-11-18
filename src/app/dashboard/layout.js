@@ -9,7 +9,7 @@ export default function Layout({ children, }) {
             <div className=" flex-none">
                 <Navigation />
             </div>
-            <div className="flex-grow md:overflow-y-auto p-4">{children}</div>
+            <div className="flex-grow md:overflow-y-auto">{children}</div>
         </div>
         </DataProvider>
     );
