@@ -47,3 +47,7 @@ export function getDeviceTypeById(data, deviceId){
 export function getUserName(data){
     return data.user.name;
 }
+
+export function updateDeviceState(data, deviceId, newState) {
+    data.devices[deviceId].state.status = newState;
+}
