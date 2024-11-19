@@ -10,15 +10,13 @@ export const DataProvider = ({ children }) => {
         const fetchData = async () => {
             const response = await fetch('/home.json');
             const data = await response.json();
-            console.log(data)
             setData(data);
         };
 
         fetchData();
     }, []);
-    console.log(data)
     return (
-        <DataContext.Provider value={{ data }}>
+        <DataContext.Provider value={{ data, setData }}>
             {children}
         </DataContext.Provider>
     );
