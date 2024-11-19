@@ -10,7 +10,7 @@ export default function Input({  id, label, type = "text", value, onChange, erro
                     <label htmlFor={id}>
                         {label}
                     </label>
-                    <input value={value} className="" id={id} type={type} onChange={onChange}/>
+                    <input value={value} className="rounded border-2 border-violet-100 focus:outline-none focus:border-2 focus:border-violet-700 focus:shadow focus:shadow-violet-500" id={id} type={type} onChange={onChange}/>
                 </div>
 
                 {error && <div
