@@ -21,7 +21,7 @@ const links = [
 
 export default function Navigation() {
     const pathname = usePathname();
-    const[showAddFloorModal, setShowAddFloorModal] = useState(true);
+    const[showAddFloorModal, setShowAddFloorModal] = useState(false);
 
     const[username, setUsername] = useState("User");
     const[floorNumbers, setFloorNumbers] = useState([]);
