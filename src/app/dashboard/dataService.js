@@ -51,3 +51,22 @@ export function getUserName(data){
 export function updateDeviceState(data, deviceId, newState) {
     data.devices[deviceId].state.status = newState;
 }
+
+export function addFloor(data, setData, floorId, name){
+    setData((prevData) => {
+        const updatedData = { ...prevData };
+
+        if (!updatedData.home.floors) {
+            updatedData.home.floors = {};
+        }
+
+        if (!updatedData.home.floors[floorId]) {
+            updatedData.home.floors[floorId] = {
+                name: name,
+                rooms: {}
+            };
+        }
+
+        return updatedData;
+    });
+}
