@@ -85,7 +85,7 @@ export default function Navigation() {
                     <div className="w-full h-px bg-black"></div>
 
                     {/* Przycisk "+" */}
-                    <div className="w-12 h-12 bg-white flex items-center justify-center rounded-lg shadow"
+                    <div className="flex h-12 w-12 items-center justify-center rounded-lg bg-white shadow hover:bg-sky-100 hover:text-blue-600 hover:pointer-events-auto "
                         onClick={()=> setShowAddFloorModal(true)}>
                         <img src="/icons/plus.svg" alt="Add floor" className="w-10 h-10 rounded-full"/>
                     </div>
