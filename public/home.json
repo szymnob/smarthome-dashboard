@@ -9,7 +9,6 @@
     "name": "string",
     "floors": {
       "1": {
-        "id": 1,
         "name": "Ground Floor",
         "rooms": {
           "1": {
@@ -25,7 +24,6 @@
         }
       },
       "2": {
-        "id": 2,
         "name": "First Floor",
         "rooms": {
           "3": {
