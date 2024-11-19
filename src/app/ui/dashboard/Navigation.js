@@ -10,6 +10,7 @@ import DataContext from "@/app/dashboard/dataContext";
 import {getFloorsNumbers, getUserName} from "@/app/dashboard/dataService";
 import ModalWindow from "@/components/control-overlays/ModalWindow";
 import AddNewFloor from "@/components/control-overlays/AddNewFloor";
+import LinkButtonImage, {ButtonImage, LinkButtonText} from "@/app/ui/dashboard/NavigationButton";
 
 const links = [
     { name: '1', href: '/dashboard/floor-1', icon: 'https://via.placeholder.com/40' },
@@ -45,36 +46,23 @@ export default function Navigation() {
         <>
             <div className="h-screen bg-gray-300 flex flex-col justify-between p-3 items-center py-8">
                 {/* Górna sekcja */}
-                <div className="flex flex-col items-center space-y-6">
-                    <Link
+                <div className="flex flex-col items-center space-y-7">
+
+                    <LinkButtonImage
                         href={'/dashboard'}
-                        key={'dashboard'}
-                        className={clsx(
-                            'flex h-12 w-12 items-center justify-center rounded-lg bg-white shadow hover:bg-sky-100 hover:text-blue-600',
-                            {
-                                'border-2 border-violet-700': '/dashboard' === pathname ,
-                            }
-                        )}
-                    >
-                        <img src="/icons/home.svg" alt="Home" className="w-8 h-8 rounded-full"/>
-
-                    </Link>
-
+                        icon="/icons/home.svg"
+                        isActive={pathname === '/dashboard'}
+                        label="Home"
+                    />
 
                     {/* Numery pięter */}
                     {floorNumbers.map((number) => (
-                        <Link
+                        <LinkButtonText
                             key={number}
                             href={`/dashboard/floor/${number}`}
-                            className={clsx(
-                                'relative flex h-12 w-12 items-center justify-center rounded-lg text-xl font-bold text-black bg-white shadow hover:bg-sky-100 hover:text-2xl',
-                                {
-                                    'border-2 border-violet-700': pathname === `/dashboard/floor/${number}`,
-                                }
-                            )}
-                        >
-                            {number}
-                        </Link>
+                            text={number}
+                            isActive={pathname === `/dashboard/floor/${number}`}
+                        />
                     ))}
 
                 </div>
@@ -85,16 +73,21 @@ export default function Navigation() {
                     <div className="w-full h-px bg-black"></div>
 
                     {/* Przycisk "+" */}
-                    <div className="flex h-12 w-12 items-center justify-center rounded-lg bg-white shadow hover:bg-sky-100 hover:text-blue-600 hover:pointer-events-auto "
-                        onClick={()=> setShowAddFloorModal(true)}>
-                        <img src="/icons/plus.svg" alt="Add floor" className="w-10 h-10 rounded-full"/>
-                    </div>
+                    <ButtonImage
+                        icon="/icons/plus.svg"
+                        onClick={openModal}
+                        isActive={showAddFloorModal}
+                        label="Add floor"
+                    />
 
                     {/* Przycisk ustawienia */}
-                    <div className="w-12 h-12 bg-white flex items-center justify-center rounded-lg shadow">
-                        <img src="/icons/settings.svg" alt="Settings"
-                             className="w-10 h-10 rounded-full"/>
-                    </div>
+                    <LinkButtonImage
+                        href={'/dashboard/settings'}
+                        icon="/icons/settings.svg"
+                        isActive={pathname === '/dashboard/settings'}
+                        label="Settings"
+                    />
+
 
                     {/* Avatar */}
                     <div className="flex flex-col items-center">
@@ -103,8 +96,6 @@ export default function Navigation() {
                     </div>
                 </div>
             </div>
-
-
 
             {/*<AddNewFloor isVisible={showAddFloorModal} onClose={closeModal}/>*/}
 
