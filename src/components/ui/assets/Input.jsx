@@ -1,4 +1,5 @@
 import clsx from "clsx";
+import * as PropTypes from "prop-types";
 
 
 export default function Input({  id, label, type = "text", value, onChange, error}) {
@@ -21,4 +22,13 @@ export default function Input({  id, label, type = "text", value, onChange, erro
                 {/*    className="w-full text-center bg-red-400 shadow-md shadow-red-300 rounded-lg leading-loose">{error}</div>}*/}
             </div>
     )
+}
+
+Input.propTypes = {
+    id: PropTypes.string.isRequired,
+    label: PropTypes.string.isRequired,
+    type: PropTypes.string,
+    value: PropTypes.string.isRequired,
+    onChange: PropTypes.func.isRequired,
+    error: PropTypes.string,
 }

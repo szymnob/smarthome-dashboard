@@ -1,8 +1,8 @@
-import Header from "@/app/ui/dashboard/RectHeader";
+import Header from "@/components/ui/assets/RectHeader";
 import {use, useContext, useEffect, useState} from 'react';
-import DataContext from '@/app/dashboard/dataContext';
-import {getDevicesIdInRoom, getFloorName, getRoomName} from "@/app/dashboard/dataService";
-import DeviceComponent from "@/components/controls/DeviceComponent";
+import DataContext from '@/app/dashboard/data/dataContext';
+import {getDevicesIdInRoom, getFloorName, getRoomName} from "@/app/dashboard/data/dataService";
+import DeviceComponent from "@/components/views/device-views/DeviceComponent";
 
 
 export default function RoomComponent({floorId, roomId}) {
@@ -23,18 +23,16 @@ export default function RoomComponent({floorId, roomId}) {
     console.log(devicesId);
 
     return (
-        <>
             <div className="flex flex-col m-8">
-                <div className="m5 w-auto">
+                <div className="m5 ">
                     <h1 className="text-2xl text-bold text-center">{roomName}</h1>
                 </div>
-                <div className="inline-flex overflow-auto bg-neutral-50 shadow-md border-neutral-300 rounded-lg mt-2 p-2 border-2  ">
+                <div className="flex flex-wrap bg-neutral-50 shadow-md border-custom rounded-lg mt-2 p-2  ">
                         {devicesId.map((deviceId) => (
                             <DeviceComponent key={deviceId} deviceId={deviceId}/>
                         ))}
                 </div>
             </div>
 
-        </>
     );
 }

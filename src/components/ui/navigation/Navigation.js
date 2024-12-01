@@ -5,19 +5,12 @@ import Link from 'next/link';
 import clsx from "clsx";
 
 import {useContext, useEffect, useState} from "react";
-import DataContext from "@/app/dashboard/dataContext";
+import DataContext from "@/app/dashboard/data/dataContext";
 
-import {getFloorsNumbers, getUserName} from "@/app/dashboard/dataService";
-import ModalWindow from "@/components/control-overlays/ModalWindow";
-import AddNewFloor from "@/components/control-overlays/AddNewFloor";
-import LinkButtonImage, {ButtonImage, LinkButtonText} from "@/app/ui/dashboard/NavigationButton";
-
-const links = [
-    { name: '1', href: '/dashboard/floor-1', icon: 'https://via.placeholder.com/40' },
-    { name: '2', href: '/floor/2', icon: 'https://via.placeholder.com/40' },
-    { name: '3', href: '/floor/3', icon: 'https://via.placeholder.com/40' },
-];
-
+import {getFloorsNumbers, getUserName} from "@/app/dashboard/data/dataService";
+import ModalWindow from "@/components/ui/assets/ModalWindow";
+import AddNewFloor from "@/components/views/AddNewFloor";
+import LinkButtonImage, {ButtonImage, LinkButtonText} from "@/components/ui/navigation/NavigationButton";
 
 
 export default function Navigation() {
@@ -46,14 +39,18 @@ export default function Navigation() {
         <>
             <div className="h-screen bg-gray-300 flex flex-col justify-between p-3 items-center py-8">
                 {/* Górna sekcja */}
-                <div className="flex flex-col items-center space-y-7">
+                <div className="flex flex-col items-center space-y-4">
 
+                    {/* Dashboard */}
                     <LinkButtonImage
                         href={'/dashboard'}
                         icon="/icons/home.svg"
                         isActive={pathname === '/dashboard'}
                         label="Home"
                     />
+
+                    {/* Separator */}
+                    <div className="w-full h-px bg-black"></div>
 
                     {/* Numery pięter */}
                     {floorNumbers.map((number) => (
@@ -97,11 +94,11 @@ export default function Navigation() {
                 </div>
             </div>
 
-            {/*<AddNewFloor isVisible={showAddFloorModal} onClose={closeModal}/>*/}
+            <AddNewFloor isVisible={showAddFloorModal} onClose={closeModal}/>
 
-            <ModalWindow isVisible={showAddFloorModal} onClose={closeModal} title="Add new floor">
-                <AddNewFloor onClose={closeModal}/>
-            </ModalWindow>
+            {/*<ModalWindow isVisible={showAddFloorModal} onClose={closeModal} title="Add new floor">*/}
+            {/*    <AddNewFloor onClose={closeModal}/>*/}
+            {/*</ModalWindow>*/}
 
         </>
     );

@@ -6,6 +6,7 @@ const DataContext = createContext();
 
 export const DataProvider = ({ children }) => {
     const [data, setData] = useState(null);
+
     useEffect(() => {
         const fetchData = async () => {
             const response = await fetch('/home.json');

@@ -55,12 +55,15 @@
     "2": {
       "id": 2,
       "name": "Lamp",
-      "type": "light",
+      "type": "rgb_light",
       "brand": "string",
       "model": "string",
       "state": {
         "status": "OFF",
-        "properties": {}
+        "properties": {
+          "color": "#2F00FF",
+          "brightness": 90
+        }
       }
     },
     "3": {

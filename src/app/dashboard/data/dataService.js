@@ -70,3 +70,11 @@ export function addFloor(data, setData, floorId, name){
         return updatedData;
     });
 }
+
+export function getDevicePropertiesById(data, deviceId){
+    return data.devices[deviceId].state.properties;
+}
+
+export function saveDeviceProperties(data, deviceId, properties){
+    data.devices[deviceId].state.properties = properties;
+}
