@@ -1,7 +1,8 @@
 'use client';
 
 import {useContext, useState} from "react";
-import DataContext from "@/app/dashboard/dataContext";
+import DataContext from "@/app/dashboard/data/dataContext";
+import Header from "@/components/ui/assets/RectHeader";
 
 export default function Page(){
     const { data } = useContext(DataContext);
@@ -9,7 +10,7 @@ export default function Page(){
 
     return (
         <>
-        <p>Homepagesdsds</p>
+            <Header label="Dashboard"/>
         <pre>
             {JSON.stringify(data, null, 2)}
         </pre>

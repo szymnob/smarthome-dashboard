@@ -1,11 +1,11 @@
 'use client';
 
-import Header from "@/app/ui/dashboard/RectHeader";
+import Header from "@/components/ui/assets/RectHeader";
 import {use, useContext, useEffect, useState} from 'react';
-import DataContext from '@/app/dashboard/dataContext';
-import RoomComponent from "@/components/controls/RoomComponent";
-import {getRoomsIdOnFloor} from "@/app/dashboard/dataService";
-import DeviceComponent from "@/components/controls/DeviceComponent";
+import DataContext from '@/app/dashboard/data/dataContext';
+import RoomComponent from "@/components/views/room/RoomComponent";
+import {getRoomsIdOnFloor} from "@/app/dashboard/data/dataService";
+import DeviceComponent from "@/components/views/device-views/DeviceComponent";
 
 
 export default function Page({ params }) {
@@ -38,9 +38,7 @@ export default function Page({ params }) {
     }
     return (
         <>
-            <Header>
-                <h1 className="text-4xl text-bold">{`Floor ${floorId}`}</h1>
-            </Header>
+            <Header label={`Floor ${floorId}`}/>
             <div className="flex flex-wrap">
             {roomsId.map((roomId) => (
                 <RoomComponent key={roomId} floorId={floorId} roomId={roomId} />

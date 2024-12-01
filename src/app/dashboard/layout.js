@@ -1,6 +1,6 @@
 
-import Navigation from '@/app/ui/dashboard/Navigation';
-import {DataProvider} from './dataContext.js';
+import Navigation from '@/components/ui/navigation/Navigation';
+import {DataProvider} from './data/dataContext.js';
 
 export default function Layout({ children, }) {
     return (
