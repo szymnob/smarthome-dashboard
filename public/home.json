@@ -54,7 +54,7 @@
     },
     "2": {
       "id": 2,
-      "name": "Lamp",
+      "name": "Main Lamp",
       "type": "rgb_light",
       "brand": "string",
       "model": "string",
@@ -63,6 +63,20 @@
         "properties": {
           "color": "#2F00FF",
           "brightness": 90
+        }
+      },
+      "schedule": {
+        "1": {
+          "active": true,
+          "days": ["Monday", "Tuesday"],
+          "startTime": "07:00",
+          "endTime": "19:00"
+        },
+        "2": {
+          "active": false,
+          "days": ["Monday", "Tuesday"],
+          "startTime": "10:00",
+          "endTime": "11:00"
         }
       }
     },

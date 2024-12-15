@@ -21,3 +21,7 @@ body {
 .border-custom{
   @apply border-2 border-violet-200;
 }
+
+.input-custom{
+  @apply rounded-lg border-2 p-1 border-violet-100 focus:outline-none focus:border-2 focus:border-violet-700 focus:shadow focus:shadow-violet-500;
+}

@@ -22,7 +22,7 @@ export default function ModalWindow({isVisible, onClose, title, children}) {
                      onClick={(e)=> e.stopPropagation()}>
 
                     <div className="flex flex-row justify-between items-center p-4 border-violet-200 border-b-2 ">
-                        <h1 className="text-xl text-bold text-center">{title}</h1>
+                        <h1 className="text-xl font-medium text-center">{title}</h1>
                         <div className="w-9 h-auto cursor-pointer rounded-md hover:bg-neutral-200 hover:scale-105 " onClick={onClose}>
                             <img className="w-full h-auto" src="/icons/close.svg" alt="Close"/>
                         </div>
