@@ -11,6 +11,7 @@ import {
 import Switch from "@/components/ui/assets/Switch";
 import clsx from "clsx";
 import DeviceSettings from "@/components/views/device-views/DeviceSettings";
+import Schedule from "@/components/ui/assets/Schedule";
 
 
 export default function DeviceComponent({deviceId}) {
@@ -101,7 +102,6 @@ export default function DeviceComponent({deviceId}) {
         </div>
 
             <DeviceSettings isVisible={showDeviceControls} onClose={closeDeviceControls} deviceId={deviceId} deviceStatus={deviceStatus} setDeviceStatus={handleChange}/>
-
 
         </>
     );

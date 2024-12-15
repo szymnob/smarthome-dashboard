@@ -10,6 +10,7 @@ import {
 } from "@/app/dashboard/data/dataService";
 import Switch from "@/components/ui/assets/Switch";
 import RgbLight from "@/components/views/device-views/types/RgbLight";
+import Schedule from "@/components/ui/assets/Schedule";
 
 
 export default function DeviceSettings({isVisible, onClose, deviceId, deviceStatus, setDeviceStatus}) {
@@ -57,7 +58,7 @@ export default function DeviceSettings({isVisible, onClose, deviceId, deviceStat
 
     return(
         <ModalWindow isVisible={isVisible} onClose={onClose} title={deviceName}>
-            <div className='m-7 flex flex-col space-y-7'>
+            <div className='m-2 flex flex-col space-y-7'>
                 <div className="flex flex-row justify-between items-center">
                     <img src={`/icons/${deviceType}.svg`} alt={deviceType} className="w-12 h-auto"/>
                     <Switch size='large' checked={deviceStatus === "ON"} onChange={setDeviceStatus}/>
@@ -72,6 +73,7 @@ export default function DeviceSettings({isVisible, onClose, deviceId, deviceStat
                     <p>No settings available for this device type: {deviceType}</p>
                 )}
 
+                <Schedule data={data} deviceId={deviceId}/>
             </div>
 
         </ModalWindow>

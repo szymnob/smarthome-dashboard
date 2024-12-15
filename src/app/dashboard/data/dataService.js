@@ -78,3 +78,36 @@ export function getDevicePropertiesById(data, deviceId){
 export function saveDeviceProperties(data, deviceId, properties){
     data.devices[deviceId].state.properties = properties;
 }
+
+export function getDeviceSchedule(data, deviceId) {
+    const device = data.devices[deviceId];
+    if (device && device.schedule) {
+        return device.schedule;
+    }
+    return null;
+}
+
+export function changeScheduleActive(data, deviceId, scheduleId, isActive) {
+    data.devices[deviceId].schedule[scheduleId].active = isActive;
+}
+
+export function changeScheduleStartTime(data, deviceId, scheduleId, newStartTime) {
+    data.devices[deviceId].schedule[scheduleId].startTime = newStartTime;
+}
+
+export function updateScheduleById(data, deviceId, scheduleId, newSchedule) {
+    if (!data || !data.devices || !data.devices[deviceId]) {
+        console.error("Invalid data structure or deviceId:", data, deviceId);
+        return;
+    }
+
+    if (newSchedule === null) {
+        //jesli tak to usuwa harmonorgam o danym id
+        if (data.devices[deviceId].schedule && data.devices[deviceId].schedule[scheduleId]) {
+            delete data.devices[deviceId].schedule[scheduleId];
+        }
+    } else {
+        data.devices[deviceId].schedule[scheduleId] = newSchedule;
+    }
+
+}
