@@ -6,6 +6,7 @@ import {
     updateDeviceState,
     updateScheduleById
 } from "@/app/dashboard/data/dataService";
+import ToogleDays from "@/components/ui/assets/ToogleDays";
 
 export default function Schedule({data, deviceId}){
 
@@ -70,7 +71,7 @@ export default function Schedule({data, deviceId}){
                     <img className="w-full h-auto" src="/icons/plus.svg" alt="Close"/>
                 </div>
             </div>
-
+            <div className="max-h-60 overflow-y-auto space-y-2">
             {schedules && Object.keys(schedules).map((scheduleId) => (
                 <ScheduleElement
                     key={scheduleId}
@@ -81,7 +82,7 @@ export default function Schedule({data, deviceId}){
                     updateSchedule={updateSchedule}
                 />
             ))}
-
+            </div>
 
         </div>
     )
@@ -89,13 +90,10 @@ export default function Schedule({data, deviceId}){
 
 
 function ScheduleElement({ deviceId, scheduleId, updateSchedule, scheduleData, removeSchedule}) {
-
-    const daysOfWeek = [{name: "Monday", id: 1}, {name: "Tuesday", id: 2}, {
-        name: "Wednesday", id: 3}, {name: "Thursday", id: 4}, {name: "Friday", id:5}, {name: "Saturday", id:6}, {name: "Sunday", id:7}]
-    const [selectedDays, setSelectedDays] = useState([])
     const [startTime, setStartTime] = useState(scheduleData?.startTime || "")
     const [endTime, setEndTime] = useState(scheduleData?.endTime || "")
     const [active, setActive] = useState(scheduleData?.active || false);
+    const [selectedDays, setSelectedDays] = useState(scheduleData?.days || []);
 
     const handleChangeActive = () => {
         const newStatus = !active;
@@ -115,18 +113,27 @@ function ScheduleElement({ deviceId, scheduleId, updateSchedule, scheduleData, r
             updateSchedule(scheduleId, {endTime: newTime});
     }
 
+    const handleChangeDays = (e) => {
+        console.log(e)
+        const newDays = e
+        setSelectedDays(newDays);
+        updateSchedule(scheduleId, {days: newDays});
+    }
 
 
-
+    console.log("selectedDays", selectedDays)
 
     return(
-        <div className="flex flex-row border-custom rounded-lg p-2 space-x-2">
+        <div className="flex border-custom rounded-lg flex-col space-y-3 p-4">
+
+        <div className="flex flex-row space-x-2 justify-between">
             <div className="flex flex-col justify-between items-center">
                 <Switch size="small" checked={active} onChange={handleChangeActive}/>
-                <div onClick={()=> updateSchedule(scheduleId, null)} className="w-7 h-auto cursor-pointer rounded-md hover:bg-neutral-200 hover:scale-105 ">
-                    <img  src="/icons/trash.svg"/>
+                <div onClick={()=> updateSchedule(scheduleId, null)} className="w-8 h-auto cursor-pointer rounded-md hover:bg-neutral-200 hover:scale-105 ">
+                    <img src="/icons/trash.svg" alt="delete"/>
                 </div>
             </div>
+
             <label htmlFor="start-time"  className="flex flex-col">
                 <p>Start:</p>
                 <input className="input-custom" id="start-time" type="time" value={startTime} onChange={(e)=>handleChangeStartTime(e)}></input>
@@ -137,8 +144,11 @@ function ScheduleElement({ deviceId, scheduleId, updateSchedule, scheduleData, r
                 <input className="input-custom" id="end-time" type="time" value={endTime} onChange={(e)=>handleChangeEndTime(e)}></input>
             </label>
 
+        </div>
+            <ToogleDays value={selectedDays} onChange={(e) => handleChangeDays(e)}></ToogleDays>
 
         </div>
+
 
     )
 }

@@ -14,7 +14,7 @@ export default function ModalWindow({isVisible, onClose, title, children}) {
                 })}
                  onClick={onClose}
             >
-                <div className={clsx("flex-col overflow-auto transform transition-transform duration-300 bg-neutral-50 shadow-md border-custom rounded-lg ",
+                <div className={clsx("flex-col transform transition-transform duration-300 bg-neutral-50 shadow-md border-custom rounded-lg ",
                     {
                         "scale-100": isVisible,
                         "scale-90": !isVisible,

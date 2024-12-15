@@ -38,7 +38,7 @@ export default function RgbLight({properties, setProperties}) {
     }
 
     return(
-        <div className="flex flex-col justify-center space-y-7">
+        <div className="flex flex-col justify-center items-center space-y-7">
 
                 <Wheel color={hexColor} width={250} height={250} radius={200} onChange={(color) => setHexColor(color.hex)} />
                 <div className="w-full h-[34px] mt-5 rounded-md " style={{background: hexColor}}></div>
