@@ -1,9 +1,7 @@
 import Switch from "@/components/ui/assets/Switch";
 import {useEffect, useState} from "react";
 import {
-    changeScheduleActive,
     getDeviceSchedule,
-    updateDeviceState,
     updateScheduleById
 } from "@/app/dashboard/data/dataService";
 import ToogleDays from "@/components/ui/assets/ToogleDays";
