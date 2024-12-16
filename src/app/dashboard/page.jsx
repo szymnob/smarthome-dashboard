@@ -11,9 +11,6 @@ export default function Page(){
     return (
         <>
             <Header label="Dashboard"/>
-        <pre>
-            {JSON.stringify(data, null, 2)}
-        </pre>
             </>
     );
 }
