@@ -1,11 +1,16 @@
-import Link from "next/link";
+'use client';
 
+import Link from "next/link";
+import BackgroundAnimation from "@/components/ui/assets/BackgroundAnimation";
+import LoginComponent from "@/components/views/login/LoginComponent";
 
 export default function Home() {
   return(
-          <div className="m-5 p-5">
-              <h1>Logowanie</h1>
-              <Link href={'/dashboard'} className="text-violet-500">Dashboard</Link>
-          </div>
+      <>
+          <BackgroundAnimation/>
+          <LoginComponent />
+
+      </>
+
   )
 }
