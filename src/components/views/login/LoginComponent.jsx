@@ -2,7 +2,7 @@
 
 import Input from "@/components/ui/assets/Input";
 import {useState} from "react";
-import SubmitButton, {CancelButton} from "@/components/ui/assets/Buttons";
+import SubmitButton from "@/components/ui/assets/Buttons";
 import {useRouter} from "next/navigation";
 
 

@@ -95,6 +95,7 @@ export function changeScheduleStartTime(data, deviceId, scheduleId, newStartTime
     data.devices[deviceId].schedule[scheduleId].startTime = newStartTime;
 }
 
+//do poprawy
 export function updateScheduleById(data, deviceId, scheduleId, newSchedule) {
     if (!data || !data.devices || !data.devices[deviceId]) {
         console.error("Invalid data structure or deviceId:", data, deviceId);
@@ -107,6 +108,11 @@ export function updateScheduleById(data, deviceId, scheduleId, newSchedule) {
             delete data.devices[deviceId].schedule[scheduleId];
         }
     } else {
+        //jesli nie istenieje schedule id to dodaje nowy harmonogram
+        if (!data.devices[deviceId].schedule) {
+            data.devices[deviceId].schedule = {};
+        }
+
         data.devices[deviceId].schedule[scheduleId] = newSchedule;
     }
 
