@@ -32,12 +32,12 @@ export default function LoginComponent() {
     }
 
     return(
-        <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 bg-white p-12 bg-opacity-30 backdrop-blur-lg rounded-lg ">
+        <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 bg-white p-12 bg-opacity-30 backdrop-blur-lg rounded-lg shadow-lg ">
 
             <form onSubmit={handleSubmit} className="space-y-5">
 
-                <Input id={userName} type="text" label={"Name:"} value={userName} onChange={handleUserNameChange}/>
-                <Input id={password} type="text" label={"Password:"} value={password} onChange={handlePasswordChange}/>
+                <Input id={userName} labelColor="white" type="text" label={"Name:"} value={userName} onChange={handleUserNameChange}/>
+                <Input id={password} type="text" labelColor="white" label={"Password:"} value={password} onChange={handlePasswordChange}/>
 
                 <div className="flex flex-row justify-between space-x-5 p-2">
                     <SubmitButton label="Login"/>

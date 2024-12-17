@@ -28,7 +28,7 @@ export default function BackgroundAnimation(){
             fpsLimit: 60,
             particles: {
                 number: {
-                    value: 50,
+                    value: 100,
                     density: { enable: true, area: 800 }
                 },
                 color: { value: "#ffffff" },
@@ -59,12 +59,16 @@ export default function BackgroundAnimation(){
 
     if (init) {
         return (
+            <div className="relative w-full h-screen overflow-hidden blur-[1px]">
+
             <Particles
                 id="tsparticles"
                 particlesLoaded={particlesLoaded}
                 options={options}
                 style={{}}
             />
+            </div>
+
         );
     }
 
