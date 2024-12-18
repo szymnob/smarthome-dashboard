@@ -1,9 +1,8 @@
 
-import {use, useContext, useEffect, useState} from 'react';
+import { useContext, useEffect, useState} from 'react';
 import DataContext from '@/app/dashboard/data/dataContext';
 import {
     getDeviceNameById,
-    getDevicePropertiesById,
     getDeviceStateById,
     getDeviceTypeById,
     updateDeviceState
@@ -11,7 +10,7 @@ import {
 import Switch from "@/components/ui/assets/Switch";
 import clsx from "clsx";
 import DeviceSettings from "@/components/views/device-views/DeviceSettings";
-import Schedule from "@/components/ui/assets/Schedule";
+import * as PropTypes from "prop-types";
 
 
 export default function DeviceComponent({deviceId}) {
@@ -31,7 +30,6 @@ export default function DeviceComponent({deviceId}) {
             const name = getDeviceNameById(data, deviceId);
             const state = getDeviceStateById(data, deviceId);
             const type = getDeviceTypeById(data, deviceId);
-            const properties = getDevicePropertiesById(data, deviceId);
 
             setDeviceName(name);
             setDeviceState(state);
@@ -105,4 +103,8 @@ export default function DeviceComponent({deviceId}) {
 
         </>
     );
+}
+
+DeviceComponent.propTypes = {
+    deviceId: PropTypes.string.isRequired,
 }

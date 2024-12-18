@@ -29,5 +29,5 @@ export function CancelButton({onClick, label}) {
 
 CancelButton.propTypes = {
     onClick: PropTypes.func.isRequired,
-    label: PropTypes.string.isRequired,
+    label: PropTypes.string,
 }

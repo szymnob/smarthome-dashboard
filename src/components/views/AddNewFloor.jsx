@@ -1,11 +1,16 @@
 
 import ModalWindow from "@/components/ui/assets/ModalWindow";
 import {useContext, useEffect, useState} from "react";
-import dataContext from "@/app/dashboard/data/dataContext";
-import {addFloor, getFloorsNumbers, getRoomsIdOnFloor} from "@/app/dashboard/data/dataService";
+import {addFloor, getFloorsNumbers} from "@/app/dashboard/data/dataService";
 import DataContext from "@/app/dashboard/data/dataContext";
 import Input from "@/components/ui/assets/Input";
 import SubmitButton, {CancelButton} from "@/components/ui/assets/Buttons";
+import * as PropTypes from "prop-types";
+
+AddNewFloor.propTypes = {
+    isVisible: PropTypes.bool.isRequired,
+    onClose: PropTypes.func.isRequired
+}
 
 export default function AddNewFloor({isVisible, onClose}) {
     const modalTitle = "Add new floor";
@@ -30,14 +35,18 @@ export default function AddNewFloor({isVisible, onClose}) {
     const handleSubmit = (e) =>{
         e.preventDefault()
 
+        let hasError = false;
+
         if(floorName.length < 4){
             setErrorName("Floor name too short");
+            hasError = true;
         }
         if(!floorNumber){
             setErrorNumber("Floor number is required");
+            hasError = true;
         }
 
-        else if (!errorName && !errorNumber) {
+        if (!hasError) {
             console.log("sdfsd", floorName, floorNumber);
             addFloor(data, setData, floorNumber, floorName);
             onClose();
@@ -72,7 +81,7 @@ export default function AddNewFloor({isVisible, onClose}) {
 
 
 
-    const divInputStyle = "flex flex-row justify-between space-x-5";
+    // const divInputStyle = "flex flex-row justify-between space-x-5";
 
     if (!isVisible) {
         return null;

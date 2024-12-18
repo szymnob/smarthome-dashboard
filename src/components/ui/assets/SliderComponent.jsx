@@ -1,3 +1,4 @@
+import * as PropTypes from "prop-types";
 
 
 export default function Slider({ setValue, value}){
@@ -27,4 +28,9 @@ export default function Slider({ setValue, value}){
             `}</style>
         </>
     )
+}
+
+Slider.propTypes = {
+    setValue: PropTypes.func,
+    value: PropTypes.number
 }

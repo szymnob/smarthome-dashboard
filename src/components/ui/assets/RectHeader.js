@@ -1,3 +1,4 @@
+import * as PropTypes from "prop-types";
 
 export default function Header({ label }) {
     return (
@@ -6,3 +7,7 @@ export default function Header({ label }) {
         </div>
     );
 }
+
+Header.propTypes = {
+    label: PropTypes.string.isRequired,
+};

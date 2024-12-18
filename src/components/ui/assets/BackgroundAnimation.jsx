@@ -32,7 +32,7 @@ export default function BackgroundAnimation(){
         () => ({
             autoPlay: true,
             background: {
-                image: "linear-gradient(45deg, #31135E, #6427be)", // Gradient tła
+                image: "linear-gradient(45deg, #31135E, #6427be)",
             },
             fullScreen: { enable: true, zIndex: -1 },
             fpsLimit: 60,
@@ -65,6 +65,15 @@ export default function BackgroundAnimation(){
                         images: iconPaths,
                     }
                 },
+                // rotate: {
+                //     value: { min: 0, max: 360 },
+                //     animation: {
+                //         enable: true,
+                //         speed: {min:3, max:10},
+                //         direction: "random",
+                //         sync: false
+                //     }
+                // }
 
 
             },

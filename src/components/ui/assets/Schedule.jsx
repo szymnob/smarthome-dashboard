@@ -5,6 +5,7 @@ import {
     updateScheduleById
 } from "@/app/dashboard/data/dataService";
 import ToogleDays from "@/components/ui/assets/ToogleDays";
+import * as PropTypes from "prop-types";
 
 export default function Schedule({data, deviceId}){
 
@@ -17,22 +18,33 @@ export default function Schedule({data, deviceId}){
     }, []);
 
 
+    //do poprawy
     function updateSchedule(scheduleId, updatedData) {
         setSchedules((prev) => {
             if(!scheduleId){
                 return prev;
             }
             const updatedSchedule = {...prev};
+
             //jesli usuwa przekazuje null
             if(updatedData === null){
                 delete updatedSchedule[scheduleId];
                 updateScheduleById(data, deviceId, scheduleId, null);
             }
             else{
-                const newSchedule = {
-                    ...prev[scheduleId],
-                    ...updatedData
-                };
+                let newSchedule;
+
+                if(prev && scheduleId in prev){
+                    newSchedule = {
+                        ...prev[scheduleId],
+                        ...updatedData
+                    };
+                }
+                else {
+                    newSchedule = {
+                        updatedData
+                    };
+                }
                 console.log("newSchedule", newSchedule)
                 updateScheduleById(data, deviceId, scheduleId, newSchedule);
                 return {
@@ -40,6 +52,7 @@ export default function Schedule({data, deviceId}){
                     [scheduleId]: newSchedule
                 };
             }
+
             return updatedSchedule;
         });
     }
@@ -87,7 +100,7 @@ export default function Schedule({data, deviceId}){
 }
 
 
-function ScheduleElement({ deviceId, scheduleId, updateSchedule, scheduleData, removeSchedule}) {
+function ScheduleElement({ scheduleId, updateSchedule, scheduleData}) {
     const [startTime, setStartTime] = useState(scheduleData?.startTime || "")
     const [endTime, setEndTime] = useState(scheduleData?.endTime || "")
     const [active, setActive] = useState(scheduleData?.active || false);
@@ -149,4 +162,15 @@ function ScheduleElement({ deviceId, scheduleId, updateSchedule, scheduleData, r
 
 
     )
+}
+
+Schedule.propTypes = {
+    data: PropTypes.object.isRequired,
+    deviceId: PropTypes.string.isRequired
+}
+
+ScheduleElement.propTypes = {
+    scheduleId: PropTypes.string.isRequired,
+    updateSchedule: PropTypes.func.isRequired,
+    scheduleData: PropTypes.object.isRequired,
 }
