@@ -41,9 +41,9 @@ export default function RgbLight({properties, setProperties}) {
         <div className="flex flex-col justify-center items-center space-y-7">
 
                 <Wheel color={hexColor} width={250} height={250} radius={200} onChange={(color) => setHexColor(color.hex)} />
-                <div className="w-full h-[34px] mt-5 rounded-md " style={{background: hexColor}}></div>
+                <div className="w-full h-[34px] mt-5 border-custom rounded-md " style={{background: hexColor}}></div>
 
-                <Slider label="Brigtness" value={brightness} setValue={setBrightness}/>
+                <Slider label="Brigtness" value={brightness} type="brightness" setValue={setBrightness}/>
 
         </div>
     )
