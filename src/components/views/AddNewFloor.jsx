@@ -37,8 +37,7 @@ export default function AddNewFloor({isVisible, onClose}) {
             setErrorNumber("Floor number is required");
         }
 
-        else if (!errorName && !errorNumber) {
-            console.log("sdfsd", floorName, floorNumber);
+        if (!errorName || !errorNumber) {
             addFloor(data, setData, floorNumber, floorName);
             onClose();
         }

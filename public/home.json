@@ -1,9 +1,11 @@
 {
   "user": {
-    "id": 1,
+    "1": {
     "name": "John",
     "email": "john@gmail.com",
-    "password": "123456"
+    "password": "123456",
+    "favourites": [2,4]
+      }
   },
   "home": {
     "name": "string",

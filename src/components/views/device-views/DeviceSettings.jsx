@@ -3,15 +3,19 @@ import ModalWindow from "@/components/ui/assets/ModalWindow";
 import {useContext, useEffect, useState} from "react";
 import DataContext from "@/app/dashboard/data/dataContext";
 import {
+    changeFavouriteStatus,
     getDeviceNameById,
     getDeviceStateById,
-    getDeviceTypeById,
+    getDeviceTypeById, getFavourites,
     saveDeviceProperties
 } from "@/app/dashboard/data/dataService";
 import Switch from "@/components/ui/assets/Switch";
 import RgbLight from "@/components/views/device-views/types/RgbLight";
-import Schedule from "@/components/ui/assets/Schedule";
+import Schedule from "@/components/views/device-views/Schedule";
+import clsx from "clsx";
 
+
+const USERID = 1
 
 export default function DeviceSettings({isVisible, onClose, deviceId, deviceStatus, setDeviceStatus}) {
 
@@ -26,6 +30,8 @@ export default function DeviceSettings({isVisible, onClose, deviceId, deviceStat
 
     const[SpecificTypeComponent, setSpecificTypeComponent] = useState(null);
 
+    const[isFavorite, setIsFavorite] = useState(false);
+
 
     //ten useEffect powoduje zbyt duza liczba renderow do naprawy
     useEffect(() => {
@@ -33,6 +39,10 @@ export default function DeviceSettings({isVisible, onClose, deviceId, deviceStat
             const name = getDeviceNameById(data, deviceId);
             const state = getDeviceStateById(data, deviceId);
             const type = getDeviceTypeById(data, deviceId);
+
+            const favourites = getFavourites(data, USERID);
+
+            favourites.includes(deviceId) ? setIsFavorite(true) : setIsFavorite(false);
 
             setDeviceName(name);
             setDeviceState(state);
@@ -56,11 +66,36 @@ export default function DeviceSettings({isVisible, onClose, deviceId, deviceStat
         }
     }, [ deviceProperties]);
 
-    return(
-        <ModalWindow isVisible={isVisible} onClose={onClose} title={deviceName}>
+    const handleFavouriteChange = () => {
+        setIsFavorite(prevState => {
+            const newState = !prevState;
+            changeFavouriteStatus(data, USERID, deviceId, newState);
+            return newState;
+        })
+    }
+
+    const headerActions = (
+        <>
+            <div className={clsx(
+                "w-9 h-auto cursor-pointer rounded-md hover:bg-neutral-200 hover:scale-105",
+                isFavorite ? "animate-add" : "animate-delete"
+            )}
+                 onClick={handleFavouriteChange}>
+                <img className="w-full h-auto" src={isFavorite ? "/icons/heart_solid.svg" : "/icons/heart_outline.svg"} alt="Add to favorites"/>
+            </div>
+
+            <div className="w-9 h-auto cursor-pointer rounded-md hover:bg-neutral-200 hover:scale-105 "
+                 onClick={onClose}>
+                <img className="w-full h-auto" src="/icons/menu.svg" alt="Menu"/>
+            </div>
+        </>
+    )
+
+    return (
+        <ModalWindow isVisible={isVisible} onClose={onClose} title={deviceName} headerActions={headerActions}>
             <div className='m-5 flex flex-col space-y-4'>
                 <div className="flex flex-row justify-between items-center">
-                    <img src={`/icons/${deviceType}.svg`} alt={deviceType} className="w-12 h-auto"/>
+                <img src={`/icons/${deviceType}.svg`} alt={deviceType} className="w-12 h-auto"/>
                     <Switch size='large' checked={deviceStatus === "ON"} onChange={setDeviceStatus}/>
                 </div>
 

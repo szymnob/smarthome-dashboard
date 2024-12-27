@@ -20,8 +20,6 @@ export default function RoomComponent({floorId, roomId}) {
         }
     }, [data]);
 
-    console.log(devicesId);
-
     return (
             <div className="flex flex-col m-8">
                 <div className="m5 ">

@@ -117,3 +117,15 @@ export function updateScheduleById(data, deviceId, scheduleId, newSchedule) {
     }
 
 }
+
+export function getFavourites(data, userId){
+    return data.user[userId].favourites
+}
+
+export function changeFavouriteStatus(data,userId, deviceId, isFavourite){
+    if (isFavourite) {
+        data.user[userId].favourites.push(deviceId);
+    }else{
+        data.user[userId].favourites = data.user[userId].favourites.filter((id) => id !== deviceId);
+    }
+}

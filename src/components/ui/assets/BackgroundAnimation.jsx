@@ -14,10 +14,6 @@ export default function BackgroundAnimation(){
         });
     }, []);
 
-    const particlesLoaded = (container) => {
-        console.log(container);
-    };
-
     const iconNames = ["light", "home", "tv", "refrigerator", "tv", "air_conditioner"];
 
     const iconPaths = iconNames.map((name) => ({
@@ -79,7 +75,6 @@ export default function BackgroundAnimation(){
 
             <Particles
                 id="tsparticles"
-                particlesLoaded={particlesLoaded}
                 options={options}
 
             />

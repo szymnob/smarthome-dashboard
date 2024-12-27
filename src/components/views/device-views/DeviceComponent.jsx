@@ -11,7 +11,7 @@ import {
 import Switch from "@/components/ui/assets/Switch";
 import clsx from "clsx";
 import DeviceSettings from "@/components/views/device-views/DeviceSettings";
-import Schedule from "@/components/ui/assets/Schedule";
+import Schedule from "@/components/views/device-views/Schedule";
 
 
 export default function DeviceComponent({deviceId}) {

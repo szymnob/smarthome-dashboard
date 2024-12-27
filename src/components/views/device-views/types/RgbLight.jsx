@@ -14,7 +14,6 @@ export default function RgbLight({properties, setProperties}) {
         if (!isInitialized) {
                 setHexColor(properties.color || "#FF2211");
                 setBrightness(properties.brightness || 50)
-                console.log("chuj", properties.color)
 
             setIsInitialized(true); // Dane zostały zainicjalizowane
         }

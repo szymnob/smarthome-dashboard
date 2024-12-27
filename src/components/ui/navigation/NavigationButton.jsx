@@ -17,7 +17,6 @@ export default function LinkButtonImage({ href, icon, isActive, label}) {
 
     const buttonClasses = getButtonClasses(isActive);
 
-    console.log(buttonClasses)
     return (
             <Link
                 href={href}

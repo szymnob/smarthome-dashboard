@@ -2,7 +2,7 @@ import clsx from "clsx";
 import * as PropTypes from "prop-types";
 
 
-export default function ModalWindow({isVisible, onClose, title, children}) {
+export default function ModalWindow({isVisible, onClose, title, children, headerActions}) {
 
     if(!isVisible) return null;
 
@@ -23,9 +23,13 @@ export default function ModalWindow({isVisible, onClose, title, children}) {
 
                     <div className="flex flex-row justify-between items-center p-4 border-violet-200 border-b-2 ">
                         <h1 className="text-xl font-medium text-center">{title}</h1>
-                        <div className="w-9 h-auto cursor-pointer rounded-md hover:bg-neutral-200 hover:scale-105 " onClick={onClose}>
-                            <img className="w-full h-auto" src="/icons/close.svg" alt="Close"/>
+                        <div className="flex items-center justify-between space-x-1">
+                            { headerActions}
+                            <div className="w-9 h-auto cursor-pointer rounded-md hover:bg-neutral-200 hover:scale-105 " onClick={onClose}>
+                                <img className="w-full h-auto" src="/icons/close.svg" alt="Close"/>
+                            </div>
                         </div>
+
                     </div>
                     <div>
                         {children}
