@@ -2,6 +2,7 @@
 import { useContext, useEffect, useState} from 'react';
 import DataContext from '@/app/dashboard/data/dataContext';
 import {
+    deviceExists,
     getDeviceNameById,
     getDeviceStateById,
     getDeviceTypeById,
@@ -22,11 +23,16 @@ export default function DeviceComponent({deviceId}) {
     const[deviceProperties, setDeviceProperties] = useState(null)
     const [deviceType, setDeviceType] = useState("");
 
-    const [showDeviceControls, setShowDeviceControls] = useState(false);
-    const closeDeviceControls = () => setShowDeviceControls(false);
+    const [isDevice, setIsDevice] = useState(false);
+
+    const [showDeviceControls, setshowDeviceControls] = useState(false);
+    const closeDeviceControls = () => setshowDeviceControls(false);
 
     useEffect(() => {
-        if (data) {
+        if (!deviceExists(data, deviceId)) {
+            return;
+        }
+        else if (data) {
             const name = getDeviceNameById(data, deviceId);
             const state = getDeviceStateById(data, deviceId);
             const type = getDeviceTypeById(data, deviceId);
@@ -40,7 +46,6 @@ export default function DeviceComponent({deviceId}) {
                 setDeviceProperties(state.properties)
 
             }
-
         }
     }, [data, deviceId]);
 
@@ -86,7 +91,7 @@ export default function DeviceComponent({deviceId}) {
                         "brightness-0 invert": deviceStatus === "ON",
                     }
                     )}/>
-                    <img src="/icons/settings.svg" alt="Device" onClick={() => setShowDeviceControls(prev => !prev)}
+                    <img src="/icons/settings.svg" alt="Device" onClick={() => setshowDeviceControls(prev => !prev)}
                          className={clsx("w-10 h-10 hover:scale-105 cursor-pointer",{
                         "brightness-0 invert": deviceStatus === "ON",
                     })}/>

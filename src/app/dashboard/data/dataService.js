@@ -33,6 +33,10 @@ export function getDeviceStateById(data, deviceId) {
     return null;
 }
 
+export function deviceExists(data, deviceId) {
+    return data?.devices?.hasOwnProperty(deviceId) ?? false;
+}
+
 export function getDeviceName(data, floorId, roomId, deviceId){
     return data.home.floors[floorId].rooms[roomId].devices[deviceId].name;
 }
@@ -122,10 +126,55 @@ export function getFavourites(data, userId){
     return data.user[userId].favourites
 }
 
-export function changeFavouriteStatus(data,userId, deviceId, isFavourite){
+export function changeFavouriteStatus(data,userId=1, deviceId, isFavourite){
     if (isFavourite) {
         data.user[userId].favourites.push(deviceId);
-    }else{
+    }else if (data.user[userId].favourites.includes(deviceId)){
         data.user[userId].favourites = data.user[userId].favourites.filter((id) => id !== deviceId);
     }
+}
+
+export function deleteDeviceById(data, setData, deviceId) {
+    const updatedData = { ...data };
+
+    if (updatedData.devices && updatedData.devices[deviceId]) {
+        delete updatedData.devices[deviceId];
+    }
+
+    // usuwanie urządzenie z ulubionych wszystkich użytkowników
+    if (updatedData.user) {
+        Object.keys(updatedData.user).forEach((userId) => {
+            const user = updatedData.user[userId];
+            if (user.favourites) {
+                user.favourites = user.favourites.filter((favId) => favId !== deviceId);
+            }
+        });
+    }
+
+    if (updatedData.home && updatedData.home.floors) {
+        Object.keys(updatedData.home.floors).forEach((floorId) => {
+            const floor = updatedData.home.floors[floorId];
+            if (floor && floor.rooms) {
+                Object.keys(floor.rooms).forEach((roomId) => {
+                    const room = floor.rooms[roomId];
+                    if (room && room.devices) {
+                        // Usuń urządzenie z listy urządzeń w pokoju
+                        room.devices = room.devices.filter((id) => id !== deviceId);
+                    }
+                });
+            }
+        });
+    }
+
+
+    setData(updatedData);
+}
+
+export function changeDeviceName(data, setData, deviceId, newName) {
+    // data.devices[deviceId].name = newName;
+    setData(prev =>{
+        const updatedData = { ...prev };
+        updatedData.devices[deviceId].name = newName;
+        return updatedData;
+    })
 }

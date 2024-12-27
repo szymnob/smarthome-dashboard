@@ -1,5 +1,5 @@
 
-import ModalWindow from "@/components/ui/assets/ModalWindow";
+import ModalWindow from "@/components/ui/assets/modals/ModalWindow";
 import {useContext, useEffect, useState} from "react";
 import {addFloor, getFloorsNumbers} from "@/app/dashboard/data/dataService";
 import DataContext from "@/app/dashboard/data/dataContext";

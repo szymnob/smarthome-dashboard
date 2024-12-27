@@ -14,7 +14,7 @@ export default function ModalWindow({isVisible, onClose, title, children, header
                 })}
                  onClick={onClose}
             >
-                <div className={clsx("flex-col transform transition-transform duration-300 bg-neutral-50 shadow-md border-custom rounded-lg ",
+                <div className={clsx("flex-col max-h-full overflow-auto transform transition-transform duration-300 bg-neutral-50 shadow-md border-custom rounded-lg ",
                     {
                         "scale-100": isVisible,
                         "scale-90": !isVisible,
@@ -25,7 +25,7 @@ export default function ModalWindow({isVisible, onClose, title, children, header
                         <h1 className="text-xl font-medium text-center">{title}</h1>
                         <div className="flex items-center justify-between space-x-1">
                             { headerActions}
-                            <div className="w-9 h-auto cursor-pointer rounded-md hover:bg-neutral-200 hover:scale-105 " onClick={onClose}>
+                            <div className="w-9 h-auto cursor-pointer transition-transform duration-200 rounded-md hover:bg-neutral-200 hover:scale-105 " onClick={onClose}>
                                 <img className="w-full h-auto" src="/icons/close.svg" alt="Close"/>
                             </div>
                         </div>

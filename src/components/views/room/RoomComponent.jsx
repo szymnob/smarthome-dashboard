@@ -16,8 +16,10 @@ export default function RoomComponent({floorId, roomId}) {
         if(data){
             setRoomName(getRoomName(data, floorId, roomId));
             setDevicesId(getDevicesIdInRoom(data, floorId, roomId));
+
+            console.log("dev", getDevicesIdInRoom(data, floorId, roomId));
         }
-    }, [data]);
+    }, [data, floorId, roomId]);
 
     return (
             <div className="flex flex-col m-8">
