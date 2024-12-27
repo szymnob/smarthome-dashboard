@@ -5,7 +5,6 @@ import {use, useContext, useEffect, useState} from 'react';
 import DataContext from '@/app/dashboard/data/dataContext';
 import RoomComponent from "@/components/views/room/RoomComponent";
 import {getRoomsIdOnFloor} from "@/app/dashboard/data/dataService";
-import DeviceComponent from "@/components/views/device-views/DeviceComponent";
 
 
 export default function Page({ params }) {

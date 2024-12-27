@@ -1,14 +1,11 @@
 'use client';
 
 import { usePathname } from 'next/navigation';
-import Link from 'next/link';
-import clsx from "clsx";
 
 import {useContext, useEffect, useState} from "react";
 import DataContext from "@/app/dashboard/data/dataContext";
 
 import {getFloorsNumbers, getUserName} from "@/app/dashboard/data/dataService";
-import ModalWindow from "@/components/ui/assets/ModalWindow";
 import AddNewFloor from "@/components/views/AddNewFloor";
 import LinkButtonImage, {ButtonImage, LinkButtonText} from "@/components/ui/navigation/NavigationButton";
 

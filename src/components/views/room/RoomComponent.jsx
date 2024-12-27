@@ -1,7 +1,6 @@
-import Header from "@/components/ui/assets/RectHeader";
-import {use, useContext, useEffect, useState} from 'react';
+import { useContext, useEffect, useState} from 'react';
 import DataContext from '@/app/dashboard/data/dataContext';
-import {getDevicesIdInRoom, getFloorName, getRoomName} from "@/app/dashboard/data/dataService";
+import {getDevicesIdInRoom, getRoomName} from "@/app/dashboard/data/dataService";
 import DeviceComponent from "@/components/views/device-views/DeviceComponent";
 
 

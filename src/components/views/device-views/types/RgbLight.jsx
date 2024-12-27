@@ -2,6 +2,7 @@
 import Wheel from "@uiw/react-color-wheel";
 import {useEffect, useState} from "react";
 import Slider from "@/components/ui/assets/SliderComponent";
+import * as PropTypes from "prop-types";
 
 export default function RgbLight({properties, setProperties}) {
     const [hexColor, setHexColor] = useState(null);
@@ -46,4 +47,9 @@ export default function RgbLight({properties, setProperties}) {
 
         </div>
     )
+}
+
+RgbLight.propTypes = {
+    properties: PropTypes.object,
+    setProperties: PropTypes.func
 }
