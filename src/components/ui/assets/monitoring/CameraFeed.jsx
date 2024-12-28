@@ -6,7 +6,10 @@ export default function CameraFeed({cameraId}){
     let src;
     if(cameraId === 2){
         src = "https://cdn.discordapp.com/attachments/1202677699881992233/1322677911748218910/static_s_1.mp4?ex=6771bf4c&is=67706dcc&hm=6ce23fba677df9075e16e992ec47a7c67243b5dae6428a3f2c93e4599445a740&";
-    }else{
+    }else if(cameraId === 6){
+        src = "https://cdn.discordapp.com/attachments/1202677699881992233/1322679945872281701/SEX_KAMERKI_NATSU_720.mp4?ex=6771c131&is=67706fb1&hm=825d6711be07eabf3c8b5dd0cd8459e19802d571e20ad1bf3224408d8b5a48c7&"
+    }
+    else{
         src = "/video/static.mp4";
     }
 
