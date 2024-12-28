@@ -65,7 +65,7 @@ export default function Navigation() {
                     {/* Dashboard */}
                     <LinkButtonImage
                         href={'/dashboard/monitoring'}
-                        icon="/icons/camera.svg"
+                        icon="/icons/devices/camera.svg"
                         isActive={pathname === '/dashboard/monitoring'}
                         label="Monitoring"
                     />

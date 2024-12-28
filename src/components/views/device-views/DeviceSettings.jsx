@@ -124,7 +124,7 @@ export default function DeviceSettings({isVisible, onClose, deviceId, deviceStat
         <ModalWindow isVisible={isVisible} onClose={onClose} title={deviceName} headerActions={headerActions}>
             <div className='m-5 flex flex-col space-y-4'>
                 <div className="flex flex-row justify-between items-center">
-                <img src={`/icons/${deviceType}.svg`} alt={deviceType} className="w-12 h-auto"/>
+                <img src={`/icons/devices/${deviceType}.svg`} alt={deviceType} className="w-12 h-auto"/>
                     <Switch size='large' checked={deviceStatus === "ON"} onChange={setDeviceStatus}/>
                 </div>
 

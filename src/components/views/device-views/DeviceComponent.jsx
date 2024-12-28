@@ -87,7 +87,7 @@ export default function DeviceComponent({deviceId}) {
                 </div>
 
                 <div className="flex flex-row justify-between">
-                    <img src={`/icons/${deviceType}.svg`} alt={deviceName} className={clsx("w-12 h-12",{
+                    <img src={`/icons/devices/${deviceType}.svg`} alt={deviceName} className={clsx("w-12 h-12",{
                         "brightness-0 invert": deviceStatus === "ON",
                     }
                     )}/>

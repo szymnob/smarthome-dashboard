@@ -1,23 +1,23 @@
 import { useEffect, useMemo, useState } from "react";
 import Particles, { initParticlesEngine } from "@tsparticles/react";
-import { loadFull } from "tsparticles";
-// import { loadSlim } from "@tsparticles/slim";
+//import { loadFull } from "tsparticles";
+import { loadSlim } from "@tsparticles/slim";
 
 export default function BackgroundAnimation(){
     const [init, setInit] = useState(false);
 
     useEffect(() => {
         initParticlesEngine(async (engine) => {
-            await loadFull(engine);
+            await loadSlim(engine);
         }).then(() => {
             setInit(true);
         });
     }, []);
 
-    const iconNames = ["light", "home", "tv", "refrigerator", "tv", "air_conditioner"];
+    const iconNames = ["light", "home", "tv", "refrigerator", "tv", "air_conditioner", "camera", "heater"];
 
     const iconPaths = iconNames.map((name) => ({
-        src: `/icons/${name}.svg`,
+        src: `/icons/devices/${name}.svg`,
         width: 100,
         height: 100,
         replaceColor: true,

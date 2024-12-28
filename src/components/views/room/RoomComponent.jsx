@@ -16,8 +16,6 @@ export default function RoomComponent({floorId, roomId}) {
         if(data){
             setRoomName(getRoomName(data, floorId, roomId));
             setDevicesId(getDevicesIdInRoom(data, floorId, roomId));
-
-            console.log("dev", getDevicesIdInRoom(data, floorId, roomId));
         }
     }, [data, floorId, roomId]);
 
