@@ -47,7 +47,6 @@ export default function AddNewFloor({isVisible, onClose}) {
         }
 
         if (!hasError) {
-            console.log("sdfsd", floorName, floorNumber);
             addFloor(data, setData, floorNumber, floorName);
             onClose();
         }
@@ -82,10 +81,6 @@ export default function AddNewFloor({isVisible, onClose}) {
 
 
     // const divInputStyle = "flex flex-row justify-between space-x-5";
-
-    if (!isVisible) {
-        return null;
-    }
 
     return (
         <ModalWindow isVisible={isVisible} onClose={onClose} title={modalTitle}>

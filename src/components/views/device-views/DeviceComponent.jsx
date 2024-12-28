@@ -25,8 +25,8 @@ export default function DeviceComponent({deviceId}) {
 
     const [isDevice, setIsDevice] = useState(false);
 
-    const [showDeviceControls, setshowDeviceControls] = useState(false);
-    const closeDeviceControls = () => setshowDeviceControls(false);
+    const [showDeviceControls, setShowDeviceControls] = useState(false);
+    const closeDeviceControls = () => setShowDeviceControls(false);
 
     useEffect(() => {
         if (!deviceExists(data, deviceId)) {
@@ -91,7 +91,7 @@ export default function DeviceComponent({deviceId}) {
                         "brightness-0 invert": deviceStatus === "ON",
                     }
                     )}/>
-                    <img src="/icons/settings.svg" alt="Device" onClick={() => setshowDeviceControls(prev => !prev)}
+                    <img src="/icons/settings.svg" alt="Device" onClick={() => setShowDeviceControls(prev => !prev)}
                          className={clsx("w-10 h-10 hover:scale-105 cursor-pointer",{
                         "brightness-0 invert": deviceStatus === "ON",
                     })}/>
