@@ -6,7 +6,7 @@ import * as PropTypes from "prop-types";
 
 export default function RgbLight({properties, setProperties}) {
     const [hexColor, setHexColor] = useState(null);
-    const[brightness, setBrightness] = useState( "");
+    const[brightness, setBrightness] = useState( 50);
 
 
     const [isInitialized, setIsInitialized] = useState(false); // Czy dane zostały zainicjalizowane?
@@ -40,7 +40,7 @@ export default function RgbLight({properties, setProperties}) {
     return(
         <div className="flex flex-col justify-center items-center space-y-7">
 
-                <Wheel color={hexColor} width={250} height={250} radius={200} onChange={(color) => setHexColor(color.hex)} />
+                <Wheel color={hexColor} width={300} height={300} radius={200} onChange={(color) => setHexColor(color.hex)} />
                 <div className="w-full h-[34px] mt-5 border-custom rounded-md " style={{background: hexColor}}></div>
 
                 <Slider label="Brigtness" value={brightness} type="brightness" setValue={setBrightness}/>

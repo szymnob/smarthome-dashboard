@@ -59,6 +59,16 @@ export default function Navigation() {
                         />
                     ))}
 
+                    {/* Separator */}
+                    <div className="w-full h-px bg-black"></div>
+
+                    {/* Dashboard */}
+                    <LinkButtonImage
+                        href={'/dashboard/monitoring'}
+                        icon="/icons/camera.svg"
+                        isActive={pathname === '/dashboard/monitoring'}
+                        label="Monitoring"
+                    />
                 </div>
 
                 {/* Dolna sekcja */}
