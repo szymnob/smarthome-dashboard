@@ -15,6 +15,10 @@ export default function Page({ params }) {
     const useParams = use(params);
     const floorId = useParams.floorId;
 
+    //Dodane//
+    const [isEditing, setIsEditing] = useState(false);
+    //Dodane//
+
 
     useEffect(() => {
         if (data) {
@@ -26,7 +30,13 @@ export default function Page({ params }) {
                 setRoomsId(getRoomsIdOnFloor(data, floorId));
             }
         }
-    }, [data]);
+    }, [data, /*Dodane*/ floorId /*Dodane*/]);
+
+    //Dodane
+    const handleEditToggle = () => {
+        setIsEditing((prev) => !prev);
+    };
+    //Dodane
 
     if (floorNotFound) {
         return (
@@ -37,10 +47,19 @@ export default function Page({ params }) {
     }
     return (
         <>
-            <Header label={`Floor ${floorId}`}/>
+            <Header label={`Floor ${floorId}`}
+            //Dodane
+            isEditing={isEditing}
+            onEditToggle={handleEditToggle}
+            //Dodane
+            />
             <div className="flex flex-wrap">
             {roomsId.map((roomId) => (
-                <RoomComponent key={roomId} floorId={floorId} roomId={roomId} />
+                <RoomComponent 
+                key={roomId} 
+                floorId={floorId} 
+                roomId={roomId}
+                /*Dodane*/ isEditing={isEditing} /*Dodane*/ />
             ))}
             </div>
         </>

@@ -178,3 +178,160 @@ export function changeDeviceName(data, setData, deviceId, newName) {
         return updatedData;
     })
 }
+
+
+
+//Dodane
+// export function addDeviceToRoom(data, setData, floorId, roomId, deviceName, deviceType) {
+//     setData(prevData => {
+//         // Make a shallow copy so we don’t mutate prevData directly
+//         const updatedData = { ...prevData };
+
+//         // Generate a new numeric device ID
+//         // (You could also find the max existing ID + 1, or use a unique library)
+//         const newDeviceId = Date.now();  
+
+//         // Create a new device object
+//         updatedData.devices[newDeviceId] = {
+//             id: newDeviceId,
+//             name: deviceName,
+//             type: deviceType,
+//             brand: "",
+//             model: "",
+//             state: {
+//                 status: "OFF",
+//                 properties: {}
+//             }
+//         };
+
+//         // Push the new device ID into this room’s devices array
+//         updatedData.home.floors[floorId].rooms[roomId].devices.push(newDeviceId);
+
+//         return updatedData;
+//     });
+// }
+
+
+// dataService.js
+export function addDeviceToRoom(data, setData, floorId, roomId, deviceName, deviceType) {
+    setData(prevData => {
+        // Deep copy the relevant parts of the state to maintain immutability
+        const updatedData = {
+            ...prevData,
+            devices: {
+                ...prevData.devices,
+                // New device will be added here
+            },
+            home: {
+                ...prevData.home,
+                floors: {
+                    ...prevData.home.floors,
+                    [floorId]: {
+                        ...prevData.home.floors[floorId],
+                        rooms: {
+                            ...prevData.home.floors[floorId].rooms,
+                            [roomId]: {
+                                ...prevData.home.floors[floorId].rooms[roomId],
+                                devices: [
+                                    ...prevData.home.floors[floorId].rooms[roomId].devices
+                                ]
+                            }
+                        }
+                    }
+                }
+            }
+        };
+
+        // Generate a new unique device ID
+        const newDeviceId = Date.now(); // Consider using a UUID for better uniqueness
+
+        // Add the new device to the devices object
+        updatedData.devices[newDeviceId] = {
+            id: newDeviceId,
+            name: deviceName,
+            type: deviceType,
+            brand: "",
+            model: "",
+            state: {
+                status: "OFF",
+                properties: {}
+            }
+        };
+
+        // Add the new device ID to the room's devices array
+        updatedData.home.floors[floorId].rooms[roomId].devices.push(newDeviceId);
+
+        return updatedData;
+    });
+}
+
+
+
+//nie działa i nie wiem dlaczego
+
+// export function removeDeviceFromRoom(data, setData, floorId, roomId, deviceId) {
+//     console.log(`Removing device ID: ${deviceId} from room ${roomId} on floor ${floorId}`);
+//     setData(prevData => {
+//         // Deep copy the relevant parts to maintain immutability
+//         const updatedData = {
+//             ...prevData,
+//             devices: { ...prevData.devices },
+//             home: {
+//                 ...prevData.home,
+//                 floors: {
+//                     ...prevData.home.floors,
+//                     [floorId]: {
+//                         ...prevData.home.floors[floorId],
+//                         rooms: {
+//                             ...prevData.home.floors[floorId].rooms,
+//                             [roomId]: {
+//                                 ...prevData.home.floors[floorId].rooms[roomId],
+//                                 devices: prevData.home.floors[floorId].rooms[roomId].devices.filter(id => id !== deviceId)
+//                             }
+//                         }
+//                     }
+//                 }
+//             }
+//         };
+
+//         // Remove the device from the global devices object
+//         if (updatedData.devices[deviceId]) {
+//             delete updatedData.devices[deviceId];
+//             console.log(`Device ID: ${deviceId} removed from devices`);
+//         } else {
+//             console.warn(`Device ID: ${deviceId} does not exist in devices`);
+//         }
+
+//         return updatedData;
+//     });
+// }
+
+export function removeDeviceFromRoom(data, setData, floorId, roomId, deviceId) {
+    const updatedData = { ...data };
+  
+    // Remove device from devices
+    if (updatedData.devices && updatedData.devices[deviceId]) {
+      delete updatedData.devices[deviceId];
+      console.log(`Device ID: ${deviceId} removed from devices`);
+    } else {
+      console.warn(`Device ID: ${deviceId} does not exist in devices`);
+    }
+  
+    // Remove device from room's device list
+    if (
+      updatedData.home &&
+      updatedData.home.floors &&
+      updatedData.home.floors[floorId] &&
+      updatedData.home.floors[floorId].rooms &&
+      updatedData.home.floors[floorId].rooms[roomId] &&
+      updatedData.home.floors[floorId].rooms[roomId].devices
+    ) {
+      updatedData.home.floors[floorId].rooms[roomId].devices = updatedData.home.floors[floorId].rooms[roomId].devices.filter(
+        (id) => id !== deviceId
+      );
+      console.log(`Device ID: ${deviceId} removed from room ${roomId}`);
+    }
+  
+    setData(updatedData);
+  }
+//Dodane

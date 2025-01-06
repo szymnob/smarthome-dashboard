@@ -1,10 +1,11 @@
 import * as PropTypes from "prop-types";
 
 
-export default function SubmitButton({onClick, label}) {
+export default function SubmitButton({onClick, label, /*type = "button"*/}) {
 
     return(
     <button
+        /*type={type}*/
         onClick={onClick}
         className="flex-1 text-white bg-violet-500 leading-loose rounded-md border-2 border-violet-700 active:bg-violet-600 shadow-md shadow-violet-500 active:shadow-violet-500 active:shadow-lg hover:bg-violet-400 "
         >

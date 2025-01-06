@@ -14,6 +14,7 @@ import DeviceSettings from "@/components/views/device-views/DeviceSettings";
 import * as PropTypes from "prop-types";
 
 
+
 export default function DeviceComponent({deviceId}) {
     const {data} = useContext(DataContext);
 

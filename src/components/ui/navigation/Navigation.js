@@ -49,7 +49,7 @@ export default function Navigation() {
                     {/* Separator */}
                     <div className="w-full h-px bg-black"></div>
 
-                    {/* Numery pięter */}
+                    {/* Numery pięter, faktycznie fetch'uje piętra*/}
                     {floorNumbers.map((number) => (
                         <LinkButtonText
                             key={number}

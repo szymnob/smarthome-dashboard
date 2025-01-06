@@ -15,8 +15,8 @@ AddNewFloor.propTypes = {
 export default function AddNewFloor({isVisible, onClose}) {
     const modalTitle = "Add new floor";
 
-    const { data } = useContext(DataContext);
-    const {setData} = useContext(DataContext);
+    const { data, setData } = useContext(DataContext);
+
 
     const[existingFloors, setExistingFloors] = useState([]);
 
@@ -106,11 +106,11 @@ export default function AddNewFloor({isVisible, onClose}) {
 
 
 // import ModalWindow from "@/components/control-overlays/ModalWindow";
-//
+
 // export default function AddNewFloor({isVisible, onClose}) {
-//
+
 //     const modalTitle = "Add new floor";
-//
+
 //     if (!isVisible) {
 //         return null;
 //     }

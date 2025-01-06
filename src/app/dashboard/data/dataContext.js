@@ -17,6 +17,7 @@ export const DataProvider = ({ children }) => {
         fetchData();
     }, []);
     return (
+        //przechowywanie danych w domie
         <DataContext.Provider value={{ data, setData }}>
             {children}
         </DataContext.Provider>
