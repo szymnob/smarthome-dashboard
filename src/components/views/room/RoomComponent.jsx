@@ -55,6 +55,7 @@ export default function RoomComponent({floorId, roomId, /*Dodane*/ isEditing}) {
 
     //Dodane przedostania
     return (
+      
         <div className="flex flex-col m-8">
           <div className="m5">
             <h1 className="text-2xl font-bold text-center">{roomName}</h1>
@@ -86,6 +87,8 @@ export default function RoomComponent({floorId, roomId, /*Dodane*/ isEditing}) {
             ))}
           </div>
 
+          
+
           {/* The Add Device modal */}
           <AddNewDevice
                 isVisible={showAddDeviceModal}
@@ -103,6 +106,8 @@ export default function RoomComponent({floorId, roomId, /*Dodane*/ isEditing}) {
                 roomId={roomId}
             />
         </div>
+        
+        
       );
     
 }
