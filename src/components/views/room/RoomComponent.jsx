@@ -32,8 +32,8 @@ export default function RoomComponent({floorId, roomId, /*Dodane*/ isEditing}) {
             setRoomName(getRoomName(data, floorId, roomId));
             setDevicesId(getDevicesIdInRoom(data, floorId, roomId));
             //check
-            console.log('Devices in Room:', getDevicesIdInRoom(data, floorId, roomId));
-            console.log('All Devices:', data.devices);
+            // console.log('Devices in Room:', getDevicesIdInRoom(data, floorId, roomId));
+            // console.log('All Devices:', data.devices);
         }
     }, [data, floorId, roomId]);
 

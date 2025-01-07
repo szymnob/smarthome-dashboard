@@ -11,9 +11,26 @@ export function getRoomName(data, floorId, roomId){
     return data.home.floors[floorId].rooms[roomId].name;
 }
 
+// export function getRoomName(data, floorId, roomId){
+//     console.log('Fetching room name for:', { floorId, roomId });
+    
+//     // Use a replacer function to omit 'devices' properties
+//     const dataWithoutDevices = JSON.stringify(data, (key, value) => {
+//         if (key === 'devices') {
+//             return undefined; // Omit the 'devices' property
+//         }
+//         return value; // Retain all other properties
+//     }, 2); // Pretty-print with 2-space indentation
+    
+//     console.log('Current data (devices excluded):', dataWithoutDevices);
+    
+//     return data?.home?.floors?.[floorId]?.rooms?.[roomId]?.name || 'Unknown Room';
+// }
+
 export function getDevicesIdInRoom(data, floorId, roomId){
     return data.home.floors[floorId].rooms[roomId].devices;
 }
+
 
 export function getDeviceNameById(data, deviceId) {
     const device = data.devices[deviceId];
@@ -332,6 +349,74 @@ export function removeDeviceFromRoom(data, setData, floorId, roomId, deviceId) {
       console.log(`Device ID: ${deviceId} removed from room ${roomId}`);
     }
   
-    setData(updatedData);
+    return updatedData;
   }
 //Dodane
+
+
+//function to add a room
+export function addRoom(data, floorId, roomName){
+    // Generate a unique room ID
+    const floor = data.home.floors[floorId];
+    
+    const newRoomId = Date.now();
+
+    // Create the new room object
+    const newRoom = {
+        id: newRoomId,
+        name: roomName,
+        devices: []
+    };
+
+    // Return a new data object with the added room 
+    const newData = {
+        ...data,
+        home: {
+            ...data.home,
+            floors: {
+                ...data.home.floors,
+                [floorId]: {
+                    ...data.home.floors[floorId],
+                    rooms: {
+                        ...data.home.floors[floorId].rooms,
+                        [newRoomId]: newRoom
+                    }
+                }
+            }
+        }
+    };
+
+    return newData;
+}
+
+
+
+export function deleteRoomById(data, floorId, roomId, setData){
+    console.log(`Room with ID ${roomId} on floor ${floorId} removed`)
+    //const newData = { ...data };
+    const floor = data.home.floors[floorId];
+    if (!floor || !floor.rooms[roomId]) {
+        console.error(`Room with ID ${roomId} on floor ${floorId} does not exist.`);
+        return data; // No changes if room doesn't exist
+    }
+
+    // Destructure to remove the room
+    const { [roomId]: removedRoom, ...remainingRooms } = floor.rooms;
+
+    // Return a new data object with the room removed (immutably)
+    const newData = {
+        ...data,
+        home: {
+            ...data.home,
+            floors: {
+                ...data.home.floors,
+                [floorId]: {
+                    ...data.home.floors[floorId],
+                    rooms: remainingRooms
+                }
+            }
+        }
+    };
+
+    return newData;
+}
