@@ -65,8 +65,20 @@ export function getDeviceTypeById(data, deviceId){
     return data.devices[deviceId].type;
 }
 
-export function getUserName(data){
-    return data.user.name;
+export function getAllProfiles(data){
+    return data.profiles;
+}
+
+export function getActiveUserId(data){
+    return data.activeUserId;
+}
+
+export function setActiveUserId(data, userId){
+    data.activeUserId = userId;
+}
+
+export function getActiveUserName(data){
+    return data.profiles[data.activeUserId].name;
 }
 
 export function updateDeviceState(data, deviceId, newState) {
@@ -140,14 +152,14 @@ export function updateScheduleById(data, deviceId, scheduleId, newSchedule) {
 }
 
 export function getFavourites(data, userId){
-    return data.user[userId].favourites
+    return data.profiles[userId].favourites
 }
 
 export function changeFavouriteStatus(data,userId=1, deviceId, isFavourite){
     if (isFavourite) {
-        data.user[userId].favourites.push(deviceId);
+        data.profiles[userId].favourites.push(deviceId);
     }else if (data.user[userId].favourites.includes(deviceId)){
-        data.user[userId].favourites = data.user[userId].favourites.filter((id) => id !== deviceId);
+        data.profiles[userId].favourites = data.profiles[userId].favourites.filter((id) => id !== deviceId);
     }
 }
 
@@ -161,7 +173,7 @@ export function deleteDeviceById(data, setData, deviceId) {
     // usuwanie urządzenie z ulubionych wszystkich użytkowników
     if (updatedData.user) {
         Object.keys(updatedData.user).forEach((userId) => {
-            const user = updatedData.user[userId];
+            const user = updatedData.profiles[userId];
             if (user.favourites) {
                 user.favourites = user.favourites.filter((favId) => favId !== deviceId);
             }
