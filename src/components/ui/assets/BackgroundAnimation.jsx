@@ -14,7 +14,7 @@ export default function BackgroundAnimation(){
         });
     }, []);
 
-    const iconNames = ["light", "home", "tv", "refrigerator", "tv", "air_conditioner", "camera", "heater"];
+    const iconNames = ["light", "tv", "refrigerator", "tv", "air_conditioner", "camera", "heater"];
 
     const iconPaths = iconNames.map((name) => ({
         src: `/icons/devices/${name}.svg`,

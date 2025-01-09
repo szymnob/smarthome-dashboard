@@ -1,43 +1,39 @@
 'use client';
 
 import { usePathname } from 'next/navigation';
-
-import {useContext, useEffect, useState} from "react";
+import { useContext, useEffect, useState } from "react";
 import DataContext from "@/app/dashboard/data/dataContext";
+import { getFloorsNumbers, getActiveUserName, getActiveUserId } from "@/app/dashboard/data/dataService";
+import LinkButtonImage, { ButtonImage, LinkButtonText } from "@/components/ui/navigation/NavigationButton";
 
-import {getFloorsNumbers, getUserName} from "@/app/dashboard/data/dataService";
-import AddNewFloor from "@/components/views/AddNewFloor";
-import LinkButtonImage, {ButtonImage, LinkButtonText} from "@/components/ui/navigation/NavigationButton";
-
-
-export default function Navigation() {
+export default function Navigation({ openModal }) {
     const pathname = usePathname();
-    const[showAddFloorModal, setShowAddFloorModal] = useState(false);
-
-    const[username, setUsername] = useState("User");
-    const[floorNumbers, setFloorNumbers] = useState([]);
-
+    const [activeUserId, setActiveUserId] = useState(null);
+    const [username, setActiveUserName] = useState("");
+    const [floorNumbers, setFloorNumbers] = useState([]);
 
     const { data } = useContext(DataContext);
 
     useEffect(() => {
-        if (data) {
-            setUsername(getUserName(data));
-            setFloorNumbers(getFloorsNumbers(data));
-        }
+        const fetchData = async () => {
+            if (data !== null && data !== undefined) {
+                const userId = await getActiveUserId(data);
+                if (userId !== null && userId !== undefined) {
+                    setActiveUserId(userId);
+                    setActiveUserName(await getActiveUserName(data));
+                }
+                const floors = getFloorsNumbers(data);
+                setFloorNumbers(floors);
+            }
+        };
+        fetchData();
     }, [data]);
-
-
-    const openModal = () => setShowAddFloorModal(true);
-    const closeModal = () => setShowAddFloorModal(false);
-
 
     return (
         <>
-            <div className="h-screen bg-gray-300 flex flex-col justify-between p-3 items-center py-8">
+            <div className="min-h-full bg-gray-300 flex flex-col justify-between p-3 items-center py-8">
                 {/* Górna sekcja */}
                 <div className="flex flex-col items-center space-y-4">
-
                     {/* Dashboard */}
                     <LinkButtonImage
                         href={'/dashboard'}
@@ -49,7 +45,7 @@ export default function Navigation() {
                     {/* Separator */}
                     <div className="w-full h-px bg-black"></div>
 
-                    {/* Numery pięter, faktycznie fetch'uje piętra*/}
+                    {/* Numery pięter, faktycznie fetch'uje piętra */}
                     {floorNumbers.map((number) => (
                         <LinkButtonText
                             key={number}
@@ -80,7 +76,7 @@ export default function Navigation() {
                     <ButtonImage
                         icon="/icons/plus.svg"
                         onClick={openModal}
-                        isActive={showAddFloorModal}
+                        isActive={false}
                         label="Add floor"
                     />
 
@@ -92,21 +88,13 @@ export default function Navigation() {
                         label="Settings"
                     />
 
-
                     {/* Avatar */}
-                    <div className="flex flex-col items-center">
-                        <img src="/icons/user.svg" alt="Avatar" className="w-10 h-10 rounded-full"/>
-                        <span className="text-sm mt-2 text-gray-700">{username}</span>
+                    <div className="flex flex-col items-center space-y-2">
+                        <img src={`/icons/avatars/${activeUserId || 'default'}.png`} alt={`${activeUserId || 'default'}.png`} className="w-10 h-10 rounded-full"/>
+                        <span className="text-sm mt-2 text-gray-700">{username || 'User'}</span>
                     </div>
                 </div>
             </div>
-
-            <AddNewFloor isVisible={showAddFloorModal} onClose={closeModal}/>
-
-            {/*<ModalWindow isVisible={showAddFloorModal} onClose={closeModal} title="Add new floor">*/}
-            {/*    <AddNewFloor onClose={closeModal}/>*/}
-            {/*</ModalWindow>*/}
-
         </>
     );
 }

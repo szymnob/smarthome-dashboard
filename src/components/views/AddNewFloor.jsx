@@ -79,7 +79,6 @@ export default function AddNewFloor({isVisible, onClose}) {
     }
 
 
-
     // const divInputStyle = "flex flex-row justify-between space-x-5";
 
     return (
