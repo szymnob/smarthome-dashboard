@@ -2,7 +2,7 @@
 import ModalWindow from "@/components/ui/assets/modals/ModalWindow";
 import { useContext, useState } from "react";
 import DataContext from "@/app/dashboard/data/dataContext";
-import { removeDeviceFromRoom } from "@/app/dashboard/data/dataService";
+import {deleteDeviceById, removeDeviceFromRoom} from "@/app/dashboard/data/dataService";
 // import Input from "@/components/ui/assets/Input";
 import SubmitButton, { CancelButton } from "@/components/ui/assets/Buttons";
 import PropTypes from "prop-types";
@@ -26,7 +26,7 @@ export default function RemoveDevice({ isVisible, onClose, floorId, roomId }) {
 
   // Function to handle device selection
   const handleDeviceChange = (e) => {
-    setSelectedDeviceId(String(e.target.value)); //<------------------ może to wina braku setSelectedDeviceId(String(e.target.value));
+    setSelectedDeviceId(e.target.value); //<------------------ może to wina braku setSelectedDeviceId(String(e.target.value));
     setError("");
   };
 
@@ -39,12 +39,13 @@ export default function RemoveDevice({ isVisible, onClose, floorId, roomId }) {
       return;
     }
 
-    console.log(`Selected Device ID: ${selectedDeviceId}`);
-    console.log(`Device Exists:`, !!data.devices[selectedDeviceId]);
+    // console.log(`Selected Device ID: ${selectedDeviceId}`);
+    // console.log(`Device Exists:`, data.devices[selectedDeviceId]);
     // Proceed to remove the device
     //removeDeviceFromRoom(data, setData, floorId, roomId, selectedDeviceId);
-    deleteDeviceById(data, setData, selectedDeviceId)
+    deleteDeviceById(data, setData, parseInt(selectedDeviceId))
     //deleteDeviceById_test(data, setData, selectedDeviceId);
+      console.log(data)
        
 
     // Reset fields & close modal
@@ -93,34 +94,6 @@ export default function RemoveDevice({ isVisible, onClose, floorId, roomId }) {
   );
 }
 
-
-
-import _ from 'lodash';
-
-function deleteDeviceById(data, setData, deviceId) {
-    const updatedData = _.cloneDeep(data);
-
-    // Remove from devices
-    delete updatedData.devices[deviceId];
-
-    // Remove from user favorites
-    Object.values(updatedData.user || {}).forEach(user => {
-        if (user.favourites) {
-            user.favourites = user.favourites.filter(id => id !== deviceId);
-        }
-    });
-
-    // Remove from rooms
-    Object.values(updatedData.home?.floors || {}).forEach(floor => {
-        Object.values(floor.rooms || {}).forEach(room => {
-            if (room.devices) {
-                room.devices = room.devices.filter(id => id !== deviceId);
-            }
-        });
-    });
-
-    setData(updatedData);
-}
 
 // function deleteDeviceById_test(data, setData, deviceId) {
 //     const updatedData = { ...data };
