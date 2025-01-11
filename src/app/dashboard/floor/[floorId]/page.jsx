@@ -110,6 +110,7 @@ export default function Page({ params }) {
             //Dodane
             isEditing={isEditing}
             onEditToggle={handleEditToggle}
+            showEditButton={true}
             //Dodane
             />
             
