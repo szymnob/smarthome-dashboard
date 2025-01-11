@@ -86,7 +86,7 @@ export default function RemoveDevice({ isVisible, onClose, floorId, roomId }) {
           {/* Buttons */}
           <div className="flex flex-row justify-between space-x-5 p-2">
             <CancelButton onClick={onClose} />
-            <SubmitButton label="Remove Device" /*type="submit"*//>
+            <SubmitButton label="Remove" /*type="submit"*//>
           </div>
         </form>
       </div>

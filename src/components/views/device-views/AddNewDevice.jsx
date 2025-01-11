@@ -86,7 +86,7 @@ export default function AddNewDevice({ isVisible, onClose, floorId, roomId }) {
           {/* Buttons */}
           <div className="flex flex-row justify-between space-x-5 p-2">
             <CancelButton onClick={onClose} />
-            <SubmitButton label="Add Device" />
+            <SubmitButton label="Add" />
           </div>
 
         </form>

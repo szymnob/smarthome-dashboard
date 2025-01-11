@@ -1,17 +1,23 @@
 import * as PropTypes from "prop-types";
 
 
-export default function SubmitButton({onClick, label, /*type = "button"*/}) {
-
+export default function SubmitButton({onClick, label, width = "auto", height = "auto", padding = "p-2"}) {
     return(
-    <button
-        /*type={type}*/
-        onClick={onClick}
-        className="flex-1 text-white bg-violet-500 leading-loose rounded-md border-2 border-violet-700 active:bg-violet-600 shadow-md shadow-violet-500 active:shadow-violet-500 active:shadow-lg hover:bg-violet-400 "
+        <button
+            onClick={onClick}
+            className={`flex-1 text-white bg-violet-500 leading-loose rounded-md border-2 border-violet-700 active:bg-violet-600 shadow-md shadow-violet-500 active:shadow-violet-500 active:shadow-lg hover:bg-violet-400
+                ${padding} ${width} ${height}`}
         >
-        <p className="shadow-black drop-shadow-lg">{label}</p>
-    </button>
+            <p className="shadow-black drop-shadow-lg text-center w-full">{label}</p>
+        </button>
     )
+}
+
+SubmitButton.propTypes = {
+    onClick: PropTypes.func,
+    label: PropTypes.string.isRequired,
+    width: PropTypes.string,
+    height: PropTypes.string,
 }
 
 SubmitButton.propTypes = {
@@ -22,7 +28,7 @@ SubmitButton.propTypes = {
 export function CancelButton({onClick, label}) {
     return (
         <button
-            className="flex-1 text-gray-700 bg-gray-100 leading-loose rounded-md border-custom hover:bg-gray-200 active:bg-gray-300 shadow-sm"
+            className="flex-1 text-gray-700 bg-gray-100 leading-loose rounded-md border-custom hover:bg-gray-200 active:bg-gray-300 shadow-sm p-2"
             onClick={onClick}>
             {label || "Cancel"}
         </button>

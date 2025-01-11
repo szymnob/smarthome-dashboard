@@ -14,20 +14,23 @@
 
 // Header.js
 import PropTypes from "prop-types";
+import SubmitButton from "./Buttons";
 
 export default function Header({ label, isEditing, onEditToggle, showEditButton = false }) {
     return (
-        <div className="flex flex-row justify-between bg-neutral-50 shadow-md border-custom p-7 rounded-lg m-5">
-            <h1 className="text-4xl font-bold">{label}</h1>
+        <div className="flex flex-col md:flex-row justify-between bg-neutral-50 shadow-md border-custom p-7 rounded-lg m-5">
+            <h1 className="text-4xl font-bold mb-4 md:mb-0">{label}</h1>
 
             {/* Toggle Editing Button */}
             {showEditButton && (
-                <button
-                    className="px-4 py-2 bg-blue-500 text-white rounded"
-                    onClick={onEditToggle}
-                >
-                    {isEditing ? "Disable Editing" : "Enable Editing"}
-                </button>
+                <div className="flex justify-end w-full md:w-auto ">
+                    <SubmitButton
+                        className="px-4 py-2 bg-blue-500 text-white rounded"
+                        onClick={onEditToggle}
+                        label={isEditing ? "Disable Editing" : "Enable Editing"}
+                    >
+                    </SubmitButton>
+                </div>
             )}
         </div>
     );
