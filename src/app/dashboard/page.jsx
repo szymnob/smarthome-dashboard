@@ -21,7 +21,7 @@ export default function Page() {
             <Header label="Dashboard" />
 
             <div className="flex flex-wrap">
-                {devices.length && (
+                {devices.length != 0 && (
                     <div className="flex flex-col m-8">
                         <div className="m5">
                             <h1 className="text-2xl font-bold text-center">Favourites</h1>

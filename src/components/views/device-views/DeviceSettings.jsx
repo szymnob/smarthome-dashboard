@@ -82,7 +82,7 @@ export default function DeviceSettings({isVisible, onClose, deviceId, deviceStat
     }, [deviceName]);
 
     const handleFavouriteChange = () => {
-        changeFavouriteStatus(setData, deviceId, !isFavourite);
+        setData(changeFavouriteStatus(data, deviceId, !isFavourite)); // FIXME: double add
         setIsFavourite(!isFavourite);
     }
 

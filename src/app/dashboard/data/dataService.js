@@ -160,20 +160,16 @@ export function getFavourites(data) {
     return getActiveUserProfile(data).favourites
 }
 
-export function changeFavouriteStatus(setData, deviceId, isFavourite) {
-    setData(prev => {
-        const data = { ...prev };
-        const profiles = getActiveUserProfile(data);
+export function changeFavouriteStatus(data, deviceId, isFavourite) {
+    const profiles = getActiveUserProfile(data);
 
-        if (isFavourite) {
-            profiles.favourites.push(deviceId);
-        } else if (profiles.favourites.includes(deviceId)) {
-            profiles.favourites = profiles.favourites.filter((id) => id !== deviceId);
-        }
+    if (isFavourite) {
+        profiles.favourites.push(deviceId);
+    } else if (profiles.favourites.includes(deviceId)) {
+        profiles.favourites = profiles.favourites.filter((id) => id !== deviceId);
+    }
     
-        data.profiles[data.activeUserId] = profiles;
-        return data;
-    });
+    return data;
 }
 
 export function deleteDeviceById(setData, deviceId) {
