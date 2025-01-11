@@ -12,7 +12,7 @@ export default function Page() {
     return (
         <div className={clsx("bg-gray-900 w-full h-full overflow-y-auto relative")}>
             <div className="grid p-4 overflow-y-auto grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 h-full w-full gap-4">
-                {[1, 2, 3, 4, 5, 6, 7, 8, 9].map((cameraId) => {
+                {[1, 2, 3, 4, 5, 6, 7].map((cameraId) => {
                     const isExpanded = expandedCamera === cameraId;
                     const isAnimating = animatingCamera === cameraId;
 

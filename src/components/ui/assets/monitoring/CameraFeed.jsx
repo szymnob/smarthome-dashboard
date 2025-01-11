@@ -1,12 +1,14 @@
 import VideoBackground from "@/components/ui/assets/monitoring/VideoBackground";
 import {useEffect, useState} from "react";
 
-const movieXD = "https://cdn.discordapp.com/attachments/1202677699881992233/1322679945872281701/SEX_KAMERKI_NATSU_720.mp4?ex=6771c131&is=67706fb1&hm=825d6711be07eabf3c8b5dd0cd8459e19802d571e20ad1bf3224408d8b5a48c7&"
-const movieScary = "https://cdn.discordapp.com/attachments/1202677699881992233/1322677911748218910/static_s_1.mp4?ex=6771bf4c&is=67706dcc&hm=6ce23fba677df9075e16e992ec47a7c67243b5dae6428a3f2c93e4599445a740&"
-const apetor = "https://cdn.discordapp.com/attachments/1202677699881992233/1322696103925252097/apetor.mp4?ex=6771d03d&is=67707ebd&hm=5917f794b61a0f91a36256129c9ddbd310161194dcebcbebb5a506335855519e&"
-const boom = "https://cdn.discordapp.com/attachments/1202677699881992233/1322697930427334676/achtung.mp4?ex=6771d1f1&is=67708071&hm=6dc246fb7277de419ba7c57aa4b429353517823ceda7fc37fa688131f9b9f6e9&"
-const jumper = "https://cdn.discordapp.com/attachments/1202677699881992233/1322702434828685322/jumper.mp4?ex=6771d623&is=677084a3&hm=69482d6cc067d3c57181b2fec60da00f1ca2c8a0ba35184400f1bceb31d34d75&"
-const sentino = "https://cdn.discordapp.com/attachments/1202677699881992233/1322703345709744219/sentino.mp4?ex=6771d6fc&is=6770857c&hm=f82fbdd3117a423033854da29cb31fdf6ba6797726af262393afcaef5253c509&"
+const movieXD = "https://dl.dropboxusercontent.com/scl/fi/9zfj9wk7kv7dmbvjon1dr/natsu-1.mp4?rlkey=so6av6bcnhknq0nbygmaf9ejj&st=klan78sy&dl=0"
+const movieScary = "https://dl.dropboxusercontent.com/scl/fi/dtz6yeizhqvmo59vppmlj/static_s_1-1.mp4?rlkey=ezmfhdc63gyvxd9bi2zs86pyo&st=ev32ravz&dl=0"
+const apetor = "https://dl.dropboxusercontent.com/scl/fi/gow7kot8xp27lsnf2336c/apetor-1.mp4?rlkey=th5fyezbvrxfbljhji0udus5b&st=mtvqu07s&dl=0"
+const boom = "https://dl.dropboxusercontent.com/scl/fi/707o5vez9ky8x7nlpg32v/achtung-1.mp4?rlkey=sodrne3lcby67urxgiaqh623r&st=jca8o2so&dl=0"
+const jumper = "https://dl.dropboxusercontent.com/scl/fi/1v0xbbbiwo1auaw67xj8k/jumper-1.mp4?rlkey=i6itt1kxayj1aa10ozejtj38s&st=fdfre8ui&dl=0"
+const sentino = "https://dl.dropboxusercontent.com/scl/fi/mur8we0cfr40dd3u8k1vp/sentino-1.mp4?rlkey=43fcu8lp2vagad137n2815nrb&st=h9ym9ahc&dl=0"
+const testo = "https://dl.dropboxusercontent.com/scl/fi/74aqeat2ht4o80cg7yusk/testo-1.mp4?rlkey=gn34d9f6tm9cxotctv5ctybgd&st=yccr7uj2&dl=0"
+
 
 const whiteNoise = "/video/static.mp4"
 
@@ -22,8 +24,9 @@ export default function CameraFeed({cameraId}){
         2: {b: () => toogleSource(boom) },
         3: {j: () => toogleSource(jumper) },
         4: {s: () => toogleSource(sentino) },
-        5: {m: () => toogleSource(movieScary) },
-        6: {n: () => toogleSource(movieXD) }
+        // 5: {m: () => toogleSource(movieScary) },
+        6: {n: () => toogleSource(movieXD) },
+        7: {t: () => toogleSource(testo) }
     };
 
     useEffect(() => {
@@ -55,8 +58,15 @@ export default function CameraFeed({cameraId}){
     };
 
     useEffect(() => {
-        loadAllMovies();
+        if (cameraId === 5) {
+            setTimeout(() => {
+                toogleSource(movieScary);
+
+            }, 10000);
+        }
     }, []);
+
+
 
 
     return(
