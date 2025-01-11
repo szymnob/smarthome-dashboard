@@ -158,7 +158,7 @@ export function getFavourites(data, userId){
 export function changeFavouriteStatus(data,userId=1, deviceId, isFavourite){
     if (isFavourite) {
         data.profiles[userId].favourites.push(deviceId);
-    }else if (data.user[userId].favourites.includes(deviceId)){
+    }else if (data.profiles[userId].favourites.includes(deviceId)){
         data.profiles[userId].favourites = data.profiles[userId].favourites.filter((id) => id !== deviceId);
     }
 }
