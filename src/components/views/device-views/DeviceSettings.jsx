@@ -5,6 +5,7 @@ import DataContext from "@/app/dashboard/data/dataContext";
 import {
     changeDeviceName,
     changeFavouriteStatus, deleteDeviceById, deviceExists,
+    getActiveUserId,
     getDeviceNameById,
     getDeviceStateById,
     getDeviceTypeById, getFavourites,
@@ -18,8 +19,6 @@ import DropdownSettings from "@/components/ui/assets/modals/DropdownSettings";
 import DeleteConfirmation from "@/components/ui/assets/modals/DeleteConfirmation";
 import ChangeName from "@/components/ui/assets/modals/ChangeName";
 
-
-const USERID = 1
 
 export default function DeviceSettings({isVisible, onClose, deviceId, deviceStatus, setDeviceStatus}) {
 
@@ -52,7 +51,7 @@ export default function DeviceSettings({isVisible, onClose, deviceId, deviceStat
             const state = getDeviceStateById(data, deviceId);
             const type = getDeviceTypeById(data, deviceId);
 
-            const favourites = getFavourites(data, USERID);
+            const favourites = getFavourites(data, getActiveUserId(data));
 
             favourites.includes(deviceId) ? setIsFavorite(true) : setIsFavorite(false);
 
@@ -87,7 +86,7 @@ export default function DeviceSettings({isVisible, onClose, deviceId, deviceStat
     const handleFavouriteChange = () => {
         setIsFavorite(prevState => {
             const newState = !prevState;
-            changeFavouriteStatus(data, USERID, deviceId, newState);
+            changeFavouriteStatus(data, getActiveUserId(data), deviceId, newState);
             return newState;
         })
     }
