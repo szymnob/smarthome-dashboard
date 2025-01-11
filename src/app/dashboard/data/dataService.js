@@ -185,8 +185,8 @@ export function deleteDeviceById(setData, deviceId) {
         }
 
         // usuwanie urządzenie z ulubionych wszystkich użytkowników
-        if (updatedData.user) {
-            Object.keys(updatedData.user).forEach((userId) => {
+        if (updatedData.profiles) {
+            Object.keys(updatedData.profiles).forEach((userId) => {
                 const user = updatedData.profiles[userId];
                 if (user.favourites) {
                     user.favourites = user.favourites.filter((favId) => favId !== deviceId);
