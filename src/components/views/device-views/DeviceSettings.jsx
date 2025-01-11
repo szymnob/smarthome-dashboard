@@ -22,8 +22,7 @@ import ChangeName from "@/components/ui/assets/modals/ChangeName";
 
 export default function DeviceSettings({isVisible, onClose, deviceId, deviceStatus, setDeviceStatus}) {
 
-    const {data} = useContext(DataContext);
-    const {setData} = useContext(DataContext);
+    const {data, setData} = useContext(DataContext);
 
     const [deviceName, setDeviceName] = useState("")
     const [deviceState, setDeviceState] = useState("")
@@ -51,7 +50,7 @@ export default function DeviceSettings({isVisible, onClose, deviceId, deviceStat
             const state = getDeviceStateById(data, deviceId);
             const type = getDeviceTypeById(data, deviceId);
 
-            const favourites = getFavourites(data, getActiveUserId(data));
+            const favourites = getFavourites(data);
 
             favourites.includes(deviceId) ? setIsFavorite(true) : setIsFavorite(false);
 
@@ -79,21 +78,18 @@ export default function DeviceSettings({isVisible, onClose, deviceId, deviceStat
 
     useEffect(() => {
         if(deviceName !== ""){
-            changeDeviceName(data, setData, deviceId, deviceName);
+            changeDeviceName(setData, deviceId, deviceName);
         }
     }, [deviceName]);
 
     const handleFavouriteChange = () => {
-        setIsFavorite(prevState => {
-            const newState = !prevState;
-            changeFavouriteStatus(data, getActiveUserId(data), deviceId, newState);
-            return newState;
-        })
+        changeFavouriteStatus(setData, deviceId, !isFavorite);
+        setIsFavorite(!isFavorite);
     }
 
     const handleDelete = () => {
         console.log("delete")
-        deleteDeviceById(data, setData ,deviceId);
+        deleteDeviceById(setData ,deviceId);
         onClose();
     }
 

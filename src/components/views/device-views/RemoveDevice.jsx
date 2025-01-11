@@ -43,7 +43,7 @@ export default function RemoveDevice({ isVisible, onClose, floorId, roomId }) {
     // console.log(`Device Exists:`, data.devices[selectedDeviceId]);
     // Proceed to remove the device
     //removeDeviceFromRoom(data, setData, floorId, roomId, selectedDeviceId);
-    deleteDeviceById(data, setData, parseInt(selectedDeviceId))
+    deleteDeviceById(setData, parseInt(selectedDeviceId))
     //deleteDeviceById_test(data, setData, selectedDeviceId);
       console.log(data)
        

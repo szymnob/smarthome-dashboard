@@ -1,3 +1,4 @@
+import { set } from "lodash";
 
 export function getFloorsNumbers(data){
     return Object.keys(data.home.floors).map(floorId => floorId);
@@ -73,12 +74,16 @@ export function getActiveUserId(data){
     return data.activeUserId;
 }
 
+export function getActiveUserProfile(data){
+    return data.profiles[data.activeUserId];
+}
+
 export function setActiveUserId(data, userId){
     data.activeUserId = userId;
 }
 
 export function getActiveUserName(data){
-    return data.profiles[data.activeUserId].name;
+    return getActiveUserProfile(data).name;
 }
 
 export function updateDeviceState(data, deviceId, newState) {
@@ -151,55 +156,64 @@ export function updateScheduleById(data, deviceId, scheduleId, newSchedule) {
 
 }
 
-export function getFavourites(data, userId){
-    return data.profiles[userId].favourites
+export function getFavourites(data) {
+    return getActiveUserProfile(data).favourites
 }
 
-export function changeFavouriteStatus(data,userId=1, deviceId, isFavourite){
-    if (isFavourite) {
-        data.profiles[userId].favourites.push(deviceId);
-    }else if (data.profiles[userId].favourites.includes(deviceId)){
-        data.profiles[userId].favourites = data.profiles[userId].favourites.filter((id) => id !== deviceId);
-    }
+export function changeFavouriteStatus(setData, deviceId, isFavourite) {
+    setData(prev => {
+        const data = { ...prev };
+        const profiles = getActiveUserProfile(data);
+
+        if (isFavourite) {
+            profiles.favourites.push(deviceId);
+        } else if (profiles.favourites.includes(deviceId)) {
+            profiles.favourites = profiles.favourites.filter((id) => id !== deviceId);
+        }
+    
+        data.profiles[data.activeUserId] = profiles;
+        return data;
+    });
 }
 
-export function deleteDeviceById(data, setData, deviceId) {
-    const updatedData = { ...data };
+export function deleteDeviceById(setData, deviceId) {
+    setData(data => {
+        const updatedData = { ...data };
 
-    if (updatedData.devices && updatedData.devices[deviceId]) {
-        delete updatedData.devices[deviceId];
-    }
+        if (updatedData.devices && updatedData.devices[deviceId]) {
+            delete updatedData.devices[deviceId];
+        }
 
-    // usuwanie urządzenie z ulubionych wszystkich użytkowników
-    if (updatedData.user) {
-        Object.keys(updatedData.user).forEach((userId) => {
-            const user = updatedData.profiles[userId];
-            if (user.favourites) {
-                user.favourites = user.favourites.filter((favId) => favId !== deviceId);
-            }
-        });
-    }
+        // usuwanie urządzenie z ulubionych wszystkich użytkowników
+        if (updatedData.user) {
+            Object.keys(updatedData.user).forEach((userId) => {
+                const user = updatedData.profiles[userId];
+                if (user.favourites) {
+                    user.favourites = user.favourites.filter((favId) => favId !== deviceId);
+                }
+            });
+        }
 
-    if (updatedData.home && updatedData.home.floors) {
-        Object.keys(updatedData.home.floors).forEach((floorId) => {
-            const floor = updatedData.home.floors[floorId];
-            if (floor && floor.rooms) {
-                Object.keys(floor.rooms).forEach((roomId) => {
-                    const room = floor.rooms[roomId];
-                    if (room && room.devices) {
-                        // Usuń urządzenie z listy urządzeń w pokoju
-                        room.devices = room.devices.filter((id) => id !== deviceId);
-                    }
-                });
-            }
-        });
-    }
+        if (updatedData.home && updatedData.home.floors) {
+            Object.keys(updatedData.home.floors).forEach((floorId) => {
+                const floor = updatedData.home.floors[floorId];
+                if (floor && floor.rooms) {
+                    Object.keys(floor.rooms).forEach((roomId) => {
+                        const room = floor.rooms[roomId];
+                        if (room && room.devices) {
+                            // Usuń urządzenie z listy urządzeń w pokoju
+                            room.devices = room.devices.filter((id) => id !== deviceId);
+                        }
+                    });
+                }
+            });
+        }
 
-
-    setData(updatedData);
+        return updatedData;
+    });
 }
 
-export function changeDeviceName(data, setData, deviceId, newName) {
+export function changeDeviceName(setData, deviceId, newName) {
     // data.devices[deviceId].name = newName;
     setData(prev =>{
         const updatedData = { ...prev };
