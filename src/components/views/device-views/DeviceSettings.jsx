@@ -5,7 +5,6 @@ import DataContext from "@/app/dashboard/data/dataContext";
 import {
     changeDeviceName,
     changeFavouriteStatus, deleteDeviceById, deviceExists,
-    getActiveUserId,
     getDeviceNameById,
     getDeviceStateById,
     getDeviceTypeById, getFavourites,
@@ -33,7 +32,7 @@ export default function DeviceSettings({isVisible, onClose, deviceId, deviceStat
 
     const[SpecificTypeComponent, setSpecificTypeComponent] = useState(null);
 
-    const[isFavorite, setIsFavorite] = useState(false);
+    const[isFavourite, setIsFavourite] = useState(false);
 
 
     const[isDeleteModalVisible, setIsDeleteModalVisible] = useState(false);
@@ -52,7 +51,7 @@ export default function DeviceSettings({isVisible, onClose, deviceId, deviceStat
 
             const favourites = getFavourites(data);
 
-            favourites.includes(deviceId) ? setIsFavorite(true) : setIsFavorite(false);
+            favourites.includes(deviceId) ? setIsFavourite(true) : setIsFavourite(false);
 
             setDeviceName(name);
             setDeviceState(state);
@@ -83,8 +82,8 @@ export default function DeviceSettings({isVisible, onClose, deviceId, deviceStat
     }, [deviceName]);
 
     const handleFavouriteChange = () => {
-        changeFavouriteStatus(setData, deviceId, !isFavorite);
-        setIsFavorite(!isFavorite);
+        changeFavouriteStatus(setData, deviceId, !isFavourite);
+        setIsFavourite(!isFavourite);
     }
 
     const handleDelete = () => {
@@ -97,10 +96,10 @@ export default function DeviceSettings({isVisible, onClose, deviceId, deviceStat
         <>
             <div className={clsx(
                 "w-9 h-auto cursor-pointer rounded-md hover:bg-neutral-200 hover:scale-105",
-                isFavorite ? "animate-add" : "animate-delete"
+                isFavourite ? "animate-add" : "animate-delete"
             )}
                  onClick={handleFavouriteChange}>
-                <img className="w-full h-auto" src={isFavorite ? "/icons/heart_solid.svg" : "/icons/heart_outline.svg"} alt="Add to favorites"/>
+                <img className="w-full h-auto" src={isFavourite ? "/icons/heart_solid.svg" : "/icons/heart_outline.svg"} alt="Add to favourites"/>
             </div>
 
             <DropdownSettings
