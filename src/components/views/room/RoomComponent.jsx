@@ -13,6 +13,7 @@ import DeviceComponent from "@/components/views/device-views/DeviceComponent";
 //removing adding devices
 import AddNewDevice from "@/components/views/device-views/AddNewDevice"; 
 import RemoveDevice from "@/components/views/device-views/RemoveDevice";
+import SubmitButton from '@/components/ui/assets/Buttons';
 //Dodane
 
 export default function RoomComponent({floorId, roomId, /*Dodane*/ isEditing}) {
@@ -55,60 +56,53 @@ export default function RoomComponent({floorId, roomId, /*Dodane*/ isEditing}) {
 
     //Dodane przedostania
     return (
-      
-        <div className="flex flex-col m-8">
-          <div className="m5">
-            <h1 className="text-2xl font-bold text-center">{roomName}</h1>
-          </div>
-    
-          {/* Conditionally render UI in editing mode */}
-          {isEditing && (
-            <div className="my-2 flex space-x-2">
-              <button
-                className="px-3 py-1 bg-green-500 text-white rounded"
-                // onClick={() => console.log(`Add device in room ${roomId}`)}
-                onClick={handleAddDeviceClick}
-              >
-                + Add Device
-              </button>
-              <button
-                className="px-3 py-1 bg-red-500 text-white rounded"
-                // onClick={() => console.log(`Remove device in room ${roomId}`)}
-                onClick={handleRemoveDeviceClick}
-              >
-                - Remove Device
-              </button>
-            </div>
-          )}
-    
-          <div className="flex flex-wrap bg-neutral-50 shadow-md border-custom rounded-lg mt-2 p-2">
-            {devicesId.map((deviceId) => (
-              <DeviceComponent key={deviceId} deviceId={deviceId} />
-            ))}
-          </div>
-
-          
-
-          {/* The Add Device modal */}
-          <AddNewDevice
-                isVisible={showAddDeviceModal}
-                onClose={() => setShowAddDeviceModal(false)}
-                floorId={floorId}
-                roomId={roomId}
-            />
-
-
-            {/* The Remove Device modal */}
-            <RemoveDevice
-                isVisible={showRemoveDeviceModal}
-                onClose={() => setShowRemoveDeviceModal(false)}
-                floorId={floorId}
-                roomId={roomId}
-            />
+      <div className="flex flex-col m-8">
+      <div className="m5 flex justify-between items-center">
+        <h1 className="text-2xl font-bold text-center">{roomName}</h1>
+        {/* Conditionally render UI in editing mode */}
+        {isEditing && (
+        <div className="flex space-x-2 items-center">
+          <SubmitButton
+          onClick={handleAddDeviceClick}
+          label="+"
+          width="w-9"
+          height="h-9"
+          padding="p-0"
+          />
+          <SubmitButton
+          onClick={handleRemoveDeviceClick}
+          label="-"
+          width="w-9"
+          height="w-9"
+          padding='p-0'
+          />
         </div>
-        
-        
-      );
+        )}
+      </div>
+
+      <div className="flex flex-wrap justify-center bg-neutral-50 shadow-md border-custom rounded-lg mt-2 p-2 min-w-[250px]">
+        {devicesId.map((deviceId) => (
+        <DeviceComponent key={deviceId} deviceId={deviceId} />
+        ))}
+      </div>
+
+      {/* The Add Device modal */}
+      <AddNewDevice
+      isVisible={showAddDeviceModal}
+      onClose={() => setShowAddDeviceModal(false)}
+      floorId={floorId}
+      roomId={roomId}
+      />
+
+      {/* The Remove Device modal */}
+      <RemoveDevice
+      isVisible={showRemoveDeviceModal}
+      onClose={() => setShowRemoveDeviceModal(false)}
+      floorId={floorId}
+      roomId={roomId}
+      />
+      </div>
+    );
     
 }
     //Dodane

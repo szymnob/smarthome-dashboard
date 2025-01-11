@@ -5,21 +5,22 @@ import {use, useContext, useEffect, useState} from 'react';
 import DataContext from '@/app/dashboard/data/dataContext';
 import RoomComponent from "@/components/views/room/RoomComponent";
 import {getRoomsIdOnFloor, addRoom, deleteRoomById, getRoomName} from "@/app/dashboard/data/dataService";
-import { PlusIcon, MinusIcon } from '@heroicons/react/24/solid'; //ikony plus minus
+import { PlusIcon, MinusIcon } from '@heroicons/react/24/solid';
 import Input from "@/components/ui/assets/Input";
+import SubmitButton from "@/components/ui/assets/Buttons";
+import CancelButton from "@/components/ui/assets/Buttons";
+
 
 
 export default function Page({ params }) {
-    const { data, /*Dodane*/ setData } = useContext(DataContext);
+    const { data, setData } = useContext(DataContext);
     const [floorNotFound, setFloorNotFound] = useState(false);
     const [roomsId, setRoomsId] = useState([]);
 
     const useParams = use(params);
     const floorId = useParams.floorId;
-
-    //Dodane//
+ 
     const [isEditing, setIsEditing] = useState(false);
-    //Dodane//
 
     // States for Add Room Modal
     const [showAddRoomModal, setShowAddRoomModal] = useState(false);
@@ -107,13 +108,12 @@ export default function Page({ params }) {
     return (
         <>
             <Header label={`Floor ${floorId}`}
-            //Dodane
             isEditing={isEditing}
             onEditToggle={handleEditToggle}
-            //Dodane
+            showEditButton={true}
             />
             
-            <div className="flex flex-wrap">
+            <div className="flex flex-wrap justify-center">
             {roomsId.map((roomId) => (
                 <RoomComponent 
                 key={roomId} 
@@ -121,37 +121,33 @@ export default function Page({ params }) {
                 roomId={roomId}
                 isEditing={isEditing}/>
             ))}
-            
-            {/*Przycisk + Add room widoczny tylko w trybie edycji*/}
-            {isEditing && (
-                    <div className="flex flex-col space-y-2 m-2">
-                        <label>Add/Remove Room</label>
-                        <button
-                            onClick={() => {
-                                
-                                setShowAddRoomModal(true)
-
-                            }}
-                            className="flex items-center justify-center w-28 h-28 bg-green-500 text-white text-7xl rounded-lg cursor-pointer hover:bg-green-600 transition-colors"
-                            title="Add room"
-                        >
-                            <PlusIcon className="h-16 w-16" /> 
-                        </button>
-                        <button
-                            onClick={() => {
-                                
-                                setShowRemoveRoomModal(true)
-                            }}
-                            className="flex items-center justify-center w-28 h-28 bg-red-500 text-white text-7xl rounded-lg cursor-pointer hover:bg-red-600 transition-colors"
-                            title="Remove room"
-                        >
-                             <MinusIcon className="h-16 w-16" />
-                        </button>
-                    </div>
-                )}
             </div>
 
-            {/*okno do wpisywania pokoi, pojawia się tylko w momenncie klieknięcia przycisku dodawania pokoju*/}
+            {/* Add/Remove Room */}
+            {/*TODO: Move this to header(?) */}
+                        {isEditing && (
+                            <div className="flex flex-col items-center m-4 mb-12">
+                                <div className="flex flex-col space-y-2 items-center">
+                                    <h1 className="text-2xl font-bold text-center">Add/Remove Room</h1>
+                                    <div className="justify-center border-2 bg-neutral-50 shadow-md border-custom border-gray-300 p-4 rounded-lg flex space-x-4 mt-2 p-2">
+                                        <SubmitButton
+                                            onClick={() => setShowAddRoomModal(true)}
+                                            label={<PlusIcon className="h-6 w-6 sm:h-10 sm:w-10"
+                                            padding="p-0" />}
+                                        >
+                                        </SubmitButton>
+                                        <SubmitButton
+                                            onClick={() => setShowRemoveRoomModal(true)}
+                                            label={<MinusIcon className="h-6 w-6 sm:h-10 sm:w-10"
+                                            padding="p-0"
+                                             />}
+                                        >
+                                        </SubmitButton>
+                                    </div>
+                                </div>
+                            </div>
+                        )}
+                        
             {/* Add Room Modal */}
             {showAddRoomModal && (
                 <div className="fixed inset-0 flex items-center justify-center bg-black bg-opacity-50 z-50">
@@ -172,19 +168,18 @@ export default function Page({ params }) {
                                 error={error}
                             />
                             <div className="flex justify-end space-x-2 mt-4">
-                                <button
+                                {/*TODO: This button should have gray bg, not purple*/}
+                                <CancelButton
                                     type="button"
                                     onClick={() => { setShowAddRoomModal(false); setError(''); setNewRoomName(''); }}
-                                    className="px-4 py-2 bg-gray-300 rounded"
+                                    label={"Cancel"}
                                 >
-                                    Cancel
-                                </button>
-                                <button
+                                </CancelButton>
+                                <SubmitButton
                                     type="submit"
-                                    className="px-4 py-2 bg-blue-500 text-white rounded"
+                                    label="Add"
                                 >
-                                    Add
-                                </button>
+                                </SubmitButton>
                             </div>
                         </form>
                     </div>
@@ -225,19 +220,18 @@ export default function Page({ params }) {
                                 {removeError && <div className="text-red-500 mt-2">{removeError}</div>}
                             </div>
                             <div className="flex justify-end space-x-2">
-                                <button
+                                {/*TODO: This button should have gray bg, not purple*/}
+                                <CancelButton
                                     type="button"
                                     onClick={() => { setShowRemoveRoomModal(false); setRemoveError(''); setSelectedRoomId(''); }}
-                                    className="px-4 py-2 bg-gray-300 rounded"
+                                    label="Cancel"
                                 >
-                                    Cancel
-                                </button>
-                                <button
+                                </CancelButton>
+                                <SubmitButton
                                     type="submit"
-                                    className="px-4 py-2 bg-red-500 text-white rounded"
+                                    label="Remove"
                                 >
-                                    Remove
-                                </button>
+                                </SubmitButton>
                             </div>
                         </form>
                     </div>
