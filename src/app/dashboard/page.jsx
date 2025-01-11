@@ -3,7 +3,7 @@
 import Header from "@/components/ui/assets/RectHeader";
 import DataContext from "./data/dataContext";
 import { useContext, useEffect, useState } from "react";
-import getFavourites from "./data/dataService";
+import { getFavourites } from "./data/dataService";
 import DeviceComponent from "@/components/views/device-views/DeviceComponent";
 
 export default function Page() {
