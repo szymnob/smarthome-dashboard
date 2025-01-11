@@ -9,7 +9,7 @@ export default function getRooms(data, floorId){
 }
 
 export function getRoomName(data, floorId, roomId){
-    return data.home.floors[floorId].rooms[roomId].name;
+    return data.home.floors[floorId].rooms[roomId]?.name;
 }
 
 // export function getRoomName(data, floorId, roomId){
@@ -29,7 +29,7 @@ export function getRoomName(data, floorId, roomId){
 // }
 
 export function getDevicesIdInRoom(data, floorId, roomId){
-    return data.home.floors[floorId].rooms[roomId].devices;
+    return data.home.floors[floorId].rooms[roomId]?.devices;
 }
 
 
