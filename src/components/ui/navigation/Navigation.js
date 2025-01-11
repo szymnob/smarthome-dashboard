@@ -5,6 +5,7 @@ import { useContext, useEffect, useState } from "react";
 import DataContext from "@/app/dashboard/data/dataContext";
 import { getFloorsNumbers, getActiveUserName, getActiveUserId } from "@/app/dashboard/data/dataService";
 import LinkButtonImage, { ButtonImage, LinkButtonText } from "@/components/ui/navigation/NavigationButton";
+import Link from 'next/link';
 
 export default function Navigation({ openModal }) {
     const pathname = usePathname();
@@ -89,10 +90,10 @@ export default function Navigation({ openModal }) {
                     />
 
                     {/* Avatar */}
-                    <div className="flex flex-col items-center space-y-2">
+                    <Link href='/' className="flex flex-col items-center space-y-2">
                         <img src={`/icons/avatars/${activeUserId || 'default'}.png`} alt={`${activeUserId || 'default'}.png`} className="w-10 h-10 rounded-full"/>
                         <span className="text-sm mt-2 text-gray-700">{username || 'User'}</span>
-                    </div>
+                    </Link>
                 </div>
             </div>
         </>
