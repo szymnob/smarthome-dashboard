@@ -6,6 +6,7 @@ import {
 } from "@/app/dashboard/data/dataService";
 import ToogleDays from "@/components/ui/assets/ToogleDays";
 import * as PropTypes from "prop-types";
+import { Tooltip } from "react-tooltip";
 
 export default function Schedule({data, deviceId}){
 
@@ -77,10 +78,11 @@ export default function Schedule({data, deviceId}){
         <div className="space-y-2">
             <div className='flex flex-row space-x-2 items-center'>
                 <h1 className="font-medium">Schedule</h1>
-                <div className="w-5 h-auto cursor-pointer rounded-md hover:bg-neutral-200 hover:scale-105 "
+                <div id="add-schedule" className="w-5 h-auto cursor-pointer rounded-md hover:bg-neutral-200 hover:scale-105 "
                      onClick={addNewSchedule}>
                     <img className="w-full h-auto" src="/icons/plus.svg" alt="Close"/>
                 </div>
+                <Tooltip anchorSelect="#add-schedule" content="Add new schedule" place="right" delayShow={500} />
             </div>
             <div className="max-h-60 overflow-y-auto space-y-2">
             {schedules && Object.keys(schedules).map((scheduleId) => (
@@ -140,9 +142,10 @@ function ScheduleElement({ scheduleId, updateSchedule, scheduleData}) {
         <div className="flex flex-row space-x-2 justify-between">
             <div className="flex flex-col justify-between items-center">
                 <Switch id={scheduleId} size="small" checked={active} onChange={handleChangeActive}/>
-                <div onClick={()=> updateSchedule(scheduleId, null)} className="w-8 h-auto cursor-pointer rounded-md hover:bg-neutral-200 hover:scale-105 ">
+                <div id="remove-schedule" onClick={()=> updateSchedule(scheduleId, null)} className="w-8 h-auto cursor-pointer rounded-md hover:bg-neutral-200 hover:scale-105 ">
                     <img src="/icons/trash.svg" alt="delete"/>
                 </div>
+                <Tooltip anchorSelect="#remove-schedule" content="Remove this schedule" place="right" delayShow={500} />
             </div>
 
             <label htmlFor="start-time"  className="flex flex-col">

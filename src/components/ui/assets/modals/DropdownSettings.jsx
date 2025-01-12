@@ -1,4 +1,5 @@
 import {useEffect, useState, useRef} from "react";
+import { Tooltip } from "react-tooltip";
 
 export default function DropdownSettings({onRename, onDelete}){
 
@@ -21,7 +22,8 @@ export default function DropdownSettings({onRename, onDelete}){
     }, []);
 
     return(
-        <div ref={menuRef} className="relative">
+        <>
+        <div id="dropdown-settings" ref={menuRef} className="relative">
             <div className="w-9 h-auto cursor-pointer transition-transform duration-200 rounded-md hover:bg-neutral-200 hover:scale-105 active:scale-95 "
                  onClick={handleMenuOpen}>
                 <img className="w-full h-auto" src="/icons/menu.svg" alt="Menu"/>
@@ -51,5 +53,7 @@ export default function DropdownSettings({onRename, onDelete}){
             )}
 
         </div>
+        <Tooltip anchorSelect="#dropdown-settings" content="More options" place="right" delayShow={500} />
+        </>
     )
 }

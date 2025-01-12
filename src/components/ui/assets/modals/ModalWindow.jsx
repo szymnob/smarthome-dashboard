@@ -1,5 +1,6 @@
 import { motion, AnimatePresence } from "framer-motion";
 import * as PropTypes from "prop-types";
+import { Tooltip } from "react-tooltip";
 
 export default function ModalWindow({ isVisible, onClose, title, children, headerActions }) {
     // tlo
@@ -44,9 +45,11 @@ export default function ModalWindow({ isVisible, onClose, title, children, heade
                                 <div
                                     className="w-9 h-auto cursor-pointer transition-transform duration-200 rounded-md hover:bg-neutral-200 hover:scale-105"
                                     onClick={onClose}
+                                    id="close"
                                 >
                                     <img className="w-full h-auto" src="/icons/close.svg" alt="Close" />
                                 </div>
+                                <Tooltip anchorSelect="#close" content="Close" place="right" delayShow={500} />
                             </div>
                         </div>
                         <div>{children}</div>

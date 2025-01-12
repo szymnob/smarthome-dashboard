@@ -17,6 +17,7 @@ import clsx from "clsx";
 import DropdownSettings from "@/components/ui/assets/modals/DropdownSettings";
 import DeleteConfirmation from "@/components/ui/assets/modals/DeleteConfirmation";
 import ChangeName from "@/components/ui/assets/modals/ChangeName";
+import { Tooltip } from "react-tooltip";
 
 
 export default function DeviceSettings({isVisible, onClose, deviceId, deviceStatus, setDeviceStatus}) {
@@ -92,15 +93,17 @@ export default function DeviceSettings({isVisible, onClose, deviceId, deviceStat
         onClose();
     }
 
+    const favouriteText = `${!isFavourite ? "Add to" : "Remove from"} favourites`;
     const headerActions = (
         <>
-            <div className={clsx(
+            <div id="favourite" className={clsx(
                 "w-9 h-auto cursor-pointer rounded-md hover:bg-neutral-200 hover:scale-105",
                 isFavourite ? "animate-add" : "animate-delete"
             )}
                  onClick={handleFavouriteChange}>
-                <img className="w-full h-auto" src={isFavourite ? "/icons/heart_solid.svg" : "/icons/heart_outline.svg"} alt="Add to favourites"/>
+                <img className="w-full h-auto" src={isFavourite ? "/icons/heart_solid.svg" : "/icons/heart_outline.svg"} alt={favouriteText}/>
             </div>
+            <Tooltip anchorSelect="#favourite" content={favouriteText} place="right" delayShow={500} />
 
             <DropdownSettings
                 onDelete={()=>setIsDeleteModalVisible(true)}
