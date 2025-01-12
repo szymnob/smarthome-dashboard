@@ -139,7 +139,7 @@ function ScheduleElement({ scheduleId, updateSchedule, scheduleData}) {
 
         <div className="flex flex-row space-x-2 justify-between">
             <div className="flex flex-col justify-between items-center">
-                <Switch size="small" checked={active} onChange={handleChangeActive}/>
+                <Switch id={scheduleId} size="small" checked={active} onChange={handleChangeActive}/>
                 <div onClick={()=> updateSchedule(scheduleId, null)} className="w-8 h-auto cursor-pointer rounded-md hover:bg-neutral-200 hover:scale-105 ">
                     <img src="/icons/trash.svg" alt="delete"/>
                 </div>

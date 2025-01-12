@@ -12,6 +12,7 @@ import Switch from "@/components/ui/assets/Switch";
 import clsx from "clsx";
 import DeviceSettings from "@/components/views/device-views/DeviceSettings";
 import * as PropTypes from "prop-types";
+import { Tooltip } from 'react-tooltip'
 
 
 
@@ -84,7 +85,7 @@ export default function DeviceComponent({deviceId}) {
                 })}>
                 <div className="flex flex-row w-full justify-between items-center mb-3">
                     <div>{deviceStatus}</div>
-                    <Switch checked={deviceStatus === "ON"} onChange={handleChange}/>
+                    <Switch id={deviceId} checked={deviceStatus === "ON"} onChange={handleChange}/>
                 </div>
 
                 <div className="flex flex-row justify-between">
@@ -92,7 +93,8 @@ export default function DeviceComponent({deviceId}) {
                         "brightness-0 invert": deviceStatus === "ON",
                     }
                     )}/>
-                    <img src="/icons/settings.svg" alt="Device" onClick={() => setShowDeviceControls(prev => !prev)}
+                    <Tooltip id="settings" content="Settings" delayShow={500} />
+                    <img data-tooltip-id="settings" src="/icons/settings.svg" alt="Device" onClick={() => setShowDeviceControls(prev => !prev)}
                          className={clsx("w-10 h-10 hover:scale-105 cursor-pointer",{
                         "brightness-0 invert": deviceStatus === "ON",
                     })}/>

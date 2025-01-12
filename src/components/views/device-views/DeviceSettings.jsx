@@ -119,7 +119,7 @@ export default function DeviceSettings({isVisible, onClose, deviceId, deviceStat
             <div className='m-5 flex flex-col space-y-4'>
                 <div className="flex flex-row justify-between items-center">
                 <img src={`/icons/devices/${deviceType}.svg`} alt={deviceType} className="w-12 h-auto"/>
-                    <Switch size='large' checked={deviceStatus === "ON"} onChange={setDeviceStatus}/>
+                    <Switch id={deviceId} size='large' checked={deviceStatus === "ON"} onChange={setDeviceStatus}/>
                 </div>
 
                 {SpecificTypeComponent ? (
