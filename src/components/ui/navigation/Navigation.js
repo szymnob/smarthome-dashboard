@@ -52,7 +52,7 @@ export default function Navigation({ openModal }) {
                         <LinkButtonText
                             key={number}
                             href={`/dashboard/floor/${number}`}
-                            text={number}
+                            text={`Floor ${number}`}
                             isActive={pathname === `/dashboard/floor/${number}`}
                         />
                     ))}
