@@ -16,7 +16,7 @@ import { Tooltip } from 'react-tooltip'
 
 
 
-export default function DeviceComponent({deviceId}) {
+export default function DeviceComponent({deviceId, location = []}) {
     const {data} = useContext(DataContext);
 
     const [deviceName, setDeviceName] = useState("")
@@ -68,6 +68,7 @@ export default function DeviceComponent({deviceId}) {
 
 
 
+    const locationString = location.length != 0 ? `${location[1]} on Floor ${location[0]}` : null;
 
     return (
         <>
@@ -84,7 +85,8 @@ export default function DeviceComponent({deviceId}) {
                     "text-white": deviceStatus === "ON",
                 })}>
                 <div className="flex flex-row w-full justify-between items-center mb-3">
-                    <div>{deviceStatus}</div>
+                    <div id="location">{locationString}</div>
+                    <Tooltip anchorSelect="#location" content="Location of device" delayShow={500} />
                     <Switch id={deviceId} checked={deviceStatus === "ON"} onChange={handleChange}/>
                 </div>
 
@@ -115,4 +117,5 @@ export default function DeviceComponent({deviceId}) {
 
 DeviceComponent.propTypes = {
     deviceId: PropTypes.string.isRequired,
+    location: PropTypes.array
 }
