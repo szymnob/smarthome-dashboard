@@ -92,9 +92,9 @@ export default function Navigation({ openModal }) {
 
                     {/* Avatar */}
                     <Tooltip anchorSelect="#avatar" content="Switch user" place="right" delayShow={500} />
-                    <Link id="avatar" href='/' className="flex flex-col items-center space-y-2">
-                        <img src={`/icons/avatars/${activeUserId || 'default'}.png`} alt={`${activeUserId || 'default'}.png`} className="w-10 h-10 rounded-full"/>
-                        <span className="text-sm mt-2 text-gray-700">{username || 'User'}</span>
+                    <Link id="avatar" href='/' className="flex flex-col items-center space-y-2 group">
+                        <img src={`/icons/avatars/${activeUserId || 'default'}.png`} alt={`${activeUserId || 'default'}.png`} className="w-10 h-10 rounded-full group-hover:scale-110 transition-transform duration-200"/>
+                        <span className="text-sm mt-2 text-gray-700 group-hover:font-bold">{username || 'User'}</span>
                     </Link>
                 </div>
             </div>
