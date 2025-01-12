@@ -39,7 +39,7 @@ LinkButtonImage.propTypes = {
     label: PropTypes.string,
 }
 
-export function LinkButtonText({href, text, isActive}) {
+export function LinkButtonText({href, text, isActive, tooltip=text}) {
     const buttonClasses = getButtonClasses(isActive);
     const id = `link-button-text-${text.toLowerCase().replace(' ', '-')}`;
 
@@ -54,7 +54,7 @@ export function LinkButtonText({href, text, isActive}) {
                 {text}
             </div>
         </Link>
-        <Tooltip anchorSelect={`#${id}`} content={text} delayShow={500} place="right" />
+        <Tooltip anchorSelect={`#${id}`} content={tooltip} delayShow={500} place="right" />
         </>
     )
 }
@@ -63,6 +63,7 @@ LinkButtonText.propTypes = {
     href: PropTypes.string.isRequired,
     text: PropTypes.string.isRequired,
     isActive: PropTypes.bool,
+    text: PropTypes.string,
 }
 
 export function ButtonImage({icon, onClick, isActive, label}){
