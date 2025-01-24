@@ -30,7 +30,7 @@ export default function ModalWindow({ isVisible, onClose, title, children, heade
                     onClick={onClose}
                 >
                     <motion.div
-                        className="flex-col max-h-full overflow-auto transform bg-neutral-50 shadow-md border-custom rounded-lg"
+                        className="flex-col max-h-full overflow-y-auto transform bg-neutral-50 shadow-md border-custom rounded-lg"
                         variants={modalVariants}
                         initial="hidden"
                         animate="visible"

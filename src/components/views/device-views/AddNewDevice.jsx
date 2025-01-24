@@ -63,15 +63,16 @@ export default function AddNewDevice({ isVisible, onClose, floorId, roomId }) {
           <div>
             <label className="block text-sm font-semibold mb-1">Device Type:</label>
             <select
-              className="border border-gray-300 rounded px-3 py-2 w-full"
-              value={deviceType}
-              onChange={(e) => setDeviceType(e.target.value)}
+                className="border border-gray-300 rounded px-3 py-2 w-full"
+                value={deviceType}
+                onChange={(e) => setDeviceType(e.target.value)}
             >
               <option value="rgb_light">RGB Light</option>
               <option value="heater">Heater</option>
               <option value="tv">TV</option>
               <option value="air_conditioner">Air Conditioner</option>
               <option value="refrigerator">Refrigerator</option>
+              <option value="refrigerator">Blinders</option>
               {/* ... można dodać więcej opcji */}
             </select>
           </div>

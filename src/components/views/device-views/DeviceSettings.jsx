@@ -18,6 +18,8 @@ import DropdownSettings from "@/components/ui/assets/modals/DropdownSettings";
 import DeleteConfirmation from "@/components/ui/assets/modals/DeleteConfirmation";
 import ChangeName from "@/components/ui/assets/modals/ChangeName";
 import { Tooltip } from "react-tooltip";
+import Blinds from "@/components/views/device-views/types/Blinds";
+import Light from "@/components/views/device-views/types/Light";
 
 
 export default function DeviceSettings({isVisible, onClose, deviceId, deviceStatus, setDeviceStatus}) {
@@ -58,7 +60,6 @@ export default function DeviceSettings({isVisible, onClose, deviceId, deviceStat
             setDeviceState(state);
             setDeviceType(type);
 
-            // xddd bez fumkcji anonimowej nie dziala jebane, dowiedziec sie dlaczego
             setSpecificTypeComponent(() => typesToComponents[type]);
 
 
@@ -119,7 +120,7 @@ export default function DeviceSettings({isVisible, onClose, deviceId, deviceStat
     return (
         <>
         <ModalWindow isVisible={isVisible} onClose={onClose} title={deviceName} headerActions={headerActions}>
-            <div className='m-5 flex flex-col space-y-4'>
+            <div className='m-5 flex flex-col space-y-4 w-[300px]'>
                 <div className="flex flex-row justify-between items-center">
                 <img src={`/icons/devices/${deviceType}.svg`} alt={deviceType} className="w-12 h-auto"/>
                     <Switch id={deviceId} size='large' checked={deviceStatus === "ON"} onChange={setDeviceStatus}/>
@@ -159,7 +160,9 @@ export default function DeviceSettings({isVisible, onClose, deviceId, deviceStat
 
 
 const typesToComponents={
-    "rgb_light": RgbLight
+    "rgb_light": RgbLight,
+    "blinds": Blinds,
+    "light": Light,
 }
 
 

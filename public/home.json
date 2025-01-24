@@ -28,12 +28,12 @@
           "1": {
             "id": 1,
             "name": "Kitchen",
-            "devices": [1, 2]
+            "devices": [1, 2, 7]
           },
           "2": {
             "id": 2,
             "name": "Living Room",
-            "devices": [3]
+            "devices": [3 ,6]
           }
         }
       },
@@ -82,13 +82,20 @@
       "schedule": {
         "1": {
           "active": true,
-          "days": [1,2,3],
+          "days": [
+            1,
+            2,
+            3
+          ],
           "startTime": "07:00",
           "endTime": "19:00"
         },
         "2": {
           "active": false,
-          "days": [6,7],
+          "days": [
+            6,
+            7
+          ],
           "startTime": "10:00",
           "endTime": "11:00"
         }
@@ -125,6 +132,30 @@
       "state": {
         "status": "ON",
         "properties": {}
+      }
+    },
+    "6": {
+      "id": 6,
+      "name": "Blinds",
+      "type": "blinds",
+      "brand": "string",
+      "model": "string",
+      "state": {
+        "status": "ON",
+        "properties": {}
+      }
+    },
+    "7": {
+      "id": 7,
+      "name": "Light",
+      "type": "light",
+      "brand": "string",
+      "model": "string",
+      "state": {
+        "status": "OFF",
+        "properties": {
+          "brightness": 90
+        }
       }
     }
   }
