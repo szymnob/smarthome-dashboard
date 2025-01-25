@@ -8,6 +8,7 @@ import Input from "@/components/ui/assets/Input";
 import SubmitButton from "@/components/ui/assets/Buttons";
 import CancelButton from "@/components/ui/assets/Buttons";
 import { getRoomsIdOnFloor, addRoom, deleteRoomById, getRoomName } from "@/app/dashboard/data/dataService";
+import ModalWindow from "@/components/ui/assets/modals/ModalWindow";
 
 export default function Page({ params }) {
     const { data, setData } = useContext(DataContext);
@@ -155,6 +156,7 @@ export default function Page({ params }) {
             )}
 
             {/* Remove Room Modal */}
+            
             {showRemoveRoomModal && (
                 <div className="fixed inset-0 flex items-center justify-center bg-black bg-opacity-50 z-50">
                     <div
