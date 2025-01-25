@@ -26,7 +26,7 @@ export default function ModalWindow({ isVisible, onClose, title, children, heade
                     initial="hidden"
                     animate="visible"
                     exit="exit"
-                    transition={{ duration: 0.3 }}
+                    transition={{ duration: 0.15 }}
                     onClick={onClose}
                 >
                     <motion.div
@@ -35,7 +35,7 @@ export default function ModalWindow({ isVisible, onClose, title, children, heade
                         initial="hidden"
                         animate="visible"
                         exit="exit"
-                        transition={{ duration: 0.3 }}
+                        transition={{ duration: 0.15 }}
                         onClick={(e) => e.stopPropagation()}
                     >
                         <div className="flex flex-row justify-between items-center p-4 border-violet-200 border-b-2">

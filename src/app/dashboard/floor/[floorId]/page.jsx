@@ -6,7 +6,7 @@ import Header from "@/components/ui/assets/RectHeader";
 import RoomComponent from "@/components/views/room/RoomComponent";
 import Input from "@/components/ui/assets/Input";
 import SubmitButton from "@/components/ui/assets/Buttons";
-import CancelButton from "@/components/ui/assets/Buttons";
+import {CancelButton} from "@/components/ui/assets/Buttons";
 import { getRoomsIdOnFloor, addRoom, deleteRoomById, getRoomName } from "@/app/dashboard/data/dataService";
 import ModalWindow from "@/components/ui/assets/modals/ModalWindow";
 
@@ -119,92 +119,90 @@ export default function Page({ params }) {
             </div>
 
             {/* Add Room Modal */}
-            {showAddRoomModal && (
-                <div className="fixed inset-0 flex items-center justify-center bg-black bg-opacity-50 z-50">
-                    <div
-                        className="bg-white p-6 rounded-lg shadow-lg w-80"
-                        role="dialog"
-                        aria-modal="true"
-                        aria-labelledby="add-room-title"
-                    >
-                        <h2 id="add-room-title" className="text-xl mb-4">Add New Room</h2>
-                        <form onSubmit={handleAddRoom}>
-                            <Input
-                                id="newRoomName"
-                                label="Room Name"
-                                labelColor="black"
-                                value={newRoomName}
-                                onChange={(e) => setNewRoomName(e.target.value)}
-                                error={error}
-                            />
-                            <div className="flex justify-end space-x-2 mt-4">
-                                <CancelButton
-                                    type="button"
-                                    onClick={() => { setShowAddRoomModal(false); setError(''); setNewRoomName(''); }}
-                                    label={"Cancel"}
-                                >
-                                </CancelButton>
-                                <SubmitButton
-                                    type="submit"
-                                    label="Add"
-                                >
-                                </SubmitButton>
-                            </div>
-                        </form>
+
+            <ModalWindow isVisible={showAddRoomModal} title={"Add room"} onClose={() => {
+                setShowAddRoomModal(false);
+                setError('');
+                setNewRoomName('');
+            }}>
+                <div className="m-5">
+                <form onSubmit={handleAddRoom}>
+                    <Input
+                        id="newRoomName"
+                        label="New room name:"
+                        labelColor="black"
+                        value={newRoomName}
+                        onChange={(e) => setNewRoomName(e.target.value)}
+                        error={error}
+                    />
+                    <div className="flex justify-end space-x-2 mt-4">
+                        <CancelButton
+                            type="button"
+                            onClick={() => {
+                                setShowAddRoomModal(false);
+                                setError('');
+                                setNewRoomName('');
+                            }}
+                            label={"Cancel"}
+                        >
+                        </CancelButton>
+                        <SubmitButton
+                            type="submit"
+                            label="Add"
+                        >
+                        </SubmitButton>
                     </div>
+                </form>
                 </div>
-            )}
+            </ModalWindow>
 
             {/* Remove Room Modal */}
-            
-            {showRemoveRoomModal && (
-                <div className="fixed inset-0 flex items-center justify-center bg-black bg-opacity-50 z-50">
-                    <div
-                        className="bg-white p-6 rounded-lg shadow-lg w-80"
-                        role="dialog"
-                        aria-modal="true"
-                        aria-labelledby="remove-room-title"
-                    >
-                        <h2 id="remove-room-title" className="text-xl mb-4">Remove Room</h2>
-                        <form onSubmit={handleRemoveRoom}>
-                            <div className="mb-4">
-                                <label htmlFor="roomSelect" className="block text-black mb-2">Select Room:</label>
-                                <select
-                                    id="roomSelect"
-                                    value={selectedRoomId}
-                                    onChange={(e) => setSelectedRoomId(e.target.value)}
-                                    className="w-full p-2 border rounded-lg"
-                                    required
-                                >
-                                    <option value="" disabled>Select a room</option>
-                                    {roomsId.map((roomId) => {
-                                        const roomName = getRoomName(data, floorId, roomId);
-                                        return (
-                                            <option key={roomId} value={roomId}>
-                                                {roomName}
-                                            </option>
-                                        );
-                                    })}
-                                </select>
-                                {removeError && <div className="text-red-500 mt-2">{removeError}</div>}
-                            </div>
-                            <div className="flex justify-end space-x-2">
-                                <CancelButton
-                                    type="button"
-                                    onClick={() => { setShowRemoveRoomModal(false); setRemoveError(''); setSelectedRoomId(''); }}
-                                    label="Cancel"
-                                >
-                                </CancelButton>
-                                <SubmitButton
-                                    type="submit"
-                                    label="Remove"
-                                >
-                                </SubmitButton>
-                            </div>
-                        </form>
-                    </div>
+
+            <ModalWindow isVisible={showRemoveRoomModal} onClose={() => { setShowRemoveRoomModal(false); setRemoveError(''); setSelectedRoomId(''); }} title={"Remove room"}>
+                <div className="m-5">
+                    <form onSubmit={handleRemoveRoom}>
+                        <div className="mb-4 flex flex-row items-center justify-between space-x-4">
+                            <label htmlFor="roomSelect" className="whitespace-nowrap text-black">Select Room:</label>
+                            <select
+                                id="roomSelect"
+                                value={selectedRoomId}
+                                onChange={(e) => setSelectedRoomId(e.target.value)}
+                                className="w-full p-2 border rounded-lg"
+                                required
+                            >
+                                <option value="" disabled>Select a room</option>
+                                {roomsId.map((roomId) => {
+                                    const roomName = getRoomName(data, floorId, roomId);
+                                    return (
+                                        <option key={roomId} value={roomId}>
+                                            {roomName}
+                                        </option>
+                                    );
+                                })}
+                            </select>
+                            {removeError && <div className="text-red-500 mt-2">{removeError}</div>}
+                        </div>
+                        <div className="flex justify-end space-x-2">
+                            <CancelButton
+                                type="button"
+                                onClick={() => {
+                                    setShowRemoveRoomModal(false);
+                                    setRemoveError('');
+                                    setSelectedRoomId('');
+                                }}
+                                label="Cancel"
+                            >
+                            </CancelButton>
+                            <SubmitButton
+                                type="submit"
+                                label="Remove"
+                            >
+                            </SubmitButton>
+                        </div>
+                    </form>
                 </div>
-            )}
+            </ModalWindow>
+
         </>
     );
 }
