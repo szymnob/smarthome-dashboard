@@ -6,6 +6,7 @@ import {deleteDeviceById, removeDeviceFromRoom} from "@/app/dashboard/data/dataS
 // import Input from "@/components/ui/assets/Input";
 import SubmitButton, { CancelButton } from "@/components/ui/assets/Buttons";
 import PropTypes from "prop-types";
+import Select from "@/components/ui/assets/Select";
 
 RemoveDevice.propTypes = {
   isVisible: PropTypes.bool.isRequired,
@@ -62,18 +63,16 @@ export default function RemoveDevice({ isVisible, onClose, floorId, roomId }) {
           {/* Device Selection */}
           <div>
             <label className="block text-sm font-semibold mb-1">Select Device to Remove:</label>
-            <select
-              className="border border-gray-300 rounded px-3 py-2 w-full"
-              value={selectedDeviceId}
-              onChange={handleDeviceChange}
-            >
+
+            <Select value={selectedDeviceId} onChange={handleDeviceChange}>
               <option value="">-- Select a Device --</option>
               {devicesInRoom.map((deviceId) => (
-                <option key={deviceId} value={deviceId}>
-                  {data.devices[deviceId]?.name || `Device ${deviceId}`}
-                </option>
+                  <option key={deviceId} value={deviceId}>
+                    {data.devices[deviceId]?.name || `Device ${deviceId}`}
+                  </option>
               ))}
-            </select>
+            </Select>
+
           </div>
 
           {/* Optional error message */}

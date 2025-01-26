@@ -12,9 +12,8 @@ export default function Layout({ children }) {
     const closeModal = () => setShowAddFloorModal(false);
 
     return (
-        <>
             <div className="flex h-screen">
-                <div 
+                <div
                     className={`fixed inset-0 z-50 flex justify-start items-start bg-black bg-opacity-50 transition-transform duration-300 ${isOpen ? 'translate-x-0' : 'translate-x-full'}
                      md:translate-x-0 md:relative md:flex-none md:bg-transparent md:transition-none`}
                 >
@@ -22,7 +21,7 @@ export default function Layout({ children }) {
                 </div>
                 <div className={`flex-grow md:overflow-y-auto ${isOpen ? 'overflow-hidden' : ''}`}>
                     <button
-                        className="md:hidden p-4 bg-gray-400 text-white rounded-full fixed top-4 right-4 z-50"
+                        className="md:hidden p-4 w-auto h-auto  bg-gray-400 text-white rounded-full fixed top-4 right-4 z-50"
                         onClick={() => setIsOpen(!isOpen)}
                     >
                         {isOpen ? '✕' : '☰'}
@@ -36,6 +35,5 @@ export default function Layout({ children }) {
                     </div>
                 </div>
             </div>
-        </>
     );
 }
