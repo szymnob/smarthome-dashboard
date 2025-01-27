@@ -22,8 +22,9 @@ export default function ToggleDays({ value = [], onChange }) {
     };
 
     return (
-        <div className="flex space-x-2 p-2">
+        <div className="flex justify-between p-2">
             {DAYS.map((dayObj) => {
+
                 const dayValue = parseInt(Object.keys(dayObj)[0]);
                 const dayLabel = dayObj[dayValue][0];
                 const dayName = dayObj[dayValue][1];

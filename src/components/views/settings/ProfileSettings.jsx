@@ -93,7 +93,9 @@ const ProfileSettings = () => {
                     )}
                 </div>
             </div>
+
             <hr className="my-6"/>
+            
             <div className="flex justify-end items-center">
                 <h1 className="text-lg font-bold text-black-500 mr-2">Logout</h1>
                 <LinkButtonImage

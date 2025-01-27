@@ -9,11 +9,12 @@ import { addDeviceToRoom } from "@/app/dashboard/data/dataService";
 import Input from "@/components/ui/assets/Input";
 import SubmitButton, { CancelButton } from "@/components/ui/assets/Buttons";
 import PropTypes from "prop-types";
+import Select from "@/components/ui/assets/Select";
 
 AddNewDevice.propTypes = {
   isVisible: PropTypes.bool.isRequired,
   onClose: PropTypes.func.isRequired,
-  floorId: PropTypes.string.isRequired, 
+  floorId: PropTypes.string.isRequired,
   roomId: PropTypes.string.isRequired   // or number
 };
 
@@ -61,12 +62,7 @@ export default function AddNewDevice({ isVisible, onClose, floorId, roomId }) {
 
           {/* Device Type (example: select dropdown) */}
           <div>
-            <label className="block text-sm font-semibold mb-1">Device Type:</label>
-            <select
-                className="border border-gray-300 rounded px-3 py-2 w-full"
-                value={deviceType}
-                onChange={(e) => setDeviceType(e.target.value)}
-            >
+            <Select label="Device type:" value={deviceType} onChange={(e) => setDeviceType(e.target.value)}>
               <option value="rgb_light">RGB Light</option>
               <option value="heater">Heater</option>
               <option value="tv">TV</option>
@@ -74,7 +70,8 @@ export default function AddNewDevice({ isVisible, onClose, floorId, roomId }) {
               <option value="refrigerator">Refrigerator</option>
               <option value="refrigerator">Blinders</option>
               {/* ... można dodać więcej opcji */}
-            </select>
+            </Select>
+
           </div>
 
           {/* Optional error message */}

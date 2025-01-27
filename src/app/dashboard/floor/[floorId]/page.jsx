@@ -9,6 +9,7 @@ import SubmitButton from "@/components/ui/assets/Buttons";
 import {CancelButton} from "@/components/ui/assets/Buttons";
 import { getRoomsIdOnFloor, addRoom, deleteRoomById, getRoomName } from "@/app/dashboard/data/dataService";
 import ModalWindow from "@/components/ui/assets/modals/ModalWindow";
+import Select from "@/components/ui/assets/Select";
 
 export default function Page({ params }) {
     const { data, setData } = useContext(DataContext);
@@ -160,16 +161,13 @@ export default function Page({ params }) {
 
             <ModalWindow isVisible={showRemoveRoomModal} onClose={() => { setShowRemoveRoomModal(false); setRemoveError(''); setSelectedRoomId(''); }} title={"Remove room"}>
                 <div className="m-5">
-                    <form onSubmit={handleRemoveRoom}>
-                        <div className="mb-4 flex flex-row items-center justify-between space-x-4">
-                            <label htmlFor="roomSelect" className="whitespace-nowrap text-black">Select Room:</label>
-                            <select
-                                id="roomSelect"
-                                value={selectedRoomId}
-                                onChange={(e) => setSelectedRoomId(e.target.value)}
-                                className="w-full p-2 border rounded-lg"
-                                required
-                            >
+                    <form className="space-y-5" onSubmit={handleRemoveRoom}>
+
+                            <Select label="Select Room:" value={selectedRoomId}
+                                    onChange={(e) => {
+                                        setSelectedRoomId(e.target.value)
+                                        setRemoveError('');
+                                    }}>
                                 <option value="" disabled>Select a room</option>
                                 {roomsId.map((roomId) => {
                                     const roomName = getRoomName(data, floorId, roomId);
@@ -179,10 +177,33 @@ export default function Page({ params }) {
                                         </option>
                                     );
                                 })}
-                            </select>
-                            {removeError && <div className="text-red-500 mt-2">{removeError}</div>}
-                        </div>
-                        <div className="flex justify-end space-x-2">
+                            </Select>
+
+                            {removeError && <div
+                                className=" block p-2 w-full text-center bg-red-400 shadow-md shadow-red-300 rounded-lg leading-loose">{removeError}</div>}
+
+                            {/*<label htmlFor="roomSelect" className="whitespace-nowrap text-black">Select Room:</label>*/}
+                            {/*<select*/}
+                            {/*    id="roomSelect"*/}
+                            {/*    value={selectedRoomId}*/}
+                            {/*    onChange={(e) => setSelectedRoomId(e.target.value)}*/}
+                            {/*    className="w-full p-2 border rounded-lg"*/}
+                            {/*    required*/}
+                            {/*>*/}
+                            {/*    <option value="" disabled>Select a room</option>*/}
+                            {/*    {roomsId.map((roomId) => {*/}
+                            {/*        const roomName = getRoomName(data, floorId, roomId);*/}
+                            {/*        return (*/}
+                            {/*            <option key={roomId} value={roomId}>*/}
+                            {/*                {roomName}*/}
+                            {/*            </option>*/}
+                            {/*        );*/}
+                            {/*    })}*/}
+                            {/*</select>*/}
+
+
+                            {/*{removeError && <div className="text-red-500 mt-2">{removeError}</div>}*/}
+                        <div className="flex flex-row justify-between space-x-5 p-2">
                             <CancelButton
                                 type="button"
                                 onClick={() => {
