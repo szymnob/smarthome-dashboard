@@ -86,6 +86,20 @@ export function getActiveUserName(data){
     return getActiveUserProfile(data).name;
 }
 
+export function changeActiveUserName(data, newName){
+    getActiveUserProfile(data).name = newName;
+}
+
+export function getActiveUserAvatar(data){
+    return getActiveUserProfile(data).avatar;
+}
+
+export function changeActiveUserAvatar(data, newAvatar){
+    console.log('Changing user avatar to:', newAvatar);
+    console.log('Current data:', data);
+    getActiveUserProfile(data).avatar = newAvatar;
+}
+
 export function updateDeviceState(data, deviceId, newState) {
     data.devices[deviceId].state.status = newState;
 }
