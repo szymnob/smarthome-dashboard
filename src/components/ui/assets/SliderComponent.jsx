@@ -7,8 +7,14 @@ const sliderConfig = {
         style: "bg-gray-800",
         label: ""
     },
-    temperature: {
+    temperatureAC: {
         minValue: "15°C",
+        maxValue: "30°C",
+        style: "bg-gradient-to-r from-blue-600 to-red-700",
+        label: "Temperature"
+    },
+    temperatureHeater: {
+        minValue: "20°C",
         maxValue: "30°C",
         style: "bg-gradient-to-r from-blue-600 to-red-700",
         label: "Temperature"
@@ -39,7 +45,7 @@ export default function Slider({ setValue, value, type="default"}){
 
     return (
         <>
-            <div className="w-full flex flex-col space-y-1">
+            <div className="w-full flex flex-col space-y-2">
                 <p>{config.label}</p>
                 <input id="range" type="range" value={value} onChange={(e) => setValue(e.target.value)} min="0"
                        max="100" step="1"

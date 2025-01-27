@@ -8,13 +8,13 @@ export default function Light({properties, setProperties}) {
     const[brightness, setBrightness] = useState( 50);
 
 
-    const [isInitialized, setIsInitialized] = useState(false); // Czy dane zostały zainicjalizowane?
+    const [isInitialized, setIsInitialized] = useState(false);
 
     useEffect(() => {
         if (!isInitialized) {
                 setBrightness(properties.brightness || 50)
 
-            setIsInitialized(true); // Dane zostały zainicjalizowane
+            setIsInitialized(true);
         }
     }, [properties, isInitialized]);
 

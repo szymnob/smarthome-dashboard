@@ -84,9 +84,29 @@ export default function DeviceComponent({deviceId, location = []}) {
                 {
                     "text-white": deviceStatus === "ON",
                 })}>
-                <div className="flex flex-row w-full justify-between items-center mb-3">
-                    <div id="location">{locationString}</div>
-                    <Tooltip anchorSelect="#location" content="Location of device" delayShow={500} />
+                <div className="flex flex-row w-full justify-between space-x-1 items-center mb-3">
+
+                    {locationString ?
+                        (
+                            <>
+                                <div id="location">{locationString}</div>
+                                <Tooltip anchorSelect="#location" content="Location of device" delayShow={500}/>
+                            </>
+                        )
+
+                        :(
+                            <>
+                                <div id="status">{deviceStatus}</div>
+                                <Tooltip anchorSelect="#status" content="Device status" delayShow={500}/>
+
+                            </>
+
+                        )
+
+
+                    }
+
+
                     <Switch id={deviceId} checked={deviceStatus === "ON"} onChange={handleChange}/>
                 </div>
 

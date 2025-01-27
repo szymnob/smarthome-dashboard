@@ -61,7 +61,7 @@ const ProfileSettings = () => {
     };
 
     return (
-        <div className="max-w-lg mx-auto bg-white p-6 rounded-lg shadow-md">
+        <div className="max-w-lg mx-auto bg-white p-6 rounded-lg shadow-md border-custom">
             <h2 className="mb-6 text-2xl text-black-600 font-semibold">Profile Settings</h2>
             <div className="mb-8">
                 <h3 className="mb-4 text-xl font-semibold">Change Username</h3>

@@ -20,6 +20,8 @@ import ChangeName from "@/components/ui/assets/modals/ChangeName";
 import { Tooltip } from "react-tooltip";
 import Blinds from "@/components/views/device-views/types/Blinds";
 import Light from "@/components/views/device-views/types/Light";
+import AirConditioner from "@/components/views/device-views/types/AirConditioner";
+import Heater from "@/components/views/device-views/types/Heater";
 
 
 export default function DeviceSettings({isVisible, onClose, deviceId, deviceStatus, setDeviceStatus}) {
@@ -163,6 +165,8 @@ const typesToComponents={
     "rgb_light": RgbLight,
     "blinds": Blinds,
     "light": Light,
+    "air_conditioner": AirConditioner,
+    "heater": Heater,
 }
 
 

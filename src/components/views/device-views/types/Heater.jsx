@@ -1,20 +1,22 @@
-
-import Wheel from "@uiw/react-color-wheel";
 import {useEffect, useState} from "react";
 import Slider from "@/components/ui/assets/SliderComponent";
 import * as PropTypes from "prop-types";
 
-export default function Blinds({properties, setProperties}) {
-    const[temperature, settemperature] = useState( 3);
+export default function Heater({properties, setProperties}) {
+
+    const[temperature, setTemperature] = useState( 3);
+
+    const[currentTemperatiure, setCurrentTemperature] = useState(20);
+    // setCurrentTemperature(Math.floor(Math.random() * (30 - 18)) + 18);
 
 
-    const [isInitialized, setIsInitialized] = useState(false); // Czy dane zostały zainicjalizowane?
+    const [isInitialized, setIsInitialized] = useState(false);
 
     useEffect(() => {
         if (!isInitialized) {
-            settemperature(properties.temperature || 3);
+            setTemperature(properties.temperature || 3);
 
-            setIsInitialized(true); // Dane zostały zainicjalizowane
+            setIsInitialized(true);
         }
     }, [properties, isInitialized]);
 
@@ -35,15 +37,18 @@ export default function Blinds({properties, setProperties}) {
     }
 
     return(
-        <div className="flex flex-col justify-center items-center space-y-7">
+        <div className="flex flex-col justify-center items-center space-y-3">
+            <div className="w-full">
+                Temperature in room: {currentTemperatiure}°C
+            </div>
 
-            <Slider label="Temperature" value={temperature} type="blindsPosition" setValue={settemperature}/>
+            <Slider label="Temperature" value={temperature} type="temperatureHeater" setValue={setTemperature}/>
 
         </div>
     )
 }
 
-Blinds.propTypes = {
+Heater.propTypes = {
     properties: PropTypes.object,
     setProperties: PropTypes.func
 }

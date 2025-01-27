@@ -62,9 +62,8 @@ export default function RemoveDevice({ isVisible, onClose, floorId, roomId }) {
           
           {/* Device Selection */}
           <div>
-            <label className="block text-sm font-semibold mb-1">Select Device to Remove:</label>
 
-            <Select value={selectedDeviceId} onChange={handleDeviceChange}>
+            <Select  label="Select device:" value={selectedDeviceId} onChange={handleDeviceChange}>
               <option value="">-- Select a Device --</option>
               {devicesInRoom.map((deviceId) => (
                   <option key={deviceId} value={deviceId}>

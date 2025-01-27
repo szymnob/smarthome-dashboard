@@ -43,7 +43,7 @@ export default function ModalWindow({ isVisible, onClose, title, children, heade
                             <div className="flex items-center justify-between space-x-1">
                                 {headerActions}
                                 <div
-                                    className="w-9 h-auto cursor-pointer transition-transform duration-200 rounded-md hover:bg-neutral-200 hover:scale-105"
+                                    className="w-9 h-auto cursor-pointer transition-transform duration-200 active:scale-100 rounded-md hover:bg-neutral-200 hover:scale-105"
                                     onClick={onClose}
                                     id="close"
                                 >
