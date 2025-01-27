@@ -3,7 +3,7 @@
 import { usePathname } from 'next/navigation';
 import { useContext, useEffect, useState } from "react";
 import DataContext from "@/app/dashboard/data/dataContext";
-import { getFloorsNumbers, getActiveUserName, getActiveUserId } from "@/app/dashboard/data/dataService";
+import { getFloorsNumbers, getActiveUserName, getActiveUserId, getActiveUserAvatar } from "@/app/dashboard/data/dataService";
 import LinkButtonImage, { ButtonImage, LinkButtonText } from "@/components/ui/navigation/NavigationButton";
 import Link from 'next/link';
 import { Tooltip } from 'react-tooltip'
@@ -11,6 +11,7 @@ import { Tooltip } from 'react-tooltip'
 export default function Navigation({ openModal }) {
     const pathname = usePathname();
     const [activeUserId, setActiveUserId] = useState(null);
+    const [avatar, setActiveUserAvatar] = useState("");
     const [username, setActiveUserName] = useState("");
     const [floorNumbers, setFloorNumbers] = useState([]);
 
@@ -23,6 +24,7 @@ export default function Navigation({ openModal }) {
                 if (userId !== null && userId !== undefined) {
                     setActiveUserId(userId);
                     setActiveUserName(await getActiveUserName(data));
+                    setActiveUserAvatar(await getActiveUserAvatar(data));
                 }
                 const floors = getFloorsNumbers(data);
                 setFloorNumbers(floors);
@@ -57,25 +59,12 @@ export default function Navigation({ openModal }) {
                             tooltip={`Floor ${number}`}
                         />
                     ))}
+        
 
                     {/* Separator */}
                     <div className="w-full h-px bg-black"></div>
 
-                    {/* Dashboard */}
-                    <LinkButtonImage
-                        href={'/dashboard/monitoring'}
-                        icon="/icons/devices/camera.svg"
-                        isActive={pathname === '/dashboard/monitoring'}
-                        label="Monitoring"
-                    />
-                </div>
-
-                {/* Dolna sekcja */}
-                <div className="flex flex-col items-center space-y-4">
-                    {/* Separator */}
-                    <div className="w-full h-px bg-black"></div>
-
-                    {/* Przycisk "+" */}
+                    {/* Add floor*/}
                     <ButtonImage
                         icon="/icons/plus.svg"
                         onClick={openModal}
@@ -83,18 +72,26 @@ export default function Navigation({ openModal }) {
                         label="Add floor"
                     />
 
-                    {/* Przycisk ustawienia */}
+                </div>
+
+                {/* Dolna sekcja */}
+                 <div className="flex flex-col items-center space-y-4 mt-4">
+                    {/* Separator */}
+                    <div className="w-full h-px bg-black"></div>
+
+                    {/* Monitoring */}
                     <LinkButtonImage
-                        href={'/dashboard/settings'}
-                        icon="/icons/settings.svg"
-                        isActive={pathname === '/dashboard/settings'}
-                        label="Settings"
+                        href={'/dashboard/monitoring'}
+                        icon="/icons/devices/camera.svg"
+                        isActive={pathname === '/dashboard/monitoring'}
+                        label="Monitoring"
                     />
+                    
 
                     {/* Avatar */}
                     <Tooltip anchorSelect="#avatar" content="Switch user" place="right" delayShow={500} />
-                    <Link id="avatar" href='/' className="flex flex-col items-center space-y-2 group">
-                        <img src={`/icons/avatars/${activeUserId || 'default'}.png`} alt={`${activeUserId || 'default'}.png`} className="w-10 h-10 rounded-full group-hover:scale-110 transition-transform duration-200"/>
+                    <Link id="avatar" href='/dashboard/settings' className="flex flex-col items-center space-y-2 group">
+                        <img src={`${avatar || '/icons/avatars/default.png'}`} alt={`${avatar || 'default'}`} className="w-10 h-10 rounded-full group-hover:scale-110 transition-transform duration-200"/>
                         <span className="text-sm mt-2 text-gray-700 group-hover:font-bold">{username || 'User'}</span>
                     </Link>
                 </div>
