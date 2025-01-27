@@ -2,38 +2,44 @@ import * as PropTypes from "prop-types";
 
 const sliderConfig = {
     default: {
+        unit: "",
         minValue: 0,
         maxValue: 100,
         style: "bg-gray-800",
         label: ""
     },
     temperatureAC: {
-        minValue: "15°C",
-        maxValue: "30°C",
+        unit: "°C",
+        minValue: 15,
+        maxValue: 30,
         style: "bg-gradient-to-r from-blue-600 to-red-700",
         label: "Temperature"
     },
     temperatureHeater: {
-        minValue: "20°C",
-        maxValue: "30°C",
+        unit: "°C",
+        minValue: 20,
+        maxValue: 30,
         style: "bg-gradient-to-r from-blue-600 to-red-700",
         label: "Temperature"
     },
     brightness: {
-        minValue: "0%",
-        maxValue: "100%",
+        unit: "%",
+        minValue: 0,
+        maxValue: 100,
         style: "bg-gradient-to-r from-gray-900 to-amber-200",
         label: "Brightness",
     },
     colorTemperature: {
-        minValue: "2000K",
-        maxValue: "6500K",
+        unit: "K",
+        minValue: 2000,
+        maxValue: 6500,
         style: "bg-gradient-to-r from-orange-600 to-blue-300",
         label: "Color Temperature"
     },
     blindsPosition: {
-        minValue: "Closed",
-        maxValue: "Open",
+        unit: "% Open",
+        minValue: 0,
+        maxValue: 100,
         style: "bg-gradient-to-r from-gray-900 to-amber-200",
         label: "Blinds Position"
     }
@@ -46,13 +52,14 @@ export default function Slider({ setValue, value, type="default"}){
     return (
         <>
             <div className="w-full flex flex-col space-y-2">
-                <p>{config.label}</p>
-                <input id="range" type="range" value={value} onChange={(e) => setValue(e.target.value)} min="0"
-                       max="100" step="1"
+                {/*Tymaczowe min max, dziala zle ale pokazuje*/}
+                <p>{config.label} - <b>{value}{config.unit}</b></p>
+                <input id="range" type="range" value={value} onChange={(e) => setValue(e.target.value)} min={parseInt(config.minValue)}
+                       max={parseInt(config.maxValue)} step="1"
                        className={`transparent w-full outline-0 h-4 rounded-lg border-custom appearance-none cursor-pointer ${config.style}`}/>
             <div className="flex flex-row justify-between">
-                <p>{config.minValue}</p>
-                <p>{config.maxValue}</p>
+                <p>{config.minValue}{config.unit}</p>
+                <p>{config.maxValue}{config.unit}</p>
             </div>
             </div>
 

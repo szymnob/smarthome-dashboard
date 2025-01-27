@@ -8,6 +8,7 @@ import DeviceComponent from "@/components/views/device-views/DeviceComponent";
 import Script from "next/script";
 import WeatherWidget from "@/components/ui/assets/WeatherWIdget";
 import WelcomeMessage from "@/components/ui/assets/WelcomeMessage";
+import EnergyConsumptionChart, {DailyEnergyConsumptionChart} from "@/components/ui/assets/EnergyConsumptionChart";
 
 export default function Page() {
     const { data } = useContext(DataContext);
@@ -39,17 +40,29 @@ export default function Page() {
         <>
             <Header label="Dashboard" />
             
-            <hr className="my-10" />
+            <hr className="my-5" />
 
-            <div className="m-10">
+            <div className="">
                 <WelcomeMessage />
             </div>
             
-            <hr className="my-10" />
+            <hr className="my-5" />
 
-            <div className="m-10">
+            <div className="m-5">
                 <WeatherWidget />
             </div>
+
+            <div className="flex flex-row m-3 justify-center lg:p-10 items-center">
+                <div className="min-h-60 flex-1">
+                    <EnergyConsumptionChart />
+
+                </div>
+                <div className="min-h-60 flex-1">
+                    <DailyEnergyConsumptionChart />
+
+                </div>
+            </div>
+
 
             <hr className="my-10" />
 

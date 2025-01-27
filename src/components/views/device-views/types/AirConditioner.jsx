@@ -5,7 +5,7 @@ import * as PropTypes from "prop-types";
 export default function AirConditioner({properties, setProperties}) {
 
     const[temperature, setTemperature] = useState( 3);
-    const[currentTemperatiure, setCurrentTemperature] = useState(20);
+    const[currentTemperature, setCurrentTemperature] = useState(20);
 
 
     const [isInitialized, setIsInitialized] = useState(false);
@@ -37,7 +37,7 @@ export default function AirConditioner({properties, setProperties}) {
     return(
         <div className="flex flex-col justify-center items-center space-y-3">
             <div className="w-full">
-                Temperature in room: {currentTemperatiure}°C
+                Temperature in room: {currentTemperature}°C
             </div>
             <Slider label="Temperature" value={temperature} type="temperatureAC" setValue={setTemperature}/>
 

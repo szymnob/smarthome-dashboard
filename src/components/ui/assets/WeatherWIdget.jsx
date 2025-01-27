@@ -18,7 +18,7 @@ export default function WeatherWidget() {
 
     return (
         <a
-            className="weatherwidget-io rounded-md bg-neutral-50 shadow-md"
+            className="weatherwidget-io rounded-md bg-neutral-50 shadow-md h-full"
             href="https://forecast7.com/en/50d0619d94/krakow/"
             data-label_1="Kraków"
             data-label_2="WEATHER"
