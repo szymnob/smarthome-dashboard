@@ -3,22 +3,32 @@
     "1": {
       "name": "John",
       "avatar": "/icons/avatars/1.png",
-      "favourites": [1, 3]
+      "favourites": [
+        1,
+        3,
+        1738051653832,
+        1738051645051,
+        1738051948483
+      ]
     },
     "2": {
       "name": "Charlie",
       "avatar": "/icons/avatars/2.png",
-      "favourites": [2, 4]
+      "favourites": [
+        2,
+        4
+      ]
     },
     "3": {
       "name": "Alice",
       "avatar": "/icons/avatars/3.png",
-      "favourites": [1, 2]
+      "favourites": [
+        1,
+        2
+      ]
     }
   },
-
   "activeUserId": 1,
-
   "home": {
     "name": "string",
     "floors": {
@@ -28,12 +38,36 @@
           "1": {
             "id": 1,
             "name": "Kitchen",
-            "devices": [1, 2, 7]
+            "devices": [
+              1,
+              2,
+              7
+            ]
           },
           "2": {
             "id": 2,
             "name": "Living Room",
-            "devices": [3 ,6]
+            "devices": [
+              3,
+              6,
+              1738051546182,
+              1738051571573
+            ]
+          },
+          "1738051458374": {
+            "id": 1738051458374,
+            "name": "Hall",
+            "devices": [
+              1738051479750
+            ]
+          },
+          "1738051755241": {
+            "id": 1738051755241,
+            "name": "Bathroom",
+            "devices": [
+              1738051788920,
+              1738051799796
+            ]
           }
         }
       },
@@ -43,12 +77,27 @@
           "3": {
             "id": 3,
             "name": "Bedroom",
-            "devices": [4]
+            "devices": [
+              4,
+              1738051617881
+            ]
           },
           "4": {
             "id": 4,
             "name": "Bathroom",
-            "devices": [5]
+            "devices": [
+              5,
+              1738051661436
+            ]
+          },
+          "1738051639090": {
+            "id": 1738051639090,
+            "name": "John's bedroom",
+            "devices": [
+              1738051645051,
+              1738051653832,
+              1738051948483
+            ]
           }
         }
       }
@@ -156,6 +205,122 @@
         "properties": {
           "brightness": 90
         }
+      }
+    },
+    "1738051479750": {
+      "id": 1738051479750,
+      "name": "Light",
+      "type": "rgb_light",
+      "brand": "",
+      "model": "",
+      "state": {
+        "status": "OFF",
+        "properties": {
+          "color": "#1100ff",
+          "brightness": 50
+        }
+      }
+    },
+    "1738051546182": {
+      "id": 1738051546182,
+      "name": "TV",
+      "type": "tv",
+      "brand": "",
+      "model": "",
+      "state": {
+        "status": "OFF",
+        "properties": {}
+      }
+    },
+    "1738051571573": {
+      "id": 1738051571573,
+      "name": "Light",
+      "type": "rgb_light",
+      "brand": "",
+      "model": "",
+      "state": {
+        "status": "OFF",
+        "properties": {}
+      }
+    },
+    "1738051617881": {
+      "id": 1738051617881,
+      "name": "Light",
+      "type": "rgb_light",
+      "brand": "",
+      "model": "",
+      "state": {
+        "status": "OFF",
+        "properties": {}
+      }
+    },
+    "1738051645051": {
+      "id": 1738051645051,
+      "name": "Light",
+      "type": "rgb_light",
+      "brand": "",
+      "model": "",
+      "state": {
+        "status": "OFF",
+        "properties": {
+          "color": "#FF2211",
+          "brightness": 50
+        }
+      }
+    },
+    "1738051653832": {
+      "id": 1738051653832,
+      "name": "AC",
+      "type": "air_conditioner",
+      "brand": "",
+      "model": "",
+      "state": {
+        "status": "OFF",
+        "properties": {}
+      }
+    },
+    "1738051661436": {
+      "id": 1738051661436,
+      "name": "Light",
+      "type": "rgb_light",
+      "brand": "",
+      "model": "",
+      "state": {
+        "status": "OFF",
+        "properties": {}
+      }
+    },
+    "1738051788920": {
+      "id": 1738051788920,
+      "name": "Light",
+      "type": "light",
+      "brand": "",
+      "model": "",
+      "state": {
+        "status": "OFF",
+        "properties": {}
+      }
+    },
+    "1738051799796": {
+      "id": 1738051799796,
+      "name": "Blinds",
+      "type": "refrigerator",
+      "brand": "",
+      "model": "",
+      "state": {
+        "status": "OFF",
+        "properties": {}
+      }
+    },
+    "1738051948483": {
+      "id": 1738051948483,
+      "name": "Desk Lamp",
+      "type": "light",
+      "brand": "",
+      "model": "",
+      "state": {
+        "status": "OFF",
+        "properties": {}
       }
     }
   }

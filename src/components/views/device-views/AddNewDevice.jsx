@@ -64,6 +64,7 @@ export default function AddNewDevice({ isVisible, onClose, floorId, roomId }) {
           <div>
             <Select label="Device type:" value={deviceType} onChange={(e) => setDeviceType(e.target.value)}>
               <option value="rgb_light">RGB Light</option>
+              <option value="light">Light</option>
               <option value="heater">Heater</option>
               <option value="tv">TV</option>
               <option value="air_conditioner">Air Conditioner</option>
